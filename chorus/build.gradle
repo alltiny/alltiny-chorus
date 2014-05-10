@@ -1,0 +1,17 @@
+apply plugin: 'application'
+
+sourceCompatibility = 1.5
+version = '0.2.4'
+mainClassName = 'org.alltiny.chorus.Chorus'
+
+dependencies {
+	compile project(':xml-handler')
+	compile project(':svg-parser')
+	compile project(':base-model')
+	testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+jar {
+	from {configurations.runtime.collect {zipTree(it)}}
+	manifest.attributes("Main-Class": "org.alltiny.chorus.Chorus")
+}

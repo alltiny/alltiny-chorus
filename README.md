@@ -12,3 +12,19 @@ Chorus is still work in progress. Following features are missing:
 
 # What it might become
 Chorus currently not supports any editing. You need to edit your music files as XML in a propriate editor. In the final version Chorus should have an edit-mode and as well be apropriate for layouting sheet music.
+
+# How to build?
+alltiny-chorus uses gradle for building. To compile and assemble the executable jar file do:
+>>cd alltiny-chorus/chorus
+>>gradle clean jar
+the executable jar file can be found in:
+>>alltiny-chorus/chorus/build/libs/
+
+# How to set up my development environment?
+Depending on whether you use IntelliJ IDEA or Eclipse, gradle may create the project files for you:
+* for IntelliJ IDEA
+>>cd alltiny-chorus
+>>gradle idea
+* for Eclipse
+>>cd alltiny-chorus
+>>gradle eclipse

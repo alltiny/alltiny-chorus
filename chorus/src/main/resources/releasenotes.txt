@@ -1,0 +1,4 @@
+Version 0.2.4
+ - Durch Linksklick auf die Noten kann der Abspiel-Cursor gesetzt werden. Bisher war ein versetzen des Cursors nur durch Klick auf die Zeit-Leiste möglich.
+Version 0.2.3
+ - Triolen werden nun auch am Bildschirm dargestellt;

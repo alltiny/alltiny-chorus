@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<song>
+<title>Brich an, o schönes Morgenlicht</title>
+<author>J.S.Bach</author>
+<meta>
+<author>Ralf Hergert</author>
+<date>06.11.2008</date>
+</meta>
+<tempo>72</tempo>
+<music-data>
+<voice id="sopran" name="Soprano">
+<sequence clef="G" key="#1" beat="C">
+<repeat-begin/>
+<bar duration="1" division="4"/>
+<note value="G4" duration="1" division="4"/>
+<bar duration="4" division="4"/>
+<note value="G4" duration="1" division="4"/>
+<note value="A4" duration="1" division="4"/>
+<note value="B4" duration="1" division="8">
+<beam ref="1"/>
+<bound ref="1"/>
+</note>
+<note value="C#5" duration="1" division="8">
+<beam ref="1"/>
+<bound ref="1"/>
+</note>
+<note value="D5" duration="1" division="4"/>
+<note value="D5" duration="1" division="4"/>
+<note value="C#5" duration="1" division="4"/>
+<note value="D5" duration="1" division="4">
+<fermata/>
+</note>
+<note value="B4" duration="1" division="4"/>
+<note value="C5" duration="1" division="4">
+<accidental type="natural"/>
+</note>
+<note value="B4" duration="1" division="4"/>
+<note value="A4" duration="1" division="4"/>
+<note value="B4" duration="1" division="4"/>
+<bar duration="3" division="4"/>
+<note value="A4" duration="1" division="2"/>
+<note value="G4" duration="1" division="4">
+<fermata/>
+</note>
+<repeat-end/>
+<bar duration="1" division="4"/>
+<note value="A4" duration="1" division="4"/>
+<note value="A4" duration="1" division="4"/>
+<note value="B4" duration="1" division="4"/>
+<note value="C5" duration="1" division="4"/>
+<note value="C5" duration="1" division="4"/>
+<note value="B4" duration="1" division="8">
+<beam ref="2"/>
+<bound ref="2"/>
+</note>
+<note value="A4" duration="1" division="8">
+<beam ref="2"/>
+<bound ref="2"/>
+</note>
+<note value="B4" duration="1" division="4"/>
+<note value="A4" duration="1" division="4">
+<fermata/>
+</note>
+<note value="B4" duration="1" division="4"/>
+<note value="B4" duration="1" division="4"/>
+<note value="B4" duration="1" division="4"/>
+<note value="C5" duration="1" division="8"/>
+<note value="D5" duration="1" division="8"/>
+<note value="E5" duration="1" division="4"/>
+<note value="E5" duration="1" division="4"/>
+<note value="D#5" duration="1" division="4"/>
+<note value="E5" duration="1" division="4">
+<fermata/>
+</note>
+<note value="F#5" duration="1" division="4"/>
+<note value="G5" duration="1" division="4"/>
+<note value="B4" duration="1" division="4"/>
+<note value="C5" duration="1" division="4"/>
+<note value="B4" duration="1" division="4"/>
+<note value="A4" duration="1" division="2"/>
+<note value="A4" duration="1" division="4">
+<fermata/>
+</note>
+<note value="D5" duration="1" division="4"/>
+<note value="E5" duration="1" division="4"/>
+<note value="D5" duration="1" division="4"/>
+<note value="C5" duration="1" division="4"/>
+<note value="B4" duration="1" division="8"/>
+<note value="C5" duration="1" division="8"/>
+<bar duration="3" division="4"/>
+<note value="A4" duration="1" division="2"/>
+<note value="G4" duration="1" division="4">
+<fermata/>
+</note>
+</sequence>
+</voice>
+<voice id="alt" name="Alto">
+<sequence clef="G" key="#1" beat="C">
+<repeat-begin/>
+<bar duration="1" division="4"/>
+<note value="D4" duration="1" division="4"/>
+<bar duration="4" division="4"/>
+<note value="E4" duration="1" division="4"/>
+<note value="F#4" duration="1" division="4"/>
+<note value="D4" duration="1" division="8">
+<beam ref="1"/>
+<bound ref="1"/>
+</note>
+<note value="E4" duration="1" division="8">
+<beam ref="1"/>
+<bound ref="1"/>
+</note>
+<note value="F#4" duration="1" division="4"/>
+<note value="E4" duration="1" division="8">
+<beam ref="2"/>
+<bound ref="2"/>
+</note>
+<note value="F#4" duration="1" division="8">
+<beam ref="2"/>
+<bound ref="2"/>
+</note>
+<note value="G4" duration="1" division="4"/>
+<note value="F#4" duration="1" division="4">
+<fermata/>
+</note>
+</sequence>
+</voice>
+<voice id="tenor" name="Tenor">
+<sequence clef="G8basso" key="#1" beat="C">
+<repeat-begin/>
+<bar duration="1" division="4"/>
+<note value="B3" duration="1" division="4"/>
+<bar duration="4" division="4"/>
+<note value="B3" duration="1" division="8">
+<beam ref="1"/>
+<bound ref="1"/>
+</note>
+<note value="C4" duration="1" division="8">
+<beam ref="1"/>
+<bound ref="1"/>
+</note>
+<note value="C4" duration="1" division="8">
+<beam ref="2"/>
+<bound ref="2"/>
+</note>
+<note value="D4" duration="1" division="8">
+<beam ref="2"/>
+<bound ref="2"/>
+</note>
+<note value="B3" duration="1" division="8">
+<beam ref="3"/>
+<bound ref="3"/>
+</note>
+<note value="A3" duration="1" division="8">
+<beam ref="3"/>
+<bound ref="3"/>
+</note>
+<note value="A3" duration="1" division="4"/>
+<note value="A3" duration="1" division="4"/>
+<note value="A3" duration="1" division="4"/>
+<note value="A3" duration="1" division="4">
+<fermata/>
+</note>
+<note value="B3" duration="1" division="8">
+<beam ref="4"/>
+<bound ref="4"/>
+</note>
+<note value="A3" duration="1" division="8">
+<beam ref="4"/>
+<bound ref="4"/>
+</note>
+<note value="G3" duration="1" division="8">
+<beam ref="5"/>
+<bound ref="5"/>
+</note>
+<note value="A3" duration="1" division="8">
+<beam ref="5"/>
+<bound ref="5"/>
+</note>
+<note value="B3" duration="1" division="8">
+<beam ref="6"/>
+<bound ref="6"/>
+</note>
+<note value="C4" duration="1" division="8">
+<beam ref="6"/>
+<bound ref="6"/>
+</note>
+<note value="D4" duration="1" division="4"/>
+<note value="D4" duration="1" division="4"/>
+<note value="D4" duration="3" division="8">
+<beam ref="7"/>
+<bound ref="7"/>
+</note>
+<note value="C4" duration="1" division="8">
+<beam ref="7"/>
+<bound ref="7"/>
+</note>
+<note value="B3" duration="1" division="4">
+<fermata/>
+</note>
+<repeat-end/>
+<bar duration="1" division="4"/>
+<note value="D4" duration="1" division="8">
+<beam ref="8"/>
+<bound ref="8"/>
+</note>
+<note value="E4" duration="1" division="8">
+<beam ref="8"/>
+<bound ref="8"/>
+</note>
+<bar duration="4" division="4"/>
+<note value="F#4" duration="1" division="8">
+<beam ref="9"/>
+<bound ref="9"/>
+</note>
+<note value="E4" duration="1" division="8">
+<beam ref="9"/>
+<bound ref="9"/>
+</note>
+<note value="D4" duration="1" division="4"/>
+<note value="E4" duration="1" division="4"/>
+<note value="F#4" duration="1" division="4"/>
+<note value="B3" duration="1" division="4"/>
+<note value="E4" duration="1" division="8">
+<beam ref="10"/>
+<bound ref="10"/>
+</note>
+<note value="D4" duration="1" division="8">
+<beam ref="10"/>
+<bound ref="10"/>
+</note>
+<note value="C4" duration="1" division="4">
+<fermata/>
+</note>
+<note value="G3" duration="1" division="8">
+<beam ref="11"/>
+<bound ref="11"/>
+</note>
+<note value="A3" duration="1" division="8">
+<beam ref="11"/>
+<bound ref="11"/>
+</note>
+<note value="B3" duration="1" division="8">
+<beam ref="12"/>
+<bound ref="12"/>
+</note>
+<note value="C4" duration="1" division="8">
+<beam ref="12"/>
+<bound ref="12"/>
+</note>
+<note value="D4" duration="1" division="8">
+<beam ref="13"/>
+<bound ref="13"/>
+</note>
+<note value="E4" duration="1" division="8">
+<beam ref="13"/>
+<bound ref="13"/>
+</note>
+<note value="C4" duration="1" division="4"/>
+<note value="C#4" duration="1" division="4"/>
+<note value="B3" duration="1" division="4"/>
+<note value="B3" duration="1" division="4"/>
+<note value="B3" duration="1" division="4">
+<fermata/>
+</note>
+<note value="D4" duration="1" division="4"/>
+<note value="D4" duration="1" division="4"/>
+<note value="G4" duration="1" division="4"/>
+<note value="G3" duration="1" division="8">
+<beam ref="14"/>
+<bound ref="14"/>
+</note>
+<note value="A3" duration="1" division="8">
+<beam ref="14"/>
+<bound ref="14"/>
+</note>
+<note value="B3" duration="1" division="4"/>
+<note value="E4" duration="1" division="8">
+<beam ref="15"/>
+<bound ref="15"/>
+</note>
+<note value="D4" duration="1" division="8">
+<beam ref="15"/>
+<bound ref="15"/>
+</note>
+<note value="E4" duration="1" division="8">
+<beam ref="16"/>
+<bound ref="16"/>
+</note>
+<note value="C#4" duration="1" division="8">
+<beam ref="16"/>
+<bound ref="16"/>
+</note>
+<note value="D4" duration="1" division="4">
+<fermata/>
+</note>
+<note value="D4" duration="1" division="4"/>
+<note value="D4" duration="1" division="8">
+<beam ref="17"/>
+<bound ref="17"/>
+</note>
+<note value="C4" duration="1" division="8">
+<beam ref="17"/>
+<bound ref="17"/>
+</note>
+<note value="C4" duration="1" division="8">
+<beam ref="18"/>
+<bound ref="18"/>
+</note>
+<note value="B3" duration="1" division="8">
+<beam ref="18"/>
+<bound ref="18"/>
+</note>
+<note value="B3" duration="1" division="8">
+<beam ref="19"/>
+<bound ref="19"/>
+</note>
+<note value="A3" duration="1" division="8">
+<beam ref="19"/>
+<bound ref="19"/>
+</note>
+<note value="G3" duration="1" division="4"/>
+<note value="G3" duration="1" division="8"/>
+<note value="F#3" duration="1" division="16"/>
+<note value="E3" duration="1" division="16"/>
+<note value="F#3" duration="1" division="8"/>
+<note value="B3" duration="1" division="4">
+<fermata/>
+</note>
+</sequence>
+</voice>
+<voice id="bass" name="Basso">
+<sequence clef="F" key="#1" beat="C">
+<repeat-begin/>
+<bar duration="1" division="4"/>
+<note value="G3" duration="1" division="8">
+<beam ref="1"/>
+</note>
+<note value="F#3" duration="1" division="8">
+<beam ref="1"/>
+</note>
+<bar duration="4" division="4"/>
+<note value="E3" duration="1" division="4"/>
+<note value="D3" duration="1" division="4"/>
+<note value="G3" duration="1" division="4"/>
+<note value="F#3" duration="1" division="8">
+<beam ref="2"/>
+</note>
+<note value="G3" duration="1" division="8">
+<beam ref="2"/>
+</note>
+<note value="A3" duration="1" division="4"/>
+<note value="A2" duration="1" division="4"/>
+<note value="D3" duration="1" division="4">
+<fermata/>
+</note>
+</sequence>
+</voice>
+</music-data>
+</song>

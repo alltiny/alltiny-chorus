@@ -1,0 +1,21 @@
+allprojects {
+	apply plugin: 'idea'
+	apply plugin: 'eclipse'
+}
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'checkstyle'
+
+	compileJava.options.encoding = 'UTF-8'
+	compileTestJava.options.encoding = 'UTF-8'
+	sourceCompatibility = 1.6
+	targetCompatibility = 1.6
+
+	checkstyle.configFile = file('../checkstyle.xml')
+
+	group = 'org.alltiny'
+
+	repositories {
+		mavenCentral()
+	}
+}
