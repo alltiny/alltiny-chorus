@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import java.awt.event.ActionEvent;
+import java.util.ResourceBundle;
 
 /**
  * This class represents
@@ -19,7 +20,7 @@ public class SetCursorToBeginningAction extends AbstractAction {
 
     public SetCursorToBeginningAction(final MidiPlayer player) {
         putValue(Action.SMALL_ICON, new ImageIcon(getClass().getClassLoader().getResource("image/begin.png")));
-        putValue(Action.SHORT_DESCRIPTION, "Zurück zum Anfang");
+        putValue(Action.SHORT_DESCRIPTION, ResourceBundle.getBundle("i18n.chorus").getString("SetCursorToBeginningAction.ShortDescription"));
         this.player = player;
 
         player.addPropertyChangeListener(MidiPlayer.PLAYABLE, new PropertyChangeListener() {

@@ -8,6 +8,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
 /**
  * This class represents
@@ -17,7 +18,7 @@ import java.util.Calendar;
  */
 public class SliderPane extends JPanel {
 
-    private final SimpleDateFormat sdf = new SimpleDateFormat("mm:ss.SSS");
+    private final SimpleDateFormat sdf = new SimpleDateFormat(ResourceBundle.getBundle("i18n.chorus").getString("SliderPane.DateFormat"));
     private final CurrentPositionSlider slider;
 
     public SliderPane(MidiPlayer player) {

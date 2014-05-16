@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.util.ResourceBundle;
 
 /**
  * This class represents
@@ -17,8 +18,8 @@ public class PlayCurrentSongAction extends AbstractAction {
 
     private static final Icon PLAY_ICON = new ImageIcon(PlayCurrentSongAction.class.getClassLoader().getResource("image/play.png"));
     private static final Icon PAUSE_ICON = new ImageIcon(PlayCurrentSongAction.class.getClassLoader().getResource("image/pause.png"));
-    private static final String PLAY_DESCR = "Abspielen";
-    private static final String PAUSE_DESCR = "Pausieren";
+    private static final String PLAY_DESCR = ResourceBundle.getBundle("i18n.chorus").getString("PlayCurrentSongAction.Play.ShortDescription");
+    private static final String PAUSE_DESCR = ResourceBundle.getBundle("i18n.chorus").getString("PlayCurrentSongAction.Pause.ShortDescription");
 
     private final MidiPlayer player;
 

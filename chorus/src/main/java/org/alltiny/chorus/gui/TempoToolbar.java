@@ -9,6 +9,7 @@ import java.beans.PropertyChangeEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.*;
+import java.util.ResourceBundle;
 
 /**
  * This class represents
@@ -26,7 +27,7 @@ public class TempoToolbar extends JToolBar {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = -1;
         gbc.ipadx = 5;
-        add(new JLabel("Tempo"), gbc);
+        add(new JLabel(ResourceBundle.getBundle("i18n.chorus").getString("TempoToolbar.Label")), gbc);
         add(tempo, gbc);
 
         model.addPropertyChangeListener(SongModel.CURRENT_SONG, new PropertyChangeListener() {

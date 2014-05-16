@@ -9,6 +9,7 @@ import javax.swing.filechooser.FileFilter;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ResourceBundle;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -27,7 +28,7 @@ public class OpenFromFileAction extends AbstractAction {
 
     public OpenFromFileAction(SongModel model, ApplicationProperties properties) {
         putValue(Action.SMALL_ICON, new ImageIcon(getClass().getClassLoader().getResource("image/open.png")));
-        putValue(Action.SHORT_DESCRIPTION, "Datei öffnen");
+        putValue(Action.SHORT_DESCRIPTION, ResourceBundle.getBundle("i18n.chorus").getString("OpenFromFileAction.ShortDescription"));
         this.model = model;
         this.properties = properties;
 
