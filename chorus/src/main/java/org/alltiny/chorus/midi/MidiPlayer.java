@@ -346,7 +346,7 @@ public class MidiPlayer extends PropertySupportBean {
     }
 
     public long getTickPosition() {
-        return sequencer.getTickPosition();
+        return (sequencer != null) ? sequencer.getTickPosition() : 0;
     }
 
     public long getCurrentMicrosec() {
