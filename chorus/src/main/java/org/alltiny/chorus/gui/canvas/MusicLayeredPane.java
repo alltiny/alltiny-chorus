@@ -28,7 +28,7 @@ public class MusicLayeredPane extends JLayeredPane implements Scrollable {
         add(canvas, new Integer(0));
 
         // create a CurrentSliderPane
-        final SliderPositionPane sliderPane = new SliderPositionPane(canvas, player);
+        final SliderPositionPane sliderPane = new SliderPositionPane(canvas, new SliderPositionModel(canvas, player));
         add(sliderPane, new Integer(1));
 
         // create a MousePosRenderingPane
@@ -114,38 +114,41 @@ public class MusicLayeredPane extends JLayeredPane implements Scrollable {
     private static class SliderPositionPane extends JComponent {
 
         private final MusicCanvas canvas;
-        private final MidiPlayer player;
-
         private final double strokeWidth = 1;
 
         /** position of the current cursor. null means it does not exist. */
-        private Double currentCursorPosX = null;
+        private Integer sliderPosition = null;
 
-        private SliderPositionPane(final MusicCanvas canvas, final MidiPlayer player) {
+        private SliderPositionPane(final MusicCanvas canvas, final SliderPositionModel sliderPositionModel) {
             this.canvas = canvas;
-            this.player = player;
             setOpaque(false);
 
-            // bind the label to the model.
-            player.addPropertyChangeListener(MidiPlayer.CURRENT_POSITION, new PropertyChangeListener() {
+            // bind the listeners to the model.
+            sliderPositionModel.addPropertyChangeListener(SliderPositionModel.SLIDER_POSITION, new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent evt) {
-                    double newCursorPosX = canvas.getXPosForTick((Long)evt.getNewValue());
-
-                    if (currentCursorPosX == null || currentCursorPosX != newCursorPosX) {
-                        double oldX = Double.MAX_VALUE;
-                        // add the old cursor position of the repaint region, if existing.
-                        if (currentCursorPosX != null) {
-                            oldX = currentCursorPosX * canvas.getZoomFactor();
-                            // trigger a repaint for the region of the old current position. (for clearing)
-                            //repaint(, 0, (int)Math.ceil(strokeWidth * canvas.getZoomFactor()), getSize().height);
-                        }
-                        // set the new position.
-                        currentCursorPosX = newCursorPosX;
-                        final double curX = currentCursorPosX * canvas.getZoomFactor();
+                    final double stroke2 = 0.5 * strokeWidth * canvas.getZoomFactor();
+                    int xMin = Integer.MAX_VALUE;
+                    int xMax = Integer.MIN_VALUE;
+                    if (sliderPosition != null) {
+                        xMin = (int)Math.floor(sliderPosition - stroke2);
+                        xMax = (int)Math.ceil(sliderPosition + stroke2);
+                    }
+                    sliderPosition = (Integer)evt.getNewValue();
+                    if (sliderPosition != null) {
+                        xMin = Math.min(xMin, (int)Math.floor(sliderPosition - stroke2));
+                        xMax = Math.max(xMax, (int)Math.ceil(sliderPosition + stroke2));
+                    }
+                    // trigger a repaint for the region spanning over of the old and new current position.
+                    repaint(xMin, 0, xMax - xMin, getSize().height);
+                }
+            });
+            canvas.addPropertyChangeListener(MusicCanvas.ZOOM_FACTOR, new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent evt) {
+                    if (sliderPosition != null) {
                         final double stroke = strokeWidth * canvas.getZoomFactor();
+                        int xMin = (int)Math.floor(sliderPosition - stroke);
+                        int xMax = (int)Math.ceil(sliderPosition + stroke);
                         // trigger a repaint for the region spanning over of the old and new current position.
-                        int xMin = (int)Math.floor(Math.min(oldX, curX) - stroke);
-                        int xMax = (int)Math.ceil(Math.max(curX,oldX) + stroke);
                         repaint(xMin, 0, xMax - xMin, getSize().height);
                     }
                 }
@@ -153,13 +156,12 @@ public class MusicLayeredPane extends JLayeredPane implements Scrollable {
         }
 
         @Override
-        public void paint(Graphics g) {
-            if (currentCursorPosX != null) {
+        public void paintComponent(Graphics g) {
+            if (sliderPosition != null) {
                 Graphics2D g2d = (Graphics2D)g;
                 g2d.setColor(new Color(1f, 0f, 0f, 0.7f));
-                g2d.setStroke(new BasicStroke((float)strokeWidth));
-                g2d.scale(canvas.getZoomFactor(), 1);
-                g2d.drawLine((int)Math.round(currentCursorPosX), 0, (int)Math.round(currentCursorPosX), getSize().height);
+                g2d.setStroke(new BasicStroke((float)(strokeWidth*canvas.getZoomFactor())));
+                g2d.drawLine(sliderPosition, 0, sliderPosition, getSize().height);
             }
         }
     }

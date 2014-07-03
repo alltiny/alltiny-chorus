@@ -35,6 +35,7 @@ import java.util.HashMap;
 public class MusicCanvas extends JComponent implements Scrollable {
 
     public static final String CURRENT_CURSOR_POSITION = "currentCursorPosition";
+    public static final String ZOOM_FACTOR = "zoomFactor";
 
     private static final int HPADDING_LINE = 40;
     private static final int VPADDING_LINE = 20;
@@ -70,7 +71,7 @@ public class MusicCanvas extends JComponent implements Scrollable {
         update();
     }
 
-    public void paint(Graphics graphics) {
+    public void paintComponent(Graphics graphics) {
         Graphics2D g = (Graphics2D)graphics;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         g.setBackground(Color.WHITE);
@@ -330,9 +331,13 @@ public class MusicCanvas extends JComponent implements Scrollable {
         return zoomFactor;
     }
 
-    public void setZoomFactor(double zoomFactor) {
-        this.zoomFactor = zoomFactor;
-        revalidate();
+    public void setZoomFactor(double newZoomFactor) {
+        double old = zoomFactor;
+        if (zoomFactor != newZoomFactor) {
+            zoomFactor = newZoomFactor;
+            firePropertyChange(ZOOM_FACTOR, old, newZoomFactor);
+            revalidate();
+        }
     }
 
     public void setSize(int width, int height) {
@@ -346,11 +351,11 @@ public class MusicCanvas extends JComponent implements Scrollable {
 
         switch (zoom) {
             case FIT_TO_HEIGHT:
-                zoomFactor *= fitHeightZoom; break;
+                setZoomFactor(zoomFactor * fitHeightZoom); break;
             case FIT_TO_WIDTH:
-                zoomFactor *= fitWidthZoom; break;
+                setZoomFactor(zoomFactor * fitWidthZoom); break;
             case FIT_BOTH:
-                zoomFactor *= Math.min(fitHeightZoom, fitWidthZoom); break;
+                setZoomFactor(zoomFactor * Math.min(fitHeightZoom, fitWidthZoom)); break;
             default: /* don not change the zoom factor */
         }
 

@@ -119,7 +119,7 @@ public class Chorus {
     }
 
     public String getVersion() {
-        return "0.2.4 (alpha)";
+        return "0.2.5 (alpha)";
     }
 
     /**
