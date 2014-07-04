@@ -14,6 +14,7 @@ import org.alltiny.chorus.action.PlayCurrentSongAction;
 import org.alltiny.chorus.action.SetCursorToBeginningAction;
 import org.alltiny.chorus.model.SongMusicDataModel;
 import org.alltiny.chorus.midi.MidiPlayer;
+import org.alltiny.chorus.util.ManifestUtil;
 import org.alltiny.svg.parser.SVGParseException;
 
 import javax.swing.*;
@@ -34,6 +35,7 @@ import java.beans.PropertyChangeEvent;
  */
 public class Chorus {
 
+    private static final ManifestUtil manifest = new ManifestUtil("Chorus");
     private final ApplicationProperties properties;
 
     private final SongModel model;
@@ -119,7 +121,7 @@ public class Chorus {
     }
 
     public String getVersion() {
-        return "0.2.5 (alpha)";
+        return manifest.getMainAttribute("Implementation-Version", "DEV");
     }
 
     /**
