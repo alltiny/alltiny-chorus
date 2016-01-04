@@ -311,8 +311,8 @@ public class MidiPlayer extends PropertySupportBean {
 
     public void stop() {
         if (sequencer.isRunning()) {
-            sequencer.stop();
             observer.terminate();
+            sequencer.stop();
             pcs.firePropertyChange(RUNNING, null, false);
         }
     }
@@ -373,14 +373,6 @@ public class MidiPlayer extends PropertySupportBean {
 
         public void run() {
             while (running) {
-                // determine the new current position.
-                long newPos = sequencer.getTickPosition();
-                long newSec = sequencer.getMicrosecondPosition();
-                pcs.firePropertyChange(CURRENT_POSITION, lastPos, newPos);
-                pcs.firePropertyChange(CURRENT_MILLISEC, lastSec, newSec);
-                lastPos = newPos;
-                lastSec = newSec;
-
                 // determine if the sequencer is still playing.
                 if (!sequencer.isRunning()) {
                     // inform listeners.
@@ -390,12 +382,20 @@ public class MidiPlayer extends PropertySupportBean {
                     // set the current position to the beginning.
                     setTickPosition(0);
                     return;
+                } else { // since sequencer is still running update the positions.
+                    // determine the new current position.
+                    long newPos = sequencer.getTickPosition();
+                    long newSec = sequencer.getMicrosecondPosition();
+                    pcs.firePropertyChange(CURRENT_POSITION, lastPos, newPos);
+                    pcs.firePropertyChange(CURRENT_MILLISEC, lastSec, newSec);
+                    lastPos = newPos;
+                    lastSec = newSec;
                 }
 
                 try {
                     sleep(15);
                 } catch (InterruptedException e) {
-                    /* nothing must happen if our waiting status was interrupted. */
+                    /* nothing to do on interruption. */
                 }
             }
         }
