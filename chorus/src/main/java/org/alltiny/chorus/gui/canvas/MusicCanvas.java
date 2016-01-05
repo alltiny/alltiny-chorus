@@ -78,13 +78,10 @@ public class MusicCanvas extends JComponent implements Scrollable {
         g.setColor(Color.BLACK);
         g.clearRect(0,0,getWidth(),getHeight());
         g.scale(zoomFactor,zoomFactor);
-
-        Rectangle c1 = g.getClipBounds();
         g.transform(AffineTransform.getTranslateInstance(VPADDING_LINE, HPADDING_LINE));
-        // draw all components.
-        Rectangle c2 = g.getClipBounds();
 
-        for (Component comp : layout.getComponentsInClipBounds(c2)) {
+        // only draw all components in clipping bounds.
+        for (Component comp : layout.getComponentsInClipBounds(g.getClipBounds())) {
             comp.paint(g);
         }
     }
