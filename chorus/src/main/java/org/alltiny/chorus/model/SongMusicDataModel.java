@@ -75,14 +75,14 @@ public class SongMusicDataModel implements MusicDataModel {
                 currentFrame.setNewBarStarts(((smallest - barOffset) % barLength) == 0);
             }
 
-            // involve each voice into rendering which is currently on the smallest tickcount.
+            // involve each voice into rendering which is currently on the smallest tick count.
             for (int current = 0; current < numVoice; current++) {
                 while (smallest == covered[current]) {
                     // render the next element of the found voice.
                     if (iter[current].hasNext()) {
                         Element element = iter[current].next();
                         if (element instanceof Bar) {
-                            // refresh the voices bar-oofset and bar-length.
+                            // refresh the voices bar-offset and bar-length.
                             barOffset = smallest;
                             barLength = Math.round(NOTE * ((Bar)element).getLength());
                             wasBarDefined = true;
@@ -94,7 +94,7 @@ public class SongMusicDataModel implements MusicDataModel {
                             currentFrame.add(current, element, currentLength);
                         }
                     } else { // this voice has no more elements.
-                        covered[current] = Long.MAX_VALUE; // set the tick count on max.
+                        covered[current] = Long.MAX_VALUE; // set the tick count on max to exclude it from further searching.
                     }
                 }
             }
