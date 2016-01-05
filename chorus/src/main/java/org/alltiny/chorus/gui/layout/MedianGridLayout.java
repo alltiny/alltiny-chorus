@@ -16,6 +16,28 @@ import java.util.HashSet;
  */
 public class MedianGridLayout implements LayoutManager2 {
 
+    private static final BinarySearch.Comparator<GridColumn,Double> minColumnComparator = new BinarySearch.Comparator<GridColumn,Double>() {
+        public int compare(GridColumn gridColumn, Double qualifier) {
+            if (qualifier < gridColumn.getMedianOffset()) {
+                return 1; // grid column is still too big.
+            } else if (qualifier > gridColumn.getMedianOffset() + gridColumn.getTrailingExtend()) {
+                return -1; // grid column is too small.
+            } else {
+                return 0;
+            }
+        }
+    };
+    private static final BinarySearch.Comparator<GridColumn,Double> maxColumnComparator = new BinarySearch.Comparator<GridColumn,Double>() {
+        public int compare(GridColumn gridColumn, Double qualifier) {
+            if (qualifier > gridColumn.getMedianOffset()) {
+                return -1; // grid column is still too big.
+            } else if (qualifier < gridColumn.getMedianOffset() - gridColumn.getLeadingExtend()) {
+                return 1; // grid column is too small.
+            } else {
+                return 0;
+            }
+        }
+    };
     private final ArrayList<GridRow> rows = new ArrayList<GridRow>();
     private final ArrayList<GridColumn> cols = new ArrayList<GridColumn>();
     private final HashMap<Visual,Object> visuals = new HashMap<Visual, Object>();
@@ -291,31 +313,11 @@ public class MedianGridLayout implements LayoutManager2 {
     }
 
     public int getMinColumnIndexAtPosition(double position) {
-        return new BinarySearch<GridColumn,Double>(cols, new BinarySearch.Comparator<GridColumn,Double>() {
-            public int compare(GridColumn gridColumn, Double qual) {
-                if (qual < gridColumn.getMedianOffset()) {
-                    return 1; // grid column is still too big.
-                } else if (qual > gridColumn.getMedianOffset() + gridColumn.getTrailingExtend()) {
-                    return -1; // grid column is too small.
-                } else {
-                    return 0;
-                }
-            }
-        }).getIndexOf(position);
+        return new BinarySearch<GridColumn,Double>(cols, minColumnComparator).getIndexOf(position);
     }
 
     public int getMaxColumnIndexAtPosition(double position) {
-        return new BinarySearch<GridColumn,Double>(cols, new BinarySearch.Comparator<GridColumn,Double>() {
-            public int compare(GridColumn gridColumn, Double qual) {
-                if (qual > gridColumn.getMedianOffset()) {
-                    return -1; // grid column is still too big.
-                } else if (qual < gridColumn.getMedianOffset() - gridColumn.getLeadingExtend()) {
-                    return 1; // grid column is too small.
-                } else {
-                    return 0;
-                }
-            }
-        }).getIndexOf(position);
+        return new BinarySearch<GridColumn,Double>(cols, maxColumnComparator).getIndexOf(position);
     }
 
     public double getAbsMedianX(int column) {

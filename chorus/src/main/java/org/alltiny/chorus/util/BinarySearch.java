@@ -19,22 +19,36 @@ public class BinarySearch<ListType, Qualifier> {
         this.comparator = comparator;
     }
 
-    public int getIndexOf(Qualifier qual) {
-        return getIndexOf(0, list.size() - 1, qual);
+    public int getIndexOf(Qualifier qualifier) {
+        int count = list.size();
+        return getIndexOf(0, count - 1, count / 2, qualifier);
     }
 
-    private int getIndexOf(int min, int max, Qualifier qual) {
+    /**
+     * @param i index to check first
+     */
+    public int getIndexOf(final int i, Qualifier qualifier) {
+        int count = list.size();
+        return getIndexOf(0, count - 1, count / 2, qualifier);
+    }
+
+    /**
+     * @param min lowest possible index
+     * @param max highest possible index
+     * @param i current index to be checked
+     * @param qualifier to search for
+     */
+    private int getIndexOf(final int min, final int max, final int i, Qualifier qualifier) {
         if (min >= max) {
             return min;
         } else {
-            int i = (min + max) / 2;
-            int c = comparator.compare(list.get(i), qual);
+            int c = comparator.compare(list.get(i), qualifier);
             if (c == 0) { // exact hit.
                 return i;
             } else if (c < 0) { // list type was too small, go to right.
-                return getIndexOf(i + 1, max, qual); // we already know that i isn't our item.
+                return getIndexOf(i + 1, max, (i + 1 + max) / 2, qualifier); // we already know that i isn't our item.
             } else { // list type was too big, so we go to left.
-                return getIndexOf(min, i - 1, qual); // we already know that i isn't our item.
+                return getIndexOf(min, i - 1, (min + i - 1) / 2, qualifier); // we already know that i isn't our item.
             }
         }
     }
