@@ -113,33 +113,17 @@ public class NoteRender extends Visual {
             stem.transform(AffineTransform.getTranslateInstance(0, getRelativePosY() * -0.5 * LINES_SPACE));
             paths.add(stem);
 
-            if (length < 0.25) {
+            for (int division = 8, index = 0; note.getDivision() >= division; division *= 2, index++) {
                 GeneralPath flag = createFlagPath();
                 // shift the flag by the half width of the stem-stroke
                 flag.transform(AffineTransform.getTranslateInstance(0.4, 0));
+                // make the flags progressively smaller.
+                flag.transform(AffineTransform.getScaleInstance(Math.pow(0.9, index), Math.pow(0.9, index)));
                 if (stemDownwards) {
                     flag.transform(AffineTransform.getScaleInstance(-1, 1));
                 }
                 // move the flag to the top of the stem
-                flag.transform(AffineTransform.getTranslateInstance(0.5f * WIDTH - 0.35f - 0.48f, -3.25 * LINES_SPACE));// - 1.4f));
-                if (stemDownwards) {
-                    flag.transform(AffineTransform.getScaleInstance(-1, -1));
-                }
-                flag.transform(AffineTransform.getTranslateInstance(0, getRelativePosY() * -0.5 * LINES_SPACE));
-                paths.add(flag);
-            }
-            // draw a second flag if this is a 16th.
-            if (length < 0.125) {
-                GeneralPath flag = createFlagPath();
-                // shift the flag by the half width of the stem-stroke
-                flag.transform(AffineTransform.getTranslateInstance(0.4, 0));
-                // the secongflag is a bit smaller.
-                flag.transform(AffineTransform.getScaleInstance(0.9, 0.9));
-                if (stemDownwards) {
-                    flag.transform(AffineTransform.getScaleInstance(-1, 1));
-                }
-                // move the flag below the first flag.
-                flag.transform(AffineTransform.getTranslateInstance(0.5f * WIDTH - 0.35f - 0.48f, -2.6 * LINES_SPACE));// - 1.4f));
+                flag.transform(AffineTransform.getTranslateInstance(0.5f * WIDTH - 0.35f - 0.48f, (-3.25 + 0.65 * index) * LINES_SPACE));
                 if (stemDownwards) {
                     flag.transform(AffineTransform.getScaleInstance(-1, -1));
                 }
