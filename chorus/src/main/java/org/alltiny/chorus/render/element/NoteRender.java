@@ -113,7 +113,7 @@ public class NoteRender extends Visual {
             stem.transform(AffineTransform.getTranslateInstance(0, getRelativePosY() * -0.5 * LINES_SPACE));
             paths.add(stem);
 
-            for (int division = 8, index = 0; note.getDivision() >= division; division *= 2, index++) {
+            for (int division = 8, index = 0; ((double)note.getDivision()/note.getDuration()) >= division; division *= 2, index++) {
                 GeneralPath flag = createFlagPath();
                 // shift the flag by the half width of the stem-stroke
                 flag.transform(AffineTransform.getTranslateInstance(0.4, 0));
