@@ -71,16 +71,7 @@ public class MidiPlayer extends PropertySupportBean {
             Synthesizer synthesizer = MidiSystem.getSynthesizer();
 
             synthesizer.open();
-            //synthesizer.loadInstrument(synthesizer.getAvailableInstruments()[0]);
-            //System.out.println("Instrument 0: " + synthesizer.getAvailableInstruments()[0]);
-//
-//            // connect the synthesizer and the sequencer.
-//            sequencer.getTransmitter().setReceiver(synthesizer.getReceiver());
-//
-//            Instrument[] instruments = synthesizer.getLoadedInstruments();
-//            for (MidiChannel channel : synthesizer.getChannels()) {
-//                channel.programChange(instruments[0].getPatch().getBank(),instruments[0].getPatch().getProgram());
-//            }
+            synthesizer.loadAllInstruments(synthesizer.getDefaultSoundbank());
 
             Sequence seq = new Sequence(Sequence.PPQ, PPQ);//song.getTempo()*FULLNOTE/480); // 4*4*60
             Track track = seq.createTrack();
@@ -100,7 +91,7 @@ public class MidiPlayer extends PropertySupportBean {
                 int velocity = model.getSong().getDynamic().getValue("mf");
 
                 // define the instrument for that voice.
-                track.add(createMidiMessage(ShortMessage.PROGRAM_CHANGE, channel, 2, 0, 0));
+                track.add(createMidiMessage(ShortMessage.PROGRAM_CHANGE, channel, 53, 0, 0));
 
                 long tick = 0;
                 NoteBinding curBinding = null;
