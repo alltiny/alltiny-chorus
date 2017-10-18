@@ -148,7 +148,7 @@ public class MusicCanvas extends JComponent implements Scrollable {
             bindingHelpers[i] = new HashMap<Integer,BindingHelper>();
         }
 
-        int numberOfBeat = 1;
+        int numberOfBeat = 0;
 
         for (org.alltiny.chorus.model.Frame frame : songModel.getFrames()) {
             // if this frame should start with a bar, then add a bar to the lines.
@@ -157,13 +157,15 @@ public class MusicCanvas extends JComponent implements Scrollable {
                 // add a number to the beat.
                 add(new BeatNumber(numberOfBeat), new GridConstraints(0, currentColumn));
 
-                for (int i = 0; i < numVoice; i++) {
-                    // add a bar line to each voice line.
-                    add(new BarLine(), new GridConstraints(getNotesRowOfVoice(i), currentColumn));
-                    // reset all key mappings.
-                    keyMapper[i].clear();
+                if (numberOfBeat != 1) { // don't render a bar-line if this is the very first beat.
+                    for (int i = 0; i < numVoice; i++) {
+                        // add a bar line to each voice line.
+                        add(new BarLine(), new GridConstraints(getNotesRowOfVoice(i), currentColumn));
+                        // reset all key mappings.
+                        keyMapper[i].clear();
+                    }
+                    currentColumn++;
                 }
-                currentColumn++;
             }
 
             // create a TickHelper for this frame only if this frame has elements with duration.
