@@ -50,4 +50,10 @@ public class SVGNumberParserTest {
         PushbackInputStream stream = new PushbackInputStream(new ByteArrayInputStream("-1E-5".getBytes()));
         Assert.assertEquals("number in '-1E-5' not correct", "-1E-5", SVGNumberParser.parseNumberFromStream(stream));
     }
+
+    @Test
+    public void parseNumberWithExponentWithTrailingWhiteSpace() throws IOException {
+        PushbackInputStream stream = new PushbackInputStream(new ByteArrayInputStream("-10e-6 ".getBytes()));
+        Assert.assertEquals("number in '-10e-6' not correct", "-10e-6", SVGNumberParser.parseNumberFromStream(stream));
+    }
 }

@@ -46,6 +46,7 @@ public class SVGNumberParser {
             buf.append((char)chr);
             // parse the exponent.
             buf.append(parseFractionalFromStream(stream));
+            chr = stream.read();
         }
 
         // clean up trailing ',' or white-spaces.
