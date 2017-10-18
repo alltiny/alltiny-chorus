@@ -53,7 +53,7 @@ public class DurationElement extends Element {
      * The length of the element is given as ratio of a duration and
      * a division. A full note is 1/1; a half note is 1/2; and so on.
      */
-    private void checkForDividability() {
+    protected void checkForDividability() {
         // avoid dividable values.
         while (duration > 0 && division > 0 && (duration % 2) == 0 && (division % 2) == 0) {
             duration /= 2;

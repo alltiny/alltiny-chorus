@@ -22,4 +22,9 @@ public class Bar extends DurationElement {
     public void setKeepBeatDuration(boolean keepBeatDuration) {
         this.keepBeatDuration = keepBeatDuration;
     }
+
+    @Override
+    protected void checkForDividability() {
+        // don't adapt bars when they are dividable.
+    }
 }

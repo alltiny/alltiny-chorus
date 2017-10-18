@@ -1,5 +1,6 @@
 package org.alltiny.chorus.model;
 
+import org.alltiny.chorus.dom.Bar;
 import org.alltiny.chorus.dom.Element;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 public class Frame {
 
     private ArrayList<Cell> cells = new ArrayList<Cell>();
+    private Bar bar = null;
 
     /** This is the offset in ticks, where this frame starts. */
     private long tickOffset = 0;
@@ -62,5 +64,13 @@ public class Frame {
 
     public Cell get(int voice) {
         return cells.get(voice);
+    }
+
+    public Bar getBar() {
+        return bar;
+    }
+
+    public void setBar(Bar bar) {
+        this.bar = bar;
     }
 }

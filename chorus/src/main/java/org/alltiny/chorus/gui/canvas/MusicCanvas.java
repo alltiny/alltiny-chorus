@@ -166,6 +166,13 @@ public class MusicCanvas extends JComponent implements Scrollable {
                     }
                     currentColumn++;
                 }
+                // render beat-length
+                if (frame.getBar() != null) {
+                    for (int i = 0; i < numVoice; i++) {
+                        add(new BeatRenderer(frame.getBar()), new GridConstraints(getNotesRowOfVoice(i), currentColumn));
+                    }
+                    currentColumn++;
+                }
             }
 
             // create a TickHelper for this frame only if this frame has elements with duration.
