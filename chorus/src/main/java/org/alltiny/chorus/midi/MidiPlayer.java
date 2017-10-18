@@ -147,9 +147,10 @@ public class MidiPlayer extends PropertySupportBean {
                     }
                     if (element instanceof Bar && currentVoice == 0) { // only process bars in the first track, which is the master track for timing information.
                         Bar bar = (Bar)element;
-                        // check whether thsi bar should keep the duration. (works only if the currentBar is already set.)
+                        // check whether this bar should keep the duration. (works only if the currentBar is already set.)
                         if (currentBar != null && bar.isKeepBeatDuration()) {
-                            track.add(createTempoMessage(Math.round(usecPerQNote * 4 * Math.round(FULLNOTE * currentBar.getLength()) * bar.getLength() / 4), tick));
+                            usecPerQNote = Math.round(usecPerQNote * (currentBar.getLength() / bar.getLength()));
+                            track.add(createTempoMessage(usecPerQNote, tick));
                         }
                         // this bar gets the now currentBar
                         currentBar = bar;
