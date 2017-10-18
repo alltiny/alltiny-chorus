@@ -86,6 +86,9 @@ public class SongMusicDataModel implements MusicDataModel {
                             barOffset = smallest;
                             barLength = Math.round(NOTE * ((Bar)element).getLength());
                             wasBarDefined = true;
+                            if (smallest != 0) { // whenever a bar-element is found render a bar (unless it is still the beginning of the score)
+                                currentFrame.setNewBarStarts(true);
+                            }
                         } else if (element instanceof DurationElement) {
                             // recalculate the covered tick count of this voice.
                             final long currentLength = Math.round(NOTE * ((DurationElement)element).getLength());
