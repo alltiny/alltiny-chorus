@@ -33,7 +33,6 @@ public class SVGPathParser {
                 SVGPathLineToRelParser.parseLineToRel(path, stream);
             } else if (chr == 'Z' || chr == 'z') {
                 path.closePath();
-                return path;
             } else {
                 throw new SVGParseException("Unknown path control character \'" + (char)chr + "\' (" + chr + ") found");
             }
