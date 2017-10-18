@@ -1,6 +1,7 @@
 package org.alltiny.chorus.render.element;
 
 import org.alltiny.chorus.dom.Bar;
+import org.alltiny.chorus.dom.BarDisplayStyle;
 import org.alltiny.chorus.render.Visual;
 import org.alltiny.svg.parser.SVGPathParser;
 
@@ -21,23 +22,30 @@ public class BeatRenderer extends Visual {
 
     public static final double SPACING = 0.2;
 
-    private GeneralPath path = null;
+    private GeneralPath path = new GeneralPath();
 
     public BeatRenderer(final Bar bar) {
-        setPadding(new Rectangle2D.Float(-10,-2,30,4));
-
-        path = new GeneralPath();
-        {
-            GeneralPath durationPath = createPathForNumber(bar.getDuration());
-            // move the duration path onto the center line and one line higher.
-            durationPath.transform(AffineTransform.getTranslateInstance(-0.5 * (durationPath.getBounds().getMinX() + durationPath.getBounds().getMaxX()), -LINES_SPACE));
-            path.append(durationPath, false);
+        if (bar.getDisplayStyle() != BarDisplayStyle.Invisible) {
+            setPadding(new Rectangle2D.Float(-10, -2, 30, 4));
         }
-        {
-            GeneralPath divisionPath = createPathForNumber(bar.getDivision());
-            // move the division path onto the center line and one line lower.
-            divisionPath.transform(AffineTransform.getTranslateInstance(-0.5 * (divisionPath.getBounds().getMinX() + divisionPath.getBounds().getMaxX()), LINES_SPACE));
-            path.append(divisionPath, false);
+
+        if (bar.getDisplayStyle() == BarDisplayStyle.Fraction) {
+            {
+                GeneralPath durationPath = createPathForNumber(bar.getDuration());
+                // move the duration path onto the center line and one line higher.
+                durationPath.transform(AffineTransform.getTranslateInstance(-0.5 * (durationPath.getBounds().getMinX() + durationPath.getBounds().getMaxX()), -LINES_SPACE));
+                path.append(durationPath, false);
+            }
+            {
+                GeneralPath divisionPath = createPathForNumber(bar.getDivision());
+                // move the division path onto the center line and one line lower.
+                divisionPath.transform(AffineTransform.getTranslateInstance(-0.5 * (divisionPath.getBounds().getMinX() + divisionPath.getBounds().getMaxX()), LINES_SPACE));
+                path.append(divisionPath, false);
+            }
+        } else if (bar.getDisplayStyle() == BarDisplayStyle.C) {
+            path.append(createPathC(), false);
+        } else if (bar.getDisplayStyle() == BarDisplayStyle.AllaBreve) {
+            path.append(createPathAllaBreve(), false);
         }
     }
 
@@ -180,8 +188,9 @@ public class BeatRenderer extends Visual {
 
     public static GeneralPath createPathC() {
         try {
-            GeneralPath path = SVGPathParser.parsePath(new PushbackInputStream(new ByteArrayInputStream("M 0,36 c -11.40916,-2.98919 -20.20567,-10.90776 -23.89181,-21.50729 -2.55372,-7.34322 -2.88713,-17.2322 -0.83998,-24.91464 1.31894,-4.9498 5.36674,-11.75143 9.39895,-15.79335 4.34147,-4.3519 10.97437,-8.01407 17.55198,-9.69081 7.72573,-1.96943 18.59748,-1.07488 26.11874,2.1491 2.71738,1.16479 2.72189,1.16479 4.36996,-0.009 0.90741,-0.64611 2.55724,-1.17475 3.66637,-1.17475 l 2.0166,0 0.38302,9.23541 c 0.21069,5.07948 0.3839,10.88459 0.38502,12.90026 l 0,3.66484 -2.06487,0 c -1.69908,0 -2.18372,-0.28567 -2.73567,-1.61253 -4.7721,-11.47201 -8.68744,-17.10322 -13.65586,-19.64034 -3.03338,-1.54901 -9.33363,-2.02998 -13.05395,-0.99655 -3.96483,1.10134 -8.89009,6.09651 -10.66804,10.81943 -2.23644,5.94094 -3.05812,11.21008 -3.06252,19.63925 -0.008,15.32522 4.18472,25.48188 12.10097,29.31406 5.4269,2.62712 13.38976,2.61106 18.86205,-0.0381 3.37494,-1.63377 8.49306,-6.34 10.84912,-9.97597 1.02691,-1.58484 2.02059,-2.88054 2.20817,-2.87933 0.18758,10e-4 1.20717,0.53028 2.26581,1.17571 2.20178,1.34243 2.20248,1.33936 -1.69087,7.10187 -4.0613,6.01113 -10.6752,10.64958 -17.84956,12.51826 -4.91769,1.28091 -15.22998,1.13827 -20.66557,-0.28583 z".getBytes())));
-            path.transform(AffineTransform.getScaleInstance(0.2, 0.2));
+            GeneralPath path = SVGPathParser.parsePath(new PushbackInputStream(new ByteArrayInputStream("M 0,34 c -13.47899,-3.179378 -24.27068,-15.154775 -25.63055,-28.992358 -1.45219,-9.979906 0.92853,-20.156704 6.5967,-28.765846 8.27661,-11.820133 23.84861,-17.1928547 37.83941,-14.614846 9.69438,2.083776 10.747,5.65078 15.65982,1.777394 2.71694,-1.091545 4.76959,-0.393767 4.05025,2.664692 0.30251,7.593842 0.69902,15.18865 0.64322,22.790734 -5.63885,1.327315 -5.94786,-5.635515 -8.24881,-9.164305 -3.08029,-6.237988 -7.91027,-13.169207 -15.57519,-13.470974 -5.78161,-1.05908 -11.81019,1.146348 -15.24304,5.996844 -6.34743,8.397372 -6.38303,19.614169 -6.02636,29.689278 0.59144,9.150739 3.05343,19.969518 11.95346,24.472477 8.40766,3.837371 19.19221,2.074113 25.41008,-4.974208 5.96412,-5.670533 5.87746,-11.393574 10.23421,-5.425883 -1.33417,4.214384 -4.53048,7.846639 -7.64452,10.974917 -4.95618,4.963125 -12.01726,8.174717 -22.8479,8.185077 -3.78188,0.0036 -7.97689,-0.348535 -11.17078,-1.142993 z".getBytes())));
+            path.transform(AffineTransform.getScaleInstance(0.25, 0.25));
+            path.transform(AffineTransform.getTranslateInstance(-0.5 * (path.getBounds().getMinX() + path.getBounds().getMaxX()), 0));
             return path;
         } catch (Exception e) {
             throw new Error("exception while parsing path", e);
@@ -191,7 +200,7 @@ public class BeatRenderer extends Visual {
     public static GeneralPath createPathAllaBreve() {
         try {
             GeneralPath path = createPathC();
-            path.append(new Rectangle2D.Float(-0.75f, -(float)LINES_SPACE, 0.75f, (float)LINES_SPACE), false);
+            path.append(new Rectangle2D.Float(0.5f, -1.5f * LINES_SPACE, 1f, 3f * LINES_SPACE), false);
             return path;
         } catch (Exception e) {
             throw new Error("exception while parsing path", e);
