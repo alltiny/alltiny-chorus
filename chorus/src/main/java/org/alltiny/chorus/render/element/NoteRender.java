@@ -176,7 +176,7 @@ public class NoteRender extends Visual {
             default: return 0; // should not happen.
         }
 
-        // if the clef is G then the heigth must not be shifted.
+        // if the clef is G then the height must not be shifted.
         switch (note.getSequence().getClef()) {
             case G8basso: height += 7; break;
             case F: height += 12; break;
