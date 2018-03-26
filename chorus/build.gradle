@@ -1,6 +1,6 @@
 apply plugin: 'application'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.6
 version = '0.3.0'
 mainClassName = 'org.alltiny.chorus.Chorus'
 
