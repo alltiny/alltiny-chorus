@@ -1,5 +1,6 @@
 package org.alltiny.chorus.render.element;
 
+import org.alltiny.chorus.dom.DurationElement;
 import org.alltiny.chorus.render.Visual;
 import org.alltiny.chorus.dom.Note;
 import org.alltiny.svg.parser.SVGPathParser;
@@ -37,6 +38,9 @@ public class NoteRender extends Visual {
     }
 
     public void setNote(Note note) {
+        if (note == null) {
+            throw new IllegalArgumentException("note can not be null");
+        }
         this.note = note;
         // reconfigure this rendering element.
         update();
@@ -113,7 +117,8 @@ public class NoteRender extends Visual {
             stem.transform(AffineTransform.getTranslateInstance(0, getRelativePosY() * -0.5 * LINES_SPACE));
             paths.add(stem);
 
-            for (int division = 8, index = 0; ((double)note.getDivision()/note.getDuration()) >= division; division *= 2, index++) {
+            final int numberOfFlags = calcNumberOfFlags(note);
+            for (int index = 0; index < numberOfFlags; index++) {
                 GeneralPath flag = createFlagPath();
                 // shift the flag by the half width of the stem-stroke
                 flag.transform(AffineTransform.getTranslateInstance(0.4, 0));
@@ -248,5 +253,11 @@ public class NoteRender extends Visual {
         shaft.lineTo((float)shaft.getCurrentPoint().getX() + 1, (float)shaft.getCurrentPoint().getY());
         shaft.closePath();
         return shaft;
+    }
+
+    public static int calcNumberOfFlags(DurationElement note) {
+        final int flags = (int)Math.round(Math.log(note.getDivision()) / Math.log(2)) -
+            (int)Math.floor(Math.log(note.getDuration()) / Math.log(2)) - 2;
+        return Math.max(flags, 0);
     }
 }
