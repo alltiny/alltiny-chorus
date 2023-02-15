@@ -2,6 +2,7 @@ allprojects {
 	apply plugin: 'idea'
 	apply plugin: 'eclipse'
 }
+
 subprojects {
 	apply plugin: 'java'
 	apply plugin: 'checkstyle'
@@ -18,4 +19,8 @@ subprojects {
 	repositories {
 		mavenCentral()
 	}
+}
+
+wrapper {
+	gradleVersion = '7.6'
 }
