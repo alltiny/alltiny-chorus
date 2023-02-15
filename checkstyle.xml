@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- ! Checkstyle-Configuration for mots alltiny projects.
+ ! Checkstyle-Configuration for most alltiny projects.
  !-->
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 <module name="Checker">
@@ -90,14 +90,8 @@
         </module>
         <module name="JavadocMethod">
             <property name="severity" value="warning"/>
-            <property name="excludeScope" value="private"/>
-            <property name="allowUndeclaredRTE" value="true"/>
-            <property name="allowThrowsTagsForSubclasses" value="true"/>
             <property name="allowMissingParamTags" value="true"/>
-            <property name="allowMissingThrowsTags" value="true"/>
             <property name="allowMissingReturnTag" value="true"/>
-            <property name="logLoadErrors" value="true"/>
-            <property name="suppressLoadErrors" value="true"/>
         </module>
         <module name="JavadocVariable">
             <property name="severity" value="warning"/>
