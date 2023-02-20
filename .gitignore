@@ -1,6 +1,7 @@
 .gradle/
 .idea/
 */build/*
+gradle/wrapper/gradle-wrapper.jar
 out/
 *.ipr
 *.iml
