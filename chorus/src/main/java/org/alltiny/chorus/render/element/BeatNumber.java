@@ -1,9 +1,9 @@
 package org.alltiny.chorus.render.element;
 
 import org.alltiny.chorus.render.Visual;
-import sun.font.FontDesignMetrics;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -21,8 +21,8 @@ public class BeatNumber extends Visual {
         setPadding(new Rectangle2D.Float(0,-2,0,4));
         this.number = String.valueOf(number);
 
-        FontMetrics metrics = FontDesignMetrics.getMetrics(new Font("Verdana", Font.ITALIC, 10));
-        bounds = metrics.getStringBounds(this.number, null);
+        bounds = new Font("Verdana", Font.ITALIC, 10)
+            .getStringBounds(this.number, new FontRenderContext(null, true, true));
     }
 
     public void paintImpl(Graphics2D g) {

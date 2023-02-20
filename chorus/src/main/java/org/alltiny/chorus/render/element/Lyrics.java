@@ -1,9 +1,9 @@
 package org.alltiny.chorus.render.element;
 
 import org.alltiny.chorus.render.Visual;
-import sun.font.FontDesignMetrics;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -24,8 +24,8 @@ public class Lyrics extends Visual {
         setPadding(new Rectangle2D.Float(-(int)(FONT_SIZE * 0.5),0, FONT_SIZE, (int)(FONT_SIZE * 1.5)));
         this.text = text;
 
-        FontMetrics metrics = FontDesignMetrics.getMetrics(new Font("Verdana", Font.PLAIN, FONT_SIZE));
-        Rectangle2D metric = metrics.getStringBounds(this.text, null);
+        Rectangle2D metric = new Font("Verdana", Font.PLAIN, FONT_SIZE)
+            .getStringBounds(this.text, new FontRenderContext(null, true, true));
         // shift the bounds to center the text.
         bounds = new Rectangle2D.Double(-0.5 * metric.getWidth(), metric.getMinY(), metric.getWidth(), metric.getHeight());
     }
