@@ -246,7 +246,7 @@ public class MidiPlayer extends PropertySupportBean {
                             tick += duration;
                         }
                         if (element instanceof DynamicElement) {
-                            // if an dynamical element is found than tune the velocity corresponing.
+                            // if an dynamical element is found than tune the velocity corresponding.
                             velocity = model.getSong().getDynamic().getValue(((DynamicElement)element).getKey());
                         }
                     }
