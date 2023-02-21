@@ -222,7 +222,7 @@ public class MidiPlayer extends PropertySupportBean {
                                         track.add(createMidiMessage(ShortMessage.NOTE_OFF, channel, curBinding.getNoteValue(), velocity, tick));
                                         track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getMidiValue(), velocity, tick));
                                     }
-                                    // else the note values are the same, so do not stop the previous note, neighter do start this note.
+                                    // else the note values are the same, so do not stop the previous note, neither do start this note.
                                 }
                             } else { // no current binding is active, just play the note.
                                 track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getMidiValue(), velocity, tick));
