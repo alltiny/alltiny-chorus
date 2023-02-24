@@ -1,3 +1,7 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.9'
+}
+
 apply plugin: 'application'
 
 version = '4.0'
@@ -16,9 +20,6 @@ dependencies {
 }
 
 jar {
-	from {
-		configurations.runtimeClasspath.collect { zipTree(it) }
-	}
 	manifest {
 		attributes (
 			'Main-Class': mainClassName,
