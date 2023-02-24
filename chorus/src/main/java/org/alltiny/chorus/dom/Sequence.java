@@ -1,6 +1,7 @@
 package org.alltiny.chorus.dom;
 
-import org.alltiny.chorus.dom.clef.Clef;
+import org.alltiny.chorus.base.type.Clef;
+import org.alltiny.chorus.base.type.Key;
 
 import java.util.ArrayList;
 

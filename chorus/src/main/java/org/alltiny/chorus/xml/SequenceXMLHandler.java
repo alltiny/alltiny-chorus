@@ -1,7 +1,8 @@
 package org.alltiny.chorus.xml;
 
+import org.alltiny.chorus.base.type.Key;
 import org.alltiny.chorus.dom.*;
-import org.alltiny.chorus.dom.clef.Clef;
+import org.alltiny.chorus.base.type.Clef;
 import org.alltiny.xml.handler.XMLHandler;
 import org.alltiny.xml.handler.AssignHandler;
 import org.alltiny.xml.handler.AssignException;

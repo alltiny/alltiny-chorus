@@ -1,9 +1,8 @@
-package org.alltiny.chorus.dom;
+package org.alltiny.chorus.base.type;
 
-import org.alltiny.chorus.dom.decoration.AccidentalSign;
-import static org.alltiny.chorus.dom.decoration.AccidentalSign.NONE;
-import static org.alltiny.chorus.dom.decoration.AccidentalSign.FLAT;
-import static org.alltiny.chorus.dom.decoration.AccidentalSign.SHARP;
+import static org.alltiny.chorus.base.type.AccidentalSign.FLAT;
+import static org.alltiny.chorus.base.type.AccidentalSign.NONE;
+import static org.alltiny.chorus.base.type.AccidentalSign.SHARP;
 
 /**
  * This class defines the existing keys (Tonarten).

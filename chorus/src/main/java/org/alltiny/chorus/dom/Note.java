@@ -1,8 +1,9 @@
 package org.alltiny.chorus.dom;
 
+import org.alltiny.chorus.base.type.AccidentalSign;
+import org.alltiny.chorus.base.type.BaseNote;
 import org.alltiny.chorus.dom.decoration.Decoration;
 import org.alltiny.chorus.dom.decoration.Accidental;
-import org.alltiny.chorus.dom.decoration.AccidentalSign;
 import org.alltiny.chorus.dom.decoration.Triplet;
 
 import java.util.List;

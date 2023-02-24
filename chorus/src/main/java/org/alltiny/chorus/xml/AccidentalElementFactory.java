@@ -1,7 +1,7 @@
 package org.alltiny.chorus.xml;
 
+import org.alltiny.chorus.base.type.AccidentalSign;
 import org.alltiny.chorus.dom.decoration.Accidental;
-import org.alltiny.chorus.dom.decoration.AccidentalSign;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 

@@ -1,8 +1,8 @@
 package org.alltiny.chorus.gui.canvas;
 
-import org.alltiny.chorus.dom.Key;
-import org.alltiny.chorus.dom.BaseNote;
-import org.alltiny.chorus.dom.decoration.AccidentalSign;
+import org.alltiny.chorus.base.type.AccidentalSign;
+import org.alltiny.chorus.base.type.BaseNote;
+import org.alltiny.chorus.base.type.Key;
 
 import java.util.HashMap;
 

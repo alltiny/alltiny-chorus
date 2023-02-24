@@ -1,6 +1,7 @@
 package org.alltiny.chorus.dom;
 
-import org.alltiny.chorus.dom.decoration.AccidentalSign;
+import org.alltiny.chorus.base.type.AccidentalSign;
+import org.alltiny.chorus.base.type.BaseNote;
 
 import java.text.ParseException;
 
@@ -14,7 +15,7 @@ public class NoteMidiValue {
 
     /**
      * This method parses the given value, assuming as international notation.
-     * The international notation of a note follows following sheme:
+     * The international notation of a note follows following scheme:
      *
      *     {A,B,C,D,E,F,G} [{#,b}] <int>
      *

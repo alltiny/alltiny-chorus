@@ -1,9 +1,9 @@
 package org.alltiny.chorus.render.element;
 
+import org.alltiny.chorus.base.type.AccidentalSign;
 import org.alltiny.chorus.render.Visual;
 import org.alltiny.chorus.dom.Sequence;
-import org.alltiny.chorus.dom.clef.Clef;
-import org.alltiny.chorus.dom.decoration.AccidentalSign;
+import org.alltiny.chorus.base.type.Clef;
 
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.GeneralPath;

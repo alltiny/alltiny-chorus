@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<song>
+    <title>Cantate Domino</title>
+    <author>Claudio Monteverdi</author>
+    <meta>
+        <author>Ralf Hergert</author>
+        <date>10.12.2018</date>
+    </meta>
+    <tempo>90</tempo>
+    <music-data>
+        <voice id="canto1" name="Canto 1">
+            <sequence clef="G" key="h" beat="C">
+                <bar duration="3" division="4"/>
+                <!-- T01 -->
+                <note value="B4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>Do-</lyric></note>
+                <note value="B4" duration="1" division="8"><lyric>mi-</lyric></note>
+                <note value="C#5" duration="1" division="4"><lyric>no</lyric></note>
+                <note value="D5" duration="3" division="8"><lyric>can-</lyric></note>
+                <note value="D5" duration="1" division="8"><lyric>ti-</lyric></note>
+                <note value="E5" duration="1" division="4"><lyric>cum</lyric></note>
+                <note value="C#5" duration="3" division="4"><lyric>no-</lyric></note>
+                <note value="C#5" duration="1" division="2"><lyric>vum,</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="E5" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="F#5" duration="1" division="4"><lyric>can-</lyric></note>
+                <!-- T07 -->
+                <note value="F#5" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="F#5" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="G5" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="G5" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="F#5" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="E5" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="F#5" duration="1" division="2"><lyric>be-</lyric></note>
+                <note value="F#5" duration="1" division="4"><lyric>ne-</lyric></note>
+                <note value="E5" duration="3" division="8"><lyric>di-</lyric></note>
+                <note value="E5" duration="1" division="8"><lyric>ci-</lyric></note>
+                <note value="E5" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="D5" duration="1" division="2"><lyric>no-</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>mi-</lyric></note>
+                <note value="E5" duration="1" division="4"><lyric>ni</lyric></note>
+                <note value="D#5" duration="1" division="2"><lyric>e-</lyric></note>
+                <note value="E5" duration="3" division="4"><lyric>ius.</lyric></note>
+                <!-- T14 -->
+                <note value="B4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="C5" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>Do-</lyric></note>
+                <note value="B4" duration="1" division="8"><lyric>mi-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>no</lyric></note>
+                <note value="C5" duration="3" division="8"><lyric>can-</lyric></note>
+                <note value="C5" duration="1" division="8"><lyric>ti-</lyric></note>
+                <note value="C5" duration="1" division="4"><lyric>cum</lyric></note>
+                <note value="B4" duration="3" division="4"><lyric>no-</lyric></note>
+                <note value="B4" duration="1" division="2"><lyric>vum,</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>can-</lyric></note>
+                <!-- T20 -->
+                <note value="D5" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="F#5" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="F#5" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="F#5" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="F#5" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="G5" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="E5" duration="1" division="2"><lyric>be-</lyric></note>
+                <note value="F#5" duration="1" division="4"><lyric>ne-</lyric></note>
+                <note value="D5" duration="3" division="8"><lyric>di-</lyric></note>
+                <note value="D5" duration="1" division="8"><lyric>ci-</lyric></note>
+                <note value="E5" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="C#5" duration="1" division="2"><lyric>no-</lyric></note>
+                <note value="C#5" duration="1" division="4"><lyric>mi-</lyric></note>
+                <note value="E5" duration="1" division="4"><lyric>ni</lyric></note>
+                <note value="C#5" duration="1" division="2"><lyric>e-</lyric></note>
+                <!-- T26 -->
+                <bar duration="2" division="2"/>
+                <relTempoChange><left duration="1" division="2"/><right duration="3" division="4"/>
+                </relTempoChange>
+                <note value="B4" duration="1" division="1"><bound ref="1"/><lyric>ius.</lyric></note>
+                <note value="B4" duration="1" division="2"><bound ref="1"/></note>
+                <note value="E5" duration="1" division="2"><bound ref="2"/><lyric>Qui-</lyric></note>
+                <note value="E5" duration="1" division="2"><bound ref="2"/></note>
+                <note value="C#5" duration="1" division="2"><lyric>a,</lyric></note>
+                <note value="D5" duration="1" division="1"><lyric>qui-</lyric></note>
+                <note value="B4" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="D5" duration="1" division="2"><bound ref="1"/><lyric>mi-</lyric></note>
+                <note value="D5" duration="1" division="2"><bound ref="1"/></note>
+                <note value="C5" duration="1" division="2"><lyric>ra-</lyric></note>
+                <!-- T32 -->
+                <note value="B4" duration="1" division="1"><lyric>bi-</lyric></note>
+                <note value="B4" duration="1" division="2"><lyric>li-</lyric></note>
+                <note value="A4" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="B4" duration="1" division="1"><lyric>fe-</lyric></note>
+                <note value="B4" duration="1" division="1"><lyric>cit.</lyric></note>
+                <rest duration="1" division="1"/>
+                <!-- T37 -->
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="F#5" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="F#5" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="E5" duration="1" division="8"/>
+                <note value="D5" duration="1" division="8"/>
+                <note value="E5" duration="1" division="8"/>
+                <note value="F#5" duration="1" division="8"/>
+                <note value="D5" duration="1" division="8"/>
+                <note value="E5" duration="1" division="4"/>
+                <note value="E5" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="D5" duration="1" division="8"><lyric>et</lyric></note>
+                <note value="E5" duration="1" division="4"><lyric>ex-</lyric></note>
+                <note value="C#5" duration="1" division="4"><lyric>sul-</lyric></note>
+                <!-- T42 -->
+                <note value="D5" duration="1" division="1"><lyric>ta-</lyric></note>
+                <note value="D5" duration="1" division="1"><lyric>te.</lyric></note>
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="1"/>
+                <!-- T47 -->
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="E5" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="E5" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="D5" duration="1" division="8"/>
+                <note value="C5" duration="1" division="8"/>
+                <note value="D5" duration="1" division="8"/>
+                <note value="E5" duration="1" division="8"/>
+                <note value="C5" duration="1" division="8"/>
+                <note value="D5" duration="1" division="4"/>
+                <note value="D5" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="C5" duration="1" division="8"><lyric>et</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>ex-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>sul-</lyric></note>
+                <!-- T51 -->
+                <note value="C5" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="B4" duration="1" division="8"/>
+                <note value="A4" duration="1" division="8"/>
+                <note value="B4" duration="1" division="8"/>
+                <note value="C5" duration="1" division="8"/>
+                <note value="A4" duration="1" division="8"/>
+                <note value="B4" duration="1" division="4"/>
+                <note value="D5" duration="1" division="2"><lyric>te</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="A4" duration="3" division="4"><lyric>psal-</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="G4" duration="1" division="1"><bound ref="1"/><lyric>te.</lyric></note>
+                <note value="G4" duration="1" division="2"><bound ref="1"/></note>
+                <note value="D5" duration="3" division="8"><lyric>Psal-</lyric></note>
+                <note value="D5" duration="1" division="8"><lyric>li-</lyric></note>
+                <!-- T56 -->
+                <note value="D5" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="C#5" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="B4" duration="1" division="2"><lyric>ra,</lyric></note>
+                <note value="D5" duration="3" division="8"><lyric>psal-</lyric></note>
+                <note value="D5" duration="1" division="8"><lyric>li-</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="C#5" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="B4" duration="3" division="4"><lyric>ra,</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="A4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>et</lyric></note>
+                <!-- T61 -->
+                <note value="F#4" duration="1" division="2"><lyric>vo-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>ce,</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="B4" duration="1" division="2"><bound ref="1"/><lyric>ra,</lyric></note>
+                <note value="B4" duration="1" division="4"><bound ref="1"/></note>
+                <note value="F#5" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="F#5" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="E5" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="C#5" duration="1" division="2"><lyric>vo-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>ce,</lyric></note>
+                <note value="F#5" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="F#5" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="E5" duration="1" division="8"><lyric>tha-</lyric></note>
+                <!-- T66 -->
+                <note value="D5" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="C#5" duration="1" division="2"><lyric>vo-</lyric></note>
+                <note value="B4" duration="1" division="2"><lyric>ce</lyric></note>
+                <note value="F#5" duration="1" division="2"><bound ref="1"/><lyric>psal-</lyric></note>
+                <note value="F#5" duration="1" division="4"><bound ref="1"/></note>
+                <note value="E5" duration="1" division="8"/>
+                <note value="D5" duration="1" division="8"/>
+                <note value="C#5" duration="1" division="2"/>
+                <note value="B4" duration="1" division="1"><bound ref="1"/><lyric>mi.</lyric></note>
+                <note value="B4" duration="1" division="2"><bound ref="1"/></note>
+                <note value="E5" duration="1" division="2"><bound ref="2"/><lyric>Qui-</lyric></note>
+                <note value="E5" duration="1" division="2"><bound ref="2"/></note>
+                <note value="C#5" duration="1" division="2"><lyric>a,</lyric></note>
+                <!-- T72 -->
+                <note value="D5" duration="1" division="1"><lyric>qui-</lyric></note>
+                <note value="B4" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="D5" duration="1" division="2"><bound ref="1"/><lyric>mi-</lyric></note>
+                <note value="D5" duration="1" division="2"><bound ref="1"/></note>
+                <note value="C5" duration="1" division="2"><lyric>ra-</lyric></note>
+                <note value="B4" duration="1" division="1"><lyric>bi-</lyric></note>
+                <note value="B4" duration="1" division="2"><lyric>li-</lyric></note>
+                <note value="A4" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="B4" duration="1" division="1"><lyric>fe-</lyric></note>
+                <note value="B4" duration="1" division="1"><lyric>cit.</lyric></note>
+            </sequence>
+        </voice>
+        <voice id="canto2" name="Canto 2">
+            <sequence clef="G" key="h" beat="C">
+                <!-- T01 -->
+                <note value="F#4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="F#4" duration="3" division="8"><lyric>Do-</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>mi-</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>no</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>can-</lyric></note>
+                <note value="B4" duration="1" division="8"><lyric>ti-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>cum</lyric></note>
+                <note value="A#4" duration="3" division="4"><lyric>no-</lyric></note>
+                <note value="A#4" duration="1" division="2"><lyric>vum,</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="C#5" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>can-</lyric></note>
+                <!-- T07 -->
+                <note value="D5" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="E5" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="E5" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="E5" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="E5" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="D5" duration="1" division="2"><lyric>be-</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>ne-</lyric></note>
+                <note value="C5" duration="3" division="8"><lyric>di-</lyric></note>
+                <note value="C5" duration="1" division="8"><lyric>ci-</lyric></note>
+                <note value="C5" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="B4" duration="1" division="2"><lyric>no-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>mi-</lyric></note>
+                <note value="C5" duration="1" division="4"><lyric>ni</lyric></note>
+                <note value="B4" duration="1" division="2"><lyric>e-</lyric></note>
+                <note value="B4" duration="3" division="4"><lyric>ius.</lyric></note>
+                <!-- T14 -->
+                <note value="G#4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="G#4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="E4" duration="3" division="8"><lyric>Do-</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>mi-</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>no</lyric></note>
+                <note value="G4" duration="3" division="8"><lyric>can-</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>ti-</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>cum</lyric></note>
+                <note value="F#4" duration="3" division="4"><lyric>no-</lyric></note>
+                <note value="F#4" duration="1" division="2"><lyric>vum,</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>can-</lyric></note>
+                <!-- T20 -->
+                <note value="B4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="C#5" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="D5" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="D5" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="C#5" duration="1" division="2"><lyric>be-</lyric></note>
+                <note value="C#5" duration="1" division="4"><lyric>ne-</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>di-</lyric></note>
+                <note value="B4" duration="1" division="8"><lyric>ci-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="A#4" duration="1" division="2"><lyric>no-</lyric></note>
+                <note value="A#4" duration="1" division="4"><lyric>mi-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>ni</lyric></note>
+                <note value="A#4" duration="1" division="2"><lyric>e-</lyric></note>
+                <!-- T26 -->
+                <note value="B4" duration="1" division="1"><lyric>ius.</lyric></note>
+                <note value="G#4" duration="1" division="1"><lyric>Qui-</lyric></note>
+                <note value="A4" duration="1" division="1"><lyric>a,</lyric></note>
+                <note value="A4" duration="1" division="1"><lyric>qui-</lyric></note>
+                <note value="G4" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="B4" duration="1" division="2"><bound ref="1"/><lyric>mi-</lyric></note>
+                <note value="B4" duration="1" division="2"><bound ref="1"/></note>
+                <note value="A4" duration="1" division="2"><bound ref="2"/><lyric>ra-</lyric></note>
+                <!-- T32 -->
+                <note value="A4" duration="1" division="2"><bound ref="2"/></note>
+                <note value="G4" duration="1" division="2"><bound ref="3"/><lyric>bi-</lyric></note>
+                <note value="G4" duration="1" division="4"><bound ref="3"/></note>
+                <note value="F#4" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="F#4" duration="1" division="1"><lyric>fe-</lyric></note>
+                <note value="G#4" duration="1" division="2"><lyric>cit.</lyric></note>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="1"/>
+                <!-- T37 -->
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="D5" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="D5" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="C#5" duration="1" division="8"/>
+                <note value="B4" duration="1" division="8"/>
+                <note value="C#5" duration="1" division="8"/>
+                <note value="D5" duration="1" division="8"/>
+                <note value="B4" duration="1" division="8"/>
+                <note value="C#5" duration="1" division="4"/>
+                <note value="C#5" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="B4" duration="1" division="8"><lyric>et</lyric></note>
+                <note value="C#5" duration="1" division="4"><lyric>ex-</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>sul-</lyric></note>
+                <!-- T42 -->
+                <note value="B4" duration="1" division="1"><lyric>ta-</lyric></note>
+                <note value="B4" duration="1" division="1"><lyric>te.</lyric></note>
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="B4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="A4" duration="1" division="8"/>
+                <note value="G4" duration="1" division="8"/>
+                <note value="A4" duration="1" division="8"/>
+                <note value="B4" duration="1" division="8"/>
+                <note value="G4" duration="1" division="8"/>
+                <!-- T47 -->
+                <note value="A4" duration="1" division="4"/>
+                <note value="A4" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>et</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>ex</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>sul-</lyric></note>
+                <note value="G4" duration="1" division="2"><lyric>ta-</lyric></note>
+                <note value="G4" duration="1" division="2"><lyric>te,</lyric></note>
+                <rest duration="1" division="1"/>
+                <note value="B4" duration="1" division="2"><lyric>et</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>ex-</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>sul-</lyric></note>
+                <!-- T51 -->
+                <note value="A4" duration="1" division="2"><lyric>ta-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>te</lyric></note>
+                <note value="G4" duration="1" division="2"><lyric>et</lyric></note>
+                <note value="G4" duration="1" division="2"><bound ref="1"/><lyric>psal-</lyric></note>
+                <note value="G4" duration="1" division="2"><bound ref="1"/></note>
+                <note value="F#4" duration="1" division="2"><lyric>li-</lyric></note>
+                <note value="G4" duration="1" division="2"><lyric>te.</lyric></note>
+                <note value="D5" duration="3" division="8"><lyric>Psa-</lyric></note>
+                <note value="D5" duration="1" division="8"><lyric>li-</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="C#5" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <!-- T56 -->
+                <note value="B4" duration="1" division="2"><lyric>ra,</lyric></note>
+                <note value="D5" duration="3" division="8"><lyric>psa-</lyric></note>
+                <note value="D5" duration="1" division="8"><lyric>li-</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="C#5" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="B4" duration="3" division="4"><lyric>ra,</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="A4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="F#4" duration="1" division="2"><lyric>vo-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>ce,</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>in</lyric></note>
+                <!-- T61 -->
+                <note value="B4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="A4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>vo-</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>ce</lyric></note>
+                <note value="G4" duration="1" division="2"><lyric>psal-</lyric></note>
+                <note value="F#4" duration="1" division="2"><lyric>mi,</lyric></note>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="F#5" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="F#5" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="E5" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="C#5" duration="1" division="2"><lyric>vo-</lyric></note>
+                <!-- T66 -->
+                <note value="B4" duration="1" division="4"><lyric>ce,</lyric></note>
+                <note value="F#5" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="F#5" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="E5" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="D5" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="C#5" duration="1" division="2"><lyric>vo-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>ce</lyric></note>
+                <note value="B4" duration="1" division="2"><lyric>psal-</lyric></note>
+                <note value="A#4" duration="1" division="4"/>
+                <note value="B4" duration="1" division="1"><lyric>mi.</lyric></note>
+                <note value="G#4" duration="1" division="1"><lyric>Qui-</lyric></note>
+                <note value="A4" duration="1" division="1"><lyric>a,</lyric></note>
+                <!-- T72 -->
+                <note value="A4" duration="1" division="1"><lyric>qui-</lyric></note>
+                <note value="G4" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="B4" duration="1" division="2"><bound ref="1"/><lyric>mi-</lyric></note>
+                <note value="B4" duration="1" division="2"><bound ref="1"/></note>
+                <note value="A4" duration="1" division="2"><bound ref="2"/><lyric>ra-</lyric></note>
+                <note value="A4" duration="1" division="2"><bound ref="2"/></note>
+                <note value="G4" duration="1" division="2"><bound ref="3"/><lyric>bi-</lyric></note>
+                <note value="G4" duration="1" division="4"><bound ref="3"/></note>
+                <note value="F#4" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="F#4" duration="1" division="1"><lyric>fe-</lyric></note>
+                <note value="G#4" duration="1" division="1"><lyric>cit.</lyric></note>
+            </sequence>
+        </voice>
+        <voice id="alto" name="Alto">
+            <sequence clef="G" key="h" beat="C">
+                <!-- T01 -->
+                <note value="D#4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="D#4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="D#4" duration="3" division="8"><lyric>Do-</lyric></note>
+                <note value="D#4" duration="1" division="8"><lyric>mi-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>no</lyric></note>
+                <note value="G4" duration="3" division="8"><lyric>can-</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>ti-</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>cum</lyric></note>
+                <note value="F#4" duration="3" division="4"><lyric>no-</lyric></note>
+                <note value="F#4" duration="1" division="2"><lyric>vum,</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>can-</lyric></note>
+                <!-- T07 -->
+                <note value="B4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="A4" duration="1" division="2"><lyric>be-</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>ne-</lyric></note>
+                <note value="G4" duration="3" division="8"><lyric>di-</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>ci-</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="F#4" duration="1" division="2"><lyric>no-</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>mi-</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>ni</lyric></note>
+                <note value="F#4" duration="1" division="2"><lyric>e-</lyric></note>
+                <note value="G#4" duration="3" division="4"><lyric>ius.</lyric></note>
+                <!-- T14 -->
+                <note value="E4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="E4" duration="3" division="8"><lyric>Do-</lyric></note>
+                <note value="E4" duration="1" division="8"><lyric>mi-</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>no</lyric></note>
+                <note value="E4" duration="3" division="8"><lyric>can-</lyric></note>
+                <note value="E4" duration="1" division="8"><lyric>ti-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>cum</lyric></note>
+                <note value="D#4" duration="3" division="4"><lyric>no-</lyric></note>
+                <note value="D#4" duration="1" division="2"><lyric>vum,</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>can-</lyric></note>
+                <!-- T20 -->
+                <note value="G4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="B4" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="B4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="A4" duration="1" division="2"><lyric>be-</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>ne-</lyric></note>
+                <note value="G4" duration="3" division="8"><lyric>di-</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>ci-</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="F#4" duration="1" division="2"><lyric>no-</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>mi-</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>ni</lyric></note>
+                <note value="F#4" duration="1" division="2"><lyric>e-</lyric></note>
+                <!-- T26 -->
+                <note value="F#4" duration="1" division="1"><lyric>ius.</lyric></note>
+                <note value="E4" duration="1" division="1"><lyric>Qui-</lyric></note>
+                <note value="E4" duration="1" division="1"><lyric>a,</lyric></note>
+                <note value="F#4" duration="1" division="1"><lyric>qui-</lyric></note>
+                <note value="G4" duration="1" division="1"><lyric>a</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>mi-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>ra-</lyric></note>
+                <!-- T32 -->
+                <note value="D4" duration="3" division="4"><lyric>bi-</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="E4" duration="1" division="2"><bound ref="1"/><lyric>fe-</lyric></note>
+                <note value="E4" duration="1" division="2"><bound ref="1"/></note>
+                <note value="D#4" duration="1" division="2"/>
+                <note value="E4" duration="1" division="2"><lyric>cit.</lyric></note>
+                <rest duration="1" division="4"/>
+                <note value="B4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="B4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="A4" duration="1" division="8"/>
+                <note value="G4" duration="1" division="8"/>
+                <note value="A4" duration="1" division="8"/>
+                <note value="B4" duration="1" division="8"/>
+                <note value="G4" duration="1" division="8"/>
+                <!-- T37 -->
+                <note value="A4" duration="1" division="4"/>
+                <note value="A4" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>et</lyric></note>
+                <note value="A4" duration="1" division="4"><lyric>ex-</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>sul-</lyric></note>
+                <note value="G4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="F#4" duration="1" division="8"/>
+                <note value="E4" duration="1" division="8"/>
+                <note value="F#4" duration="1" division="8"/>
+                <note value="G4" duration="1" division="8"/>
+                <note value="E4" duration="1" division="8"/>
+                <note value="F#4" duration="1" division="1"/>
+                <note value="F#4" duration="1" division="1"><lyric>te.</lyric></note>
+                <rest duration="1" division="1"/>
+                <!-- T42 -->
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="G4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="G4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="F#4" duration="1" division="8"/>
+                <note value="E4" duration="1" division="8"/>
+                <note value="F#4" duration="1" division="8"/>
+                <note value="G4" duration="1" division="8"/>
+                <note value="E4" duration="1" division="8"/>
+                <!-- T47 -->
+                <note value="F#4" duration="1" division="4"/>
+                <note value="F#4" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="E4" duration="1" division="8"><lyric>et</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>ex-</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>sul-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>ta-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>te.</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="G4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="F#4" duration="1" division="8"/>
+                <note value="E4" duration="1" division="8"/>
+                <note value="F#4" duration="1" division="8"/>
+                <note value="G4" duration="1" division="8"/>
+                <note value="E4" duration="1" division="8"/>
+                <note value="F#4" duration="1" division="4"/>
+                <note value="F#4" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="E4" duration="1" division="8"><lyric>et</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>ex-</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>sul-</lyric></note>
+                <!-- T51 -->
+                <note value="E4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="D4" duration="1" division="8"/>
+                <note value="C4" duration="1" division="8"/>
+                <note value="D4" duration="1" division="8"/>
+                <note value="E4" duration="1" division="8"/>
+                <note value="C4" duration="1" division="8"/>
+                <note value="D4" duration="1" division="2"/>
+                <note value="D4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="D4" duration="3" division="4"><lyric>psal-</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="D4" duration="1" division="1"><bound ref="1"/><lyric>te.</lyric></note>
+                <note value="D4" duration="1" division="2"><bound ref="1"/></note>
+                <note value="G4" duration="3" division="8"><lyric>Psal-</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>li-</lyric></note>
+                <!-- T56 -->
+                <note value="G4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="G4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="G4" duration="1" division="2"><lyric>ra,</lyric></note>
+                <note value="G4" duration="3" division="8"><lyric>psal-</lyric></note>
+                <note value="G4" duration="1" division="8"><lyric>li-</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="G4" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="F#4" duration="1" division="2"><bound ref="1"/><lyric>ci-</lyric></note>
+                <note value="F#4" duration="1" division="4"><bound ref="1"/></note>
+                <note value="F#4" duration="1" division="4"><lyric>tha-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>ra,</lyric></note>
+                <rest duration="1" division="1"/>
+                <!-- T61 -->
+                <rest duration="1" division="4"/>
+                <note value="B3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="E4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="E4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="D#4" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="D#4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>vo-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>ce</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>psal-</lyric></note>
+                <note value="C#4" duration="1" division="4"><lyric>mi,</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="F#4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="F#4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="F#4" duration="1" division="2"><bound ref="1"/><lyric>ra,</lyric></note>
+                <note value="F#4" duration="1" division="4"><bound ref="1"/></note>
+                <note value="F#4" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="F#4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="F#4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <!-- T66 -->
+                <note value="F#4" duration="3" division="4"><lyric>ra</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="F#4" duration="3" division="4"><lyric>vo-</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>ce</lyric></note>
+                <note value="F#4" duration="1" division="1"><lyric>psal-</lyric></note>
+                <note value="F#4" duration="1" division="1"><lyric>mi.</lyric></note>
+                <note value="E4" duration="1" division="1"><lyric>Qui-</lyric></note>
+                <note value="E4" duration="1" division="1"><lyric>a,</lyric></note>
+                <!-- T72 -->
+                <note value="F#4" duration="1" division="1"><lyric>qui-</lyric></note>
+                <note value="G4" duration="1" division="1"><lyric>a</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>mi-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>ra-</lyric></note>
+                <note value="D4" duration="3" division="4"><lyric>bi-</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="E4" duration="1" division="2"><bound ref="1"/><lyric>fe-</lyric></note>
+                <note value="E4" duration="1" division="2"><bound ref="1"/></note>
+                <note value="D#4" duration="1" division="2"/>
+                <note value="E4" duration="1" division="1"><lyric>cit.</lyric></note>
+            </sequence>
+        </voice>
+        <voice id="tenore1" name="Tenore 1">
+            <sequence clef="G8basso" key="h" beat="C">
+                <!-- T01 -->
+                <note value="B3" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>Do-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>mi-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>no</lyric></note>
+                <note value="G3" duration="3" division="8"><lyric>can-</lyric></note>
+                <note value="G3" duration="1" division="8"><lyric>ti-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>cum</lyric></note>
+                <note value="F#3" duration="3" division="4"><lyric>no-</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>vum,</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>can-</lyric></note>
+                <!-- T07 -->
+                <note value="D4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="E4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="D4" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="C#4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="D4" duration="1" division="2"><lyric>be-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>ne-</lyric></note>
+                <note value="C4" duration="3" division="8"><lyric>di-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>ci-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>no-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>mi-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>ni</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>e-</lyric></note>
+                <note value="E3" duration="3" division="4"><lyric>ius.</lyric></note>
+                <!-- T14 -->
+                <note value="B3" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>Do-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>mi-</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>no</lyric></note>
+                <note value="G3" duration="3" division="8"><lyric>can-</lyric></note>
+                <note value="E3" duration="1" division="8"><lyric>ti-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>cum</lyric></note>
+                <note value="D#3" duration="1" division="8"><lyric>no-</lyric></note>
+                <note value="E3" duration="1" division="8"/>
+                <note value="F#3" duration="1" division="8"/>
+                <note value="G3" duration="1" division="8"/>
+                <note value="F#3" duration="1" division="4"/>
+                <note value="F#3" duration="1" division="2"><lyric>vum,</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>te,</lyric></note>
+                <rest duration="1" division="4"/>
+                <!-- T20 -->
+                <rest duration="1" division="4"/>
+                <rest duration="1" division="4"/>
+                <note value="B3" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>be-</lyric></note>
+                <note value="A3" duration="1" division="4"/>
+                <note value="A3" duration="1" division="4"><lyric>ne-</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>di-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>ci-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="A#3" duration="3" division="16"><lyric>no-</lyric></note>
+                <note value="B3" duration="1" division="16"/>
+                <note value="C#4" duration="1" division="4"/>
+                <note value="F#4" duration="1" division="4"><lyric>mi-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>ni</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>e-</lyric></note>
+                <note value="C#4" duration="1" division="4"/>
+                <!-- T26 -->
+                <note value="D#4" duration="1" division="1"><lyric>ius.</lyric></note>
+                <note value="B3" duration="1" division="1"><lyric>Qui-</lyric></note>
+                <note value="A3" duration="1" division="1"><lyric>a,</lyric></note>
+                <note value="A3" duration="1" division="1"><lyric>qui-</lyric></note>
+                <note value="B3" duration="1" division="1"><lyric>a</lyric></note>
+                <note value="C4" duration="1" division="2"><lyric>mi-</lyric></note>
+                <note value="C4" duration="1" division="2"><lyric>ra-</lyric></note>
+                <!-- T32 -->
+                <note value="D4" duration="1" division="4"><lyric>bi-</lyric></note>
+                <note value="C4" duration="1" division="4"/>
+                <note value="B3" duration="1" division="4"/>
+                <note value="A3" duration="1" division="4"/>
+                <note value="G3" duration="1" division="2"/>
+                <note value="A3" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>a</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>fe-</lyric></note>
+                <note value="B3" duration="1" division="2"/>
+                <note value="B3" duration="1" division="2"><lyric>cit.</lyric></note>
+                <rest duration="1" division="4"/>
+                <note value="G4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="G4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="F#4" duration="1" division="8"/>
+                <note value="E4" duration="1" division="8"/>
+                <note value="F#4" duration="1" division="8"/>
+                <note value="G4" duration="1" division="8"/>
+                <note value="E4" duration="1" division="8"/>
+                <!-- T37 -->
+                <note value="F#4" duration="1" division="4"/>
+                <note value="F#4" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="E4" duration="1" division="8"><lyric>et</lyric></note>
+                <note value="F#4" duration="1" division="4"><lyric>ex-</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>sul-</lyric></note>
+                <note value="E4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="D4" duration="1" division="8"/>
+                <note value="C4" duration="1" division="8"/>
+                <note value="D4" duration="1" division="8"/>
+                <note value="E4" duration="1" division="8"/>
+                <note value="C4" duration="1" division="8"/>
+                <note value="D4" duration="1" division="1"/>
+                <note value="D4" duration="1" division="1"><lyric>te.</lyric></note>
+                <rest duration="1" division="1"/>
+                <!-- T42 -->
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="D4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="D4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="C#4" duration="1" division="8"/>
+                <note value="B3" duration="1" division="8"/>
+                <note value="C#4" duration="1" division="8"/>
+                <note value="D4" duration="1" division="8"/>
+                <note value="B3" duration="1" division="8"/>
+                <note value="C#4" duration="1" division="4"/>
+                <note value="C#4" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>et</lyric></note>
+                <note value="C#4" duration="1" division="4"><lyric>ex-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>sul-</lyric></note>
+                <note value="B3" duration="1" division="1"><lyric>ta-</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>te</lyric></note>
+                <note value="E3" duration="1" division="2"><lyric>et</lyric></note>
+                <!-- T47 -->
+                <note value="A3" duration="3" division="4"><lyric>psal-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="C4" duration="3" division="4"><lyric>te.</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>ta-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="D4" duration="1" division="2"><lyric>ex-</lyric></note>
+                <note value="D4" duration="1" division="2"><lyric>sul-</lyric></note>
+                <!-- T51 -->
+                <note value="C4" duration="1" division="1"><lyric>ta-</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>te</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>et</lyric></note>
+                <note value="A3" duration="3" division="4"><lyric>psal-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>te.</lyric></note>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="2"/>
+                <note value="D4" duration="3" division="8"><lyric>Psal-</lyric></note>
+                <note value="D4" duration="1" division="8"><lyric>li-</lyric></note>
+                <!-- T56 -->
+                <note value="D4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="D4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="D4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="D4" duration="1" division="2"><lyric>ra,</lyric></note>
+                <note value="D4" duration="3" division="8"><lyric>psal-</lyric></note>
+                <note value="D4" duration="1" division="8"><lyric>li-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="D#4" duration="1" division="2"><bound ref="1"/><lyric>ci-</lyric></note>
+                <note value="D#4" duration="1" division="4"><bound ref="1"/></note>
+                <note value="D#4" duration="1" division="4"><lyric>tha-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>ra,</lyric></note>
+                <rest duration="1" division="4"/>
+                <note value="B3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="E4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="E4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <!-- T61 -->
+                <note value="D#4" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="D#4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>vo-</lyric></note>
+                <note value="F#4" duration="1" division="2"><lyric>ce</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>psal-</lyric></note>
+                <note value="F#4" duration="1" division="2"><lyric>mi,</lyric></note>
+                <rest duration="1" division="4"/>
+                <note value="F#3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="A#3" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="A#3" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>vo-</lyric></note>
+                <note value="C#4" duration="1" division="4"><lyric>ce,</lyric></note>
+                <note value="F#3" duration="1" division="4"><lyric>in</lyric></note>
+                <!-- T66 -->
+                <note value="B3" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="A#3" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="A#3" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>vo-</lyric></note>
+                <note value="C#4" duration="1" division="2"><lyric>ce</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>psal-</lyric></note>
+                <note value="C#4" duration="1" division="8"/>
+                <note value="B3" duration="1" division="8"/>
+                <note value="C#4" duration="1" division="2"/>
+                <note value="D#4" duration="1" division="1"><lyric>mi.</lyric></note>
+                <note value="B3" duration="1" division="1"><lyric>Qui-</lyric></note>
+                <note value="A3" duration="1" division="1"><lyric>a,</lyric></note>
+                <!-- T72 -->
+                <note value="A3" duration="1" division="1"><lyric>qui-</lyric></note>
+                <note value="B3" duration="1" division="1"><lyric>a</lyric></note>
+                <note value="C4" duration="1" division="2"><lyric>mi-</lyric></note>
+                <note value="C4" duration="1" division="2"><lyric>ra-</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>bi-</lyric></note>
+                <note value="C4" duration="1" division="4"/>
+                <note value="B3" duration="1" division="4"/>
+                <note value="A3" duration="1" division="4"/>
+                <note value="G3" duration="1" division="2"/>
+                <note value="A3" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>a</lyric></note>
+                <note value="F#3" duration="1" division="1"><lyric>fe-</lyric></note>
+                <note value="E3" duration="1" division="1"><lyric>cit.</lyric></note>
+            </sequence>
+        </voice>
+        <voice id="tenore2" name="Tenore 2">
+            <sequence clef="G8basso" key="h" beat="C">
+                <!-- T01 -->
+                <note value="B3" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>Do-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>mi-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>no</lyric></note>
+                <note value="G3" duration="3" division="8"><lyric>can-</lyric></note>
+                <note value="G3" duration="1" division="8"><lyric>ti-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>cum</lyric></note>
+                <note value="F#3" duration="3" division="4"><lyric>no-</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>vum,</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="D4" duration="1" division="4"><lyric>can-</lyric></note>
+                <!-- T07 -->
+                <note value="D4" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="E4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="D4" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="C#4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="D4" duration="1" division="2"><lyric>be-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>ne-</lyric></note>
+                <note value="C4" duration="3" division="8"><lyric>di-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>ci-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>no-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>mi-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>ni</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>e-</lyric></note>
+                <note value="E3" duration="3" division="4"><lyric>ius.</lyric></note>
+                <!-- T14 -->
+                <note value="E3" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="G3" duration="3" division="8"><lyric>Do-</lyric></note>
+                <note value="G3" duration="1" division="8"><lyric>mi-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>no</lyric></note>
+                <note value="E3" duration="3" division="8"><lyric>can-</lyric></note>
+                <note value="E3" duration="1" division="8"><lyric>ti-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>cum</lyric></note>
+                <note value="B3" duration="3" division="4"><lyric>no-</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>vum,</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="G3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="F#3" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>can-</lyric></note>
+                <!-- T20 -->
+                <note value="B3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="D4" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="C#4" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="C#4" duration="1" division="2"><lyric>be-</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>ne-</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>di-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>ci-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>no-</lyric></note>
+                <note value="F#3" duration="1" division="4"><lyric>mi-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>ni</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>e-</lyric></note>
+                <!-- T26 -->
+                <note value="F#3" duration="1" division="2"><lyric>ius.</lyric></note>
+                <note value="B3" duration="1" division="2"><bound ref="1"/><lyric>Qui-</lyric></note>
+                <note value="B3" duration="1" division="2"><bound ref="1"/></note>
+                <note value="E3" duration="1" division="2"><bound ref="2"/><lyric>a,</lyric></note>
+                <note value="E3" duration="1" division="2"><bound ref="2"/></note>
+                <note value="A3" duration="1" division="2"><bound ref="3"/><lyric>qui-</lyric></note>
+                <note value="A3" duration="1" division="2"><bound ref="3"/></note>
+                <note value="D3" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="D3" duration="1" division="2"><lyric>mi-</lyric></note>
+                <note value="D3" duration="1" division="2"><lyric>ra-</lyric></note>
+                <note value="A3" duration="1" division="1"><lyric>bi-</lyric></note>
+                <!-- T32 -->
+                <note value="F#3-" duration="1" division="2"><lyric>li-</lyric></note>
+                <note value="G3" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="E3" duration="1" division="1"><lyric>fe-</lyric></note>
+                <note value="B3" duration="1" division="1"/>
+                <note value="E3" duration="1" division="2"><lyric>cit.</lyric></note>
+                <rest duration="1" division="4"/>
+                <note value="E4" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="E4" duration="1" division="2"><lyric>ta-</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>et</lyric></note>
+                <!-- T37 -->
+                <note value="D4" duration="1" division="2"><lyric>ex-</lyric></note>
+                <note value="D4" duration="1" division="2"><lyric>sul-</lyric></note>
+                <note value="C4" duration="1" division="1"><lyric>ta-</lyric></note>
+                <note value="B3" duration="1" division="1"><bound ref="1"/><lyric>te.</lyric></note>
+                <note value="B3" duration="1" division="1"><bound ref="1"/></note>
+                <rest duration="1" division="1"/>
+                <!-- T42 -->
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="B3" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="A3" duration="1" division="8"/>
+                <note value="G3" duration="1" division="8"/>
+                <note value="A3" duration="1" division="8"/>
+                <note value="B3" duration="1" division="8"/>
+                <note value="G3" duration="1" division="8"/>
+                <note value="A3" duration="1" division="4"/>
+                <note value="A3" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="G3" duration="1" division="8"><lyric>et</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>ex-</lyric></note>
+                <note value="F#3" duration="1" division="4"><lyric>sul-</lyric></note>
+                <note value="G3" duration="1" division="1"><bound ref="1"/><lyric>ta-</lyric></note>
+                <note value="G3" duration="1" division="2"><bound ref="1"/></note>
+                <note value="B3" duration="1" division="2"><lyric>te</lyric></note>
+                <!-- T47 -->
+                <note value="D4" duration="1" division="1"><lyric>et</lyric></note>
+                <note value="G3" duration="3" division="4"><lyric>psal-</lyric></note>
+                <note value="G3" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="G3" duration="1" division="1"><lyric>te</lyric></note>
+                <note value="B3" duration="1" division="1"><lyric>et</lyric></note>
+                <!-- T51 -->
+                <note value="E3" duration="1" division="2"><lyric>ex-</lyric></note>
+                <note value="A3" duration="1" division="2"><lyric>sul-</lyric></note>
+                <note value="D3" duration="1" division="2"><lyric>ta-</lyric></note>
+                <note value="D3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="D3" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="D3" duration="3" division="4"><lyric>psal-</lyric></note>
+                <note value="D3" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="D3" duration="1" division="2"><lyric>te.</lyric></note>
+                <note value="G3" duration="3" division="8"><lyric>Psal-</lyric></note>
+                <note value="G3" duration="1" division="8"><lyric>li-</lyric></note>
+                <note value="G3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>tha-</lyric></note>
+                <!-- T56 -->
+                <note value="B3" duration="1" division="2"><lyric>ra,</lyric></note>
+                <note value="G3" duration="3" division="8"><lyric>psal-</lyric></note>
+                <note value="G3" duration="1" division="8"><lyric>li-</lyric></note>
+                <note value="G3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>ra,</lyric></note>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="B3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="E4" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="E4" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="D#4" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="D#4" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="E4" duration="1" division="4"><lyric>vo-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>ce</lyric></note>
+                <!-- T61 -->
+                <note value="B3" duration="1" division="2"><lyric>psal-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>mi,</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="E3" duration="1" division="2"><lyric>ra,</lyric></note>
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="F#3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="A#3" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="A#3" duration="1" division="4"><lyric>et</lyric></note>
+                <!-- T66 -->
+                <note value="B3" duration="1" division="2"><lyric>vo-</lyric></note>
+                <note value="C#4" duration="1" division="2"><lyric>ce</lyric></note>
+                <note value="D4" duration="1" division="2"><lyric>psal-</lyric></note>
+                <note value="C#4" duration="1" division="4"><lyric>mi,</lyric></note>
+                <note value="F#3" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>vo-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>ce</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>psal-</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>mi.</lyric></note>
+                <note value="B3" duration="1" division="2"><bound ref="1"/><lyric>Qui-</lyric></note>
+                <note value="B3" duration="1" division="2"><bound ref="1"/></note>
+                <note value="E3" duration="1" division="2"><bound ref="2"/><lyric>a,</lyric></note>
+                <note value="E3" duration="1" division="2"><bound ref="2"/></note>
+                <note value="A3" duration="1" division="2"><bound ref="3"/><lyric>qui-</lyric></note>
+                <!-- T72 -->
+                <note value="A3" duration="1" division="2"><bound ref="3"/></note>
+                <note value="D3" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="D3" duration="1" division="2"><lyric>mi-</lyric></note>
+                <note value="D3" duration="1" division="2"><lyric>ra-</lyric></note>
+                <note value="A3" duration="1" division="1"><lyric>bi-</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>li-</lyric></note>
+                <note value="G3" duration="1" division="2"><lyric>a</lyric></note>
+                <note value="E3" duration="1" division="1"><lyric>fe-</lyric></note>
+                <note value="B3" duration="1" division="1"><bound ref="1"/><lyric>cit.</lyric></note>
+                <note value="B3" duration="1" division="1"><bound ref="1"/></note>
+            </sequence>
+        </voice>
+        <voice id="basso" name="Basso">
+            <sequence clef="F" key="h" beat="C">
+                <!-- T01 -->
+                <rest duration="3" division="4"/>
+                <rest duration="3" division="4"/>
+                <rest duration="3" division="4"/>
+                <rest duration="3" division="4"/>
+                <rest duration="3" division="4"/>
+                <rest duration="3" division="4"/>
+                <!-- T07 -->
+                <rest duration="3" division="4"/>
+                <rest duration="3" division="4"/>
+                <rest duration="3" division="4"/>
+                <rest duration="3" division="4"/>
+                <rest duration="3" division="4"/>
+                <rest duration="3" division="4"/>
+                <rest duration="3" division="4"/>
+                <!-- T14 -->
+                <note value="E3" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="A2" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="E3" duration="3" division="8"><lyric>Do-</lyric></note>
+                <note value="E3" duration="1" division="8"><lyric>mi-</lyric></note>
+                <note value="D3" duration="1" division="4"><lyric>no</lyric></note>
+                <note value="C3" duration="3" division="8"><lyric>can-</lyric></note>
+                <note value="C3" duration="1" division="8"><lyric>ti-</lyric></note>
+                <note value="A2" duration="1" division="4"><lyric>cum</lyric></note>
+                <note value="B2" duration="3" division="4"><lyric>no-</lyric></note>
+                <note value="B2" duration="1" division="2"><lyric>vum,</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="D3" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="G3" duration="1" division="4"><lyric>can-</lyric></note>
+                <!-- T20 -->
+                <note value="G3" duration="1" division="4"><lyric>ta-</lyric></note>
+                <note value="F#3" duration="1" division="4"><lyric>te,</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>ta-</lyric></note>
+                <note value="A3" duration="1" division="8"><lyric>te</lyric></note>
+                <note value="G3" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="A3" duration="1" division="2"><lyric>be-</lyric></note>
+                <note value="F#3" duration="1" division="4"><lyric>ne-</lyric></note>
+                <note value="G3" duration="3" division="8"><lyric>di-</lyric></note>
+                <note value="F#3" duration="1" division="8"><lyric>ci-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>no-</lyric></note>
+                <note value="F#3" duration="1" division="4"><lyric>mi-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>ni</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>e-</lyric></note>
+                <!-- T26 -->
+                <note value="B2" duration="1" division="1"><lyric>ius.</lyric></note>
+                <note value="E3" duration="1" division="1"><lyric>Qui-</lyric></note>
+                <note value="A2" duration="1" division="1"><lyric>a,</lyric></note>
+                <note value="D3" duration="1" division="1"><lyric>qui-</lyric></note>
+                <note value="G2" duration="1" division="1"><lyric>a</lyric></note>
+                <note value="A2" duration="1" division="2"><lyric>mi-</lyric></note>
+                <note value="A2" duration="1" division="2"><lyric>ra-</lyric></note>
+                <!-- T32 -->
+                <note value="B2" duration="3" division="4"><lyric>bi-</lyric></note>
+                <note value="B2" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="C3" duration="1" division="1"><lyric>a</lyric></note>
+                <note value="B2" duration="1" division="1"><lyric>fe-</lyric></note>
+                <note value="E3" duration="1" division="1"><lyric>cit.</lyric></note>
+                <rest duration="1" division="1"/>
+                <!-- T37 -->
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="B3" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>ta-</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="A3" duration="1" division="2"><lyric>ex-</lyric></note>
+                <note value="A3" duration="1" division="2"><lyric>sul-</lyric></note>
+                <!-- T42 -->
+                <note value="G3" duration="1" division="2"><lyric>ta-</lyric></note>
+                <note value="G3" duration="1" division="4"><lyric>te.</lyric></note>
+                <note value="G3" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="G3" duration="1" division="2"><lyric>ta-</lyric></note>
+                <note value="G3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="G3" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>ex-</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>sul-</lyric></note>
+                <note value="E3" duration="1" division="2"><lyric>ta-</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>te.</lyric></note>
+                <note value="E3" duration="1" division="4"><lyric>Can-</lyric></note>
+                <note value="E3" duration="1" division="1"><lyric>ta-</lyric></note>
+                <!-- T47 -->
+                <note value="D3" duration="3" division="4"><lyric>te,</lyric></note>
+                <note value="D3" duration="1" division="4"><lyric>can-</lyric></note>
+                <note value="C3" duration="1" division="1"><lyric>ta-</lyric></note>
+                <note value="C3" duration="1" division="2"><lyric>te</lyric></note>
+                <note value="C3" duration="1" division="2"><lyric>et</lyric></note>
+                <note value="B2" duration="1" division="2"><lyric>ex-</lyric></note>
+                <note value="B2" duration="1" division="2"><lyric>sul-</lyric></note>
+                <!-- T51 -->
+                <note value="A2" duration="1" division="1"><lyric>ta-</lyric></note>
+                <note value="G2" duration="1" division="2"><lyric>te</lyric></note>
+                <note value="G2" duration="1" division="2"><lyric>et</lyric></note>
+                <note value="D3" duration="3" division="4"><lyric>psal-</lyric></note>
+                <note value="D3" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="G2" duration="1" division="1"><lyric>te.</lyric></note>
+                <rest duration="1" division="2"/>
+                <note value="G3" duration="3" division="8"><lyric>Psal-</lyric></note>
+                <note value="G3" duration="1" division="8"><lyric>li-</lyric></note>
+                <!-- T56 -->
+                <note value="G3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="B3" duration="1" division="2"><lyric>ra,</lyric></note>
+                <note value="G3" duration="3" division="8"><lyric>psal-</lyric></note>
+                <note value="G3" duration="1" division="8"><lyric>li-</lyric></note>
+                <note value="G3" duration="1" division="4"><lyric>te</lyric></note>
+                <note value="A3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B3" duration="1" division="2"><bound ref="1"/><lyric>ci-</lyric></note>
+                <note value="B3" duration="1" division="4"><bound ref="1"/></note>
+                <note value="B3" duration="1" division="4"><lyric>tha-</lyric></note>
+                <note value="E3" duration="1" division="2"><lyric>ra,</lyric></note>
+                <rest duration="1" division="1"/>
+                <!-- T61 -->
+                <rest duration="1" division="1"/>
+                <rest duration="1" division="2"/>
+                <rest duration="1" division="4"/>
+                <note value="E3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="A#3" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="A#3" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>vo-</lyric></note>
+                <note value="B2" duration="1" division="4"><lyric>ce</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>psal-</lyric></note>
+                <note value="B2" duration="1" division="4"><lyric>mi,</lyric></note>
+                <note value="B2" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="F#3" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="F#3" duration="1" division="8"><lyric>tha-</lyric></note>
+                <!-- T66 -->
+                <note value="B2" duration="1" division="2"><lyric>ra,</lyric></note>
+                <rest duration="1" division="4"/>
+                <note value="F#3" duration="1" division="4"><lyric>in</lyric></note>
+                <note value="B3" duration="3" division="8"><lyric>ci-</lyric></note>
+                <note value="B3" duration="1" division="8"><lyric>tha-</lyric></note>
+                <note value="A#3" duration="1" division="4"><lyric>ra</lyric></note>
+                <note value="A#3" duration="1" division="4"><lyric>et</lyric></note>
+                <note value="B3" duration="1" division="4"><lyric>vo-</lyric></note>
+                <note value="B2" duration="1" division="4"><lyric>ce</lyric></note>
+                <note value="F#3" duration="1" division="2"><lyric>psal-</lyric></note>
+                <note value="B2" duration="1" division="1"><lyric>mi.</lyric></note>
+                <note value="E3" duration="1" division="1"><lyric>Qui-</lyric></note>
+                <note value="A2" duration="1" division="1"><lyric>a,</lyric></note>
+                <!-- T72 -->
+                <note value="D3" duration="1" division="1"><lyric>qui-</lyric></note>
+                <note value="G2" duration="1" division="1"><lyric>a</lyric></note>
+                <note value="A2" duration="1" division="2"><lyric>mi-</lyric></note>
+                <note value="A2" duration="1" division="2"><lyric>ra-</lyric></note>
+                <note value="B2" duration="3" division="4"><lyric>bi-</lyric></note>
+                <note value="B2" duration="1" division="4"><lyric>li-</lyric></note>
+                <note value="C3" duration="1" division="1"><lyric>a</lyric></note>
+                <note value="B2" duration="1" division="1"><lyric>fe-</lyric></note>
+                <note value="E3" duration="1" division="1"><lyric>cit.</lyric></note>
+            </sequence>
+        </voice>
+    </music-data>
+</song>

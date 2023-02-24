@@ -1,4 +1,4 @@
-package org.alltiny.chorus.dom.clef;
+package org.alltiny.chorus.base.type;
 
 /**
  * This class represents

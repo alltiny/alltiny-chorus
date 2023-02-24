@@ -1,10 +1,10 @@
 package org.alltiny.chorus.gui.canvas;
 
-import org.alltiny.chorus.dom.clef.Clef;
+import org.alltiny.chorus.base.type.AccidentalSign;
+import org.alltiny.chorus.base.type.Clef;
 import org.alltiny.chorus.dom.Element;
 import org.alltiny.chorus.dom.Note;
 import org.alltiny.chorus.dom.Rest;
-import org.alltiny.chorus.dom.decoration.AccidentalSign;
 import org.alltiny.chorus.dom.decoration.Bound;
 import org.alltiny.chorus.dom.decoration.Decoration;
 import org.alltiny.chorus.dom.decoration.Triplet;

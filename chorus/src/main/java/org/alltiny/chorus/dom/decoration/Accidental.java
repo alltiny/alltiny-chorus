@@ -1,5 +1,7 @@
 package org.alltiny.chorus.dom.decoration;
 
+import org.alltiny.chorus.base.type.AccidentalSign;
+
 /**
  * This class represents
  *
