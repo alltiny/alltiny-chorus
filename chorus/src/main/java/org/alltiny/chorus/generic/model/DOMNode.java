@@ -6,15 +6,7 @@ package org.alltiny.chorus.generic.model;
  */
 public interface DOMNode<Self extends DOMNode> {
 
-    DOMEventSupport domEventSupport = new DOMEventSupport();
+    Self addListener(DOMEventListener<Self> listener);
 
-    default Self addListener(DOMEventListener listener) {
-        domEventSupport.addListener(listener);
-        return (Self)this;
-    }
-
-    default Self removeListener(DOMEventListener listener) {
-        domEventSupport.addListener(listener);
-        return (Self)this;
-    }
+    Self removeListener(DOMEventListener<Self> listener);
 }

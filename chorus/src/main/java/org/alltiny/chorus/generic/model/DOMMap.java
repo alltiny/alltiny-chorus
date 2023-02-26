@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
  */
 public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<String,Value> {
 
+    private final DOMEventSupport domEventSupport = new DOMEventSupport();
+
     private final Map<String,PropertyHolder<Value>> properties = new HashMap<>();
 
     /** This relayListener tries to hide use of the PropertyHolder by rewriting the
@@ -30,10 +32,20 @@ public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<Str
                 pce.getNewValue())
                 .withCause(pce.getCause())
             );
-        } else {
-            domEventSupport.fireEvent(event);
         }
     };
+
+    @Override
+    public Self addListener(DOMEventListener listener) {
+        domEventSupport.addListener(listener);
+        return (Self)this;
+    }
+
+    @Override
+    public Self removeListener(DOMEventListener listener) {
+        domEventSupport.removeListener(listener);
+        return (Self)this;
+    }
 
     @Override
     public int size() {
@@ -68,6 +80,7 @@ public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<Str
             ph = new PropertyHolder<>(key);
             ph.setValue(value);
             ph.addListener(relayListener);
+            properties.put(key, ph);
 
             domEventSupport.fireEvent(new DOMPropertyAddedEvent<>(this, key, value));
 
@@ -124,6 +137,7 @@ public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<Str
      */
     private static class PropertyHolder<Value> implements DOMNode<PropertyHolder<Value>> {
 
+        private final DOMEventSupport domEventSupport = new DOMEventSupport();
         private final DOMEventListener<Value> relayListener;
         private final String name;
 
@@ -142,6 +156,19 @@ public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<Str
                 );
             };
         }
+
+        @Override
+        public PropertyHolder<Value> addListener(DOMEventListener listener) {
+            domEventSupport.addListener(listener);
+            return this;
+        }
+
+        @Override
+        public PropertyHolder<Value> removeListener(DOMEventListener listener) {
+            domEventSupport.removeListener(listener);
+            return this;
+        }
+
 
         public String getName() {
             return name;

@@ -1,5 +1,6 @@
 package org.alltiny.chorus;
 
+import org.alltiny.chorus.gui.CommandPanel;
 import org.alltiny.chorus.gui.canvas.AutoscrollLogic;
 import org.alltiny.chorus.gui.canvas.MusicCanvas;
 import org.alltiny.chorus.gui.MuteVoiceToolbar;
@@ -14,6 +15,7 @@ import org.alltiny.chorus.action.PlayCurrentSongAction;
 import org.alltiny.chorus.action.SetCursorToBeginningAction;
 import org.alltiny.chorus.model.SongMusicDataModel;
 import org.alltiny.chorus.midi.MidiPlayer;
+import org.alltiny.chorus.model.app.ApplicationModel;
 import org.alltiny.chorus.util.ManifestUtil;
 import org.alltiny.svg.parser.SVGParseException;
 
@@ -37,6 +39,8 @@ public class Chorus {
 
     private static final ManifestUtil manifest = new ManifestUtil("Chorus");
     private final ApplicationProperties properties;
+
+    private final ApplicationModel appModel = new ApplicationModel();
 
     private final SongModel model;
     private final OpenFromFileAction openAction;
@@ -88,8 +92,7 @@ public class Chorus {
 
         panel.add(barPanel, gbc);
         panel.add(slider, gbc);
-        gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.BOTH;
+
         JScrollPane pane = new JScrollPane(new MusicLayeredPane(musicCanvas, player));
 
         new AutoscrollLogic(pane, musicCanvas);
@@ -111,7 +114,11 @@ public class Chorus {
                 }
             }
         });
-        panel.add(pane, gbc);
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+
+        JSplitPane centerSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, new CommandPanel(appModel));
+        panel.add(centerSplit, gbc);
 
         return panel;
     }

@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
  */
 public class DOMList<Self extends DOMList,T> implements DOMNode<Self>, List<T> {
 
+    private final DOMEventSupport domEventSupport = new DOMEventSupport();
+
     private final List<T> elements = new ArrayList<>();
 
     private final DOMEventListener<T> relayListener = (event) -> {
@@ -31,6 +33,18 @@ public class DOMList<Self extends DOMList,T> implements DOMNode<Self>, List<T> {
             .withCause(event)
         );
     };
+
+    @Override
+    public Self addListener(DOMEventListener<Self> listener) {
+        domEventSupport.addListener(listener);
+        return (Self)this;
+    }
+
+    @Override
+    public Self removeListener(DOMEventListener<Self> listener) {
+        domEventSupport.removeListener(listener);
+        return (Self)this;
+    }
 
     @Override
     public int size() {
