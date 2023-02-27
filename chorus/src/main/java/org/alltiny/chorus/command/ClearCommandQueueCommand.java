@@ -13,13 +13,18 @@ public class ClearCommandQueueCommand extends Command<ClearCommandQueueCommand> 
     }
 
     @Override
-    public String getUsageOneLine() {
-        return "clear command queue";
+    public boolean feelsResponsible() {
+        return "clear commands".startsWith(getAppModel().getCommandLine());
     }
 
     @Override
-    public boolean feelsResponsible() {
-        return getAppModel().getCommandLine().startsWith("clear command queue");
+    public String getUsageOneLine() {
+        return "clear commands";
+    }
+
+    @Override
+    public String getDescriptionOneLine() {
+        return "clears the command history";
     }
 
     @Override
@@ -28,7 +33,7 @@ public class ClearCommandQueueCommand extends Command<ClearCommandQueueCommand> 
             getAppModel().getCommandQueueDone().clear();
             getAppModel().getCommandQueueUndo().clear();
             return new ExecutedCommand<ClearCommandQueueCommand>()
-                .setResolvedCommand("clear command queue")
+                .setResolvedCommand("clear commands")
                 .setSuccessful(true);
         };
     }

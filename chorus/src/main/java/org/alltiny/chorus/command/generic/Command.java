@@ -20,5 +20,7 @@ public abstract class Command<Self extends Command<?>> {
 
     public abstract String getUsageOneLine();
 
+    public abstract String getDescriptionOneLine();
+
     public abstract Function<Void,ExecutedCommand<Self>> getExecutableFunction();
 }

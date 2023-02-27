@@ -18,8 +18,18 @@ public class CommandRegistry {
     public CommandRegistry(ApplicationModel appModel) {
         this.appModel = appModel;
         this.commands = Arrays.asList(
-            new ClearCommandQueueCommand(appModel)
+            new ClearCommandQueueCommand(appModel),
+            new ClearMessageQueueCommand(appModel),
+            new HelpCommand(this)
         );
+    }
+
+    public ApplicationModel getApplicationModel() {
+        return appModel;
+    }
+
+    public List<Command<?>> getCommands() {
+        return commands;
     }
 
     public boolean execute() {
