@@ -16,15 +16,17 @@ import java.awt.*;
  */
 public class MessageListPanel extends JPanel implements Scrollable {
 
+    private static final GridBagConstraints GBC = new GridBagConstraints(0,-1,1,1,1,0,GridBagConstraints.NORTHEAST, GridBagConstraints.HORIZONTAL,new Insets(0,0,0,0),0,0);
+
     private final ApplicationModel appModel;
 
     public MessageListPanel(ApplicationModel appModel) {
-        super(new GridLayout(0,1));
+        super(new GridBagLayout());
         this.appModel = appModel;
 
         // initialize to all messages in the queue
         for (AppMessage message : appModel.getApplicationMessageQueue()) {
-            add(new MessagePanel(message));
+            add(new MessagePanel(message), GBC);
         }
 
         // register listeners
@@ -37,11 +39,12 @@ public class MessageListPanel extends JPanel implements Scrollable {
             } else if (domEvent instanceof DOMIndexedItemChangedEvent) {
                 final DOMIndexedItemChangedEvent<?,AppMessage> itemEvent = (DOMIndexedItemChangedEvent<?,AppMessage>)domEvent;
                 this.remove(itemEvent.getIndex());
-                this.add(new MessagePanel(itemEvent.getItem()), itemEvent.getIndex());
+                this.add(new MessagePanel(itemEvent.getItem()), GBC, itemEvent.getIndex());
             } else if (domEvent instanceof DOMIndexedItemInsertedEvent) {
                 final DOMIndexedItemInsertedEvent<?,AppMessage> itemEvent = (DOMIndexedItemInsertedEvent<?,AppMessage>)domEvent;
                 this.add(
                     new MessagePanel(itemEvent.getItem()),
+                    GBC,
                     (itemEvent.getIndex() < this.getComponentCount()) ? itemEvent.getIndex() : -1);
             } else if (domEvent instanceof DOMIndexedItemRemovedEvent) {
                 final DOMIndexedItemRemovedEvent<?,AppMessage> itemEvent = (DOMIndexedItemRemovedEvent<?,AppMessage>)domEvent;
