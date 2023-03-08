@@ -6,19 +6,24 @@ package org.alltiny.chorus.dom.decoration;
  * @author <a href="mailto:ralf.hergert.de@gmail.com">Ralf Hergert</a>
  * @version 24.11.2008 18:32:44
  */
-public class Bound extends Decoration {
+public class Bound extends Decoration<Bound> {
 
-    private int ref;
+    public enum Property {
+        REF
+    }
+
+    public Bound() {}
 
     public Bound(int ref) {
-        this.ref = ref;
+        setRef(ref);
     }
 
     public int getRef() {
-        return ref;
+        return (int)get(Property.REF.name());
     }
 
-    public void setRef(int ref) {
-        this.ref = ref;
+    public Bound setRef(int ref) {
+        put(Property.REF.name(), ref);
+        return this;
     }
 }

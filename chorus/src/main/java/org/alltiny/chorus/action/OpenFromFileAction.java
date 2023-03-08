@@ -1,16 +1,14 @@
 package org.alltiny.chorus.action;
 
 import org.alltiny.chorus.ApplicationProperties;
-import org.alltiny.chorus.model.SongModel;
-import org.alltiny.chorus.xml.XMLReader;
+import org.alltiny.chorus.command.CommandRegistry;
+import org.alltiny.chorus.command.OpenFileCommand;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.event.ActionEvent;
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.ResourceBundle;
-import java.util.zip.GZIPInputStream;
 
 /**
  * This class represents
@@ -22,14 +20,14 @@ public class OpenFromFileAction extends AbstractAction {
 
     private static final String PROP_LAST_OPEN_DIR = "OpenFromFileAction.lastOpenDirectory";
 
-    private final SongModel model;
+    private final CommandRegistry commandRegistry;
     private final JFileChooser chooser;
     private final ApplicationProperties properties;
 
-    public OpenFromFileAction(SongModel model, ApplicationProperties properties) {
+    public OpenFromFileAction(CommandRegistry commandRegistry, ApplicationProperties properties) {
         putValue(Action.SMALL_ICON, new ImageIcon(getClass().getClassLoader().getResource("image/open.png")));
         putValue(Action.SHORT_DESCRIPTION, ResourceBundle.getBundle("i18n.chorus").getString("OpenFromFileAction.ShortDescription"));
-        this.model = model;
+        this.commandRegistry = commandRegistry;
         this.properties = properties;
 
         chooser = new JFileChooser();
@@ -54,11 +52,7 @@ public class OpenFromFileAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         if (JFileChooser.APPROVE_OPTION == chooser.showOpenDialog(null)) {
             try {
-                if (chooser.getSelectedFile().getName().toLowerCase().endsWith(".xml")) {
-                    model.setSong(XMLReader.readSongFromXML(new FileInputStream(chooser.getSelectedFile())));
-                } else { // if (chooser.getSelectedFile().getName().toLowerCase().endsWith(".xml.gz"))
-                    model.setSong(XMLReader.readSongFromXML(new GZIPInputStream(new FileInputStream(chooser.getSelectedFile()))));
-                }
+                commandRegistry.execute(OpenFileCommand.commandFor(chooser.getSelectedFile()));
 
                 // store the current directory in the properties.
                 properties.setProperty(PROP_LAST_OPEN_DIR, chooser.getCurrentDirectory().getAbsolutePath());

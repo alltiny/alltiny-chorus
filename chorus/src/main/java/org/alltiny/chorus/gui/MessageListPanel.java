@@ -1,9 +1,9 @@
 package org.alltiny.chorus.gui;
 
-import org.alltiny.chorus.generic.model.events.DOMIndexedItemChangedEvent;
-import org.alltiny.chorus.generic.model.events.DOMIndexedItemInsertedEvent;
-import org.alltiny.chorus.generic.model.events.DOMIndexedItemRemovedEvent;
-import org.alltiny.chorus.generic.model.events.DOMListClearedEvent;
+import org.alltiny.chorus.model.generic.DOMIndexedItemChangedEvent;
+import org.alltiny.chorus.model.generic.DOMIndexedItemInsertedEvent;
+import org.alltiny.chorus.model.generic.DOMIndexedItemRemovedEvent;
+import org.alltiny.chorus.model.generic.DOMListClearedEvent;
 import org.alltiny.chorus.model.app.AppMessage;
 import org.alltiny.chorus.model.app.ApplicationModel;
 
@@ -30,16 +30,12 @@ public class MessageListPanel extends JPanel implements Scrollable {
         }
 
         // register listeners
-        appModel.getApplicationMessageQueue().addListener(domEvent -> {
+        appModel.getApplicationMessageQueue().addListener((domEvent,context) -> {
             if (domEvent.getSource() != appModel.getApplicationMessageQueue()) {
                 return;
             }
             if (domEvent instanceof DOMListClearedEvent) {
                 this.removeAll();
-            } else if (domEvent instanceof DOMIndexedItemChangedEvent) {
-                final DOMIndexedItemChangedEvent<?,AppMessage> itemEvent = (DOMIndexedItemChangedEvent<?,AppMessage>)domEvent;
-                this.remove(itemEvent.getIndex());
-                this.add(new MessagePanel(itemEvent.getItem()), GBC, itemEvent.getIndex());
             } else if (domEvent instanceof DOMIndexedItemInsertedEvent) {
                 final DOMIndexedItemInsertedEvent<?,AppMessage> itemEvent = (DOMIndexedItemInsertedEvent<?,AppMessage>)domEvent;
                 this.add(
@@ -54,6 +50,10 @@ public class MessageListPanel extends JPanel implements Scrollable {
                     return;
                 }
                 this.remove(itemEvent.getIndex());
+            } else if (domEvent instanceof DOMIndexedItemChangedEvent) {
+                final DOMIndexedItemChangedEvent<?,AppMessage> itemEvent = (DOMIndexedItemChangedEvent<?,AppMessage>)domEvent;
+                this.remove(itemEvent.getIndex());
+                this.add(new MessagePanel(itemEvent.getItem()), GBC, itemEvent.getIndex());
             } else {
                 return; // skip the revalidation of this container.
             }

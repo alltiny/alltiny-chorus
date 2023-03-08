@@ -1,11 +1,10 @@
 package org.alltiny.chorus.xml;
 
+import org.alltiny.chorus.model.generic.DOMMap;
 import org.alltiny.xml.handler.XMLHandler;
 import org.alltiny.xml.handler.AssignHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
-
-import java.util.Properties;
 
 /**
  * This class represents
@@ -13,11 +12,11 @@ import java.util.Properties;
  * @author <a href="mailto:ralf.hergert.de@gmail.com">Ralf Hergert</a>
  * @version 08.11.2008 13:42:57
  */
-public class MetaXMLHandler extends XMLHandler<Properties> {
+public class MetaXMLHandler extends XMLHandler<DOMMap<?,String>> {
 
-    private final Properties meta = new Properties();
+    private final DOMMap<?,String> meta = new DOMMap<>();
 
-    public MetaXMLHandler(AssignHandler<Properties> assignHandler) {
+    public MetaXMLHandler(AssignHandler<DOMMap<?,String>> assignHandler) {
         super(assignHandler);
     }
 
@@ -25,16 +24,16 @@ public class MetaXMLHandler extends XMLHandler<Properties> {
         return new StringXMLHandler(new MetaAssignHandler(meta, qName));
     }
 
-    public Properties getObject() {
+    public DOMMap<?,String> getObject() {
         return meta;
     }
 
     private static class MetaAssignHandler implements AssignHandler<String> {
 
-        private final Properties properties;
+        private final DOMMap<?,String> properties;
         private final String name;
 
-        public MetaAssignHandler(final Properties properties, final String name) {
+        public MetaAssignHandler(final DOMMap<?,String> properties, final String name) {
             this.properties = properties;
             this.name = name;
         }

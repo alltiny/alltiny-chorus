@@ -6,19 +6,24 @@ package org.alltiny.chorus.dom.decoration;
  * @author <a href="mailto:ralf.hergert.de@gmail.com">Ralf Hergert</a>
  * @version 24.11.2008 18:32:44
  */
-public class Triplet extends Decoration {
+public class Triplet extends Decoration<Triplet> {
 
-    private int ref;
+    public enum Property {
+        REF
+    }
+
+    public Triplet() {}
 
     public Triplet(int ref) {
-        this.ref = ref;
+        setRef(ref);
     }
 
     public int getRef() {
-        return ref;
+        return (int)get(Property.REF.name());
     }
 
-    public void setRef(int ref) {
-        this.ref = ref;
+    public Triplet setRef(int ref) {
+        put(Property.REF.name(), ref);
+        return this;
     }
 }

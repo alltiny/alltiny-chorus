@@ -19,7 +19,7 @@ public class AnchorXMLHandler extends XMLHandler<Anchor> {
     public AnchorXMLHandler(final Attributes attributes, AssignHandler<Anchor> assignHandler) throws SAXException {
         super(assignHandler);
         try {
-            anchor = new Anchor(Integer.parseInt(attributes.getValue("ref")));
+            anchor = new Anchor().setRef(Integer.parseInt(attributes.getValue("ref")));
         } catch (NumberFormatException e) {
             throw new SAXException("Attribute \'ref\' is undefined or wrong. only numbers are allowed.", e);
         }

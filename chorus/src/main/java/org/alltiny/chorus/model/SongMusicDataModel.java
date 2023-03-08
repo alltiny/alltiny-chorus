@@ -3,13 +3,15 @@ package org.alltiny.chorus.model;
 import org.alltiny.chorus.dom.Element;
 import org.alltiny.chorus.dom.DurationElement;
 import org.alltiny.chorus.dom.Bar;
+import org.alltiny.chorus.dom.Song;
 import org.alltiny.chorus.dom.Voice;
+import org.alltiny.chorus.model.app.ApplicationModel;
+import org.alltiny.chorus.model.generic.Context;
+import org.alltiny.chorus.model.generic.DOMHierarchicalListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 
 /**
  * This class represents
@@ -21,26 +23,38 @@ public class SongMusicDataModel implements MusicDataModel {
 
     private static final int NOTE = 192; // measure a 1/1 note with 192 ticks.
 
-    private final SongModel model;
+    private final ApplicationModel model;
     private final ArrayList<Frame> frames = new ArrayList<Frame>();
 
-    public SongMusicDataModel(SongModel model) {
+    public SongMusicDataModel(ApplicationModel model) {
         this.model = model;
 
-        model.addPropertyChangeListener(SongModel.CURRENT_SONG, new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                update();
-            }
-        });
-        // get into a valid initial state.
-        update();
+        model.addListener(
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(ApplicationModel.class, ApplicationModel.Property.CURRENT_SONG.name()),
+                new DOMHierarchicalListener.Callback<Song,String>() {
+                    @Override
+                    public void added(Song song, String property, Context<?> context) {
+                        update();
+                    }
+
+                    @Override
+                    public void changed(Song song, String property, Context<?> context) {
+                        update();
+                    }
+
+                    @Override
+                    public void removed(String property, Context<?> context) {
+                        update();
+                    }
+                }).setName(getClass().getSimpleName() + "@SONG"));
     }
 
     private void update() {
         // clear previous frames.
         frames.clear();
 
-        if (model.getSong() == null) {
+        if (model.getCurrentSong() == null) {
             return;
         }
 
@@ -49,10 +63,10 @@ public class SongMusicDataModel implements MusicDataModel {
         long[] covered = new long[numVoice];
         long barOffset = 0;
         long barLength = Long.MAX_VALUE;
-        Iterator<Element>[] iter = new Iterator[numVoice];
+        Iterator<Element<?>>[] iter = new Iterator[numVoice];
         for (int i = 0; i < numVoice; i++) {
             covered[i] = 0;
-            iter[i] = model.getSong().getMusic().getVoices().get(i).getSequence().iterator();
+            iter[i] = model.getCurrentSong().getMusic().getVoices().get(i).getSequence().getElements().iterator();
         }
         boolean wasBarDefined = false;
 
@@ -105,7 +119,7 @@ public class SongMusicDataModel implements MusicDataModel {
     }
 
     public int getNumberOfVoices() {
-        return model.getSong() != null ? model.getSong().getMusic().getVoices().size() : 0;
+        return model.getCurrentSong() != null ? model.getCurrentSong().getMusic().getVoices().size() : 0;
     }
 
     public int getNumberOfFrames() {
@@ -113,7 +127,7 @@ public class SongMusicDataModel implements MusicDataModel {
     }
 
     public Voice getVoice(int index) {
-        return model.getSong() != null ? model.getSong().getMusic().getVoices().get(index) : null;
+        return model.getCurrentSong() != null ? model.getCurrentSong().getMusic().getVoices().get(index) : null;
     }
 
     public List<Frame> getFrames() {

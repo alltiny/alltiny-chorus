@@ -5,26 +5,29 @@ import org.alltiny.chorus.base.type.Clef;
 import org.alltiny.chorus.dom.Element;
 import org.alltiny.chorus.dom.Note;
 import org.alltiny.chorus.dom.Rest;
+import org.alltiny.chorus.dom.Song;
 import org.alltiny.chorus.dom.decoration.Bound;
 import org.alltiny.chorus.dom.decoration.Decoration;
 import org.alltiny.chorus.dom.decoration.Triplet;
 import org.alltiny.chorus.gui.layout.ColSpanGridConstraints;
 import org.alltiny.chorus.gui.layout.GridConstraints;
 import org.alltiny.chorus.gui.layout.MedianGridLayout;
+import org.alltiny.chorus.model.app.ApplicationModel;
+import org.alltiny.chorus.model.generic.Context;
+import org.alltiny.chorus.model.generic.DOMHierarchicalListener;
+import org.alltiny.chorus.model.generic.DOMOperation;
 import org.alltiny.chorus.render.Visual;
 import org.alltiny.chorus.render.element.*;
 import org.alltiny.chorus.render.element.Cell;
-import org.alltiny.chorus.model.SongModel;
 import org.alltiny.chorus.model.MusicDataModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 /**
  * This class represents
@@ -32,7 +35,7 @@ import java.util.HashMap;
  * @author <a href="mailto:ralf.hergert.de@gmail.com">Ralf Hergert</a>
  * @version 03.12.2008 16:58:50
  */
-public class MusicCanvas extends JComponent implements Scrollable {
+public class MusicCanvas extends JComponent implements Scrollable, Consumer<DOMOperation> {
 
     public static final String CURRENT_CURSOR_POSITION = "currentCursorPosition";
     public static final String ZOOM_FACTOR = "zoomFactor";
@@ -41,7 +44,7 @@ public class MusicCanvas extends JComponent implements Scrollable {
     private static final int VPADDING_LINE = 20;
     private static final double LEAD_OFFSET = 6.5;
 
-    private final SongModel model;
+    private final ApplicationModel model;
     private final MusicDataModel songModel;
     private final MedianGridLayout layout;
 
@@ -53,7 +56,7 @@ public class MusicCanvas extends JComponent implements Scrollable {
 
     private Rectangle cursorPosition;
 
-    public MusicCanvas(SongModel model, final MusicDataModel songModel) {
+    public MusicCanvas(ApplicationModel model, final MusicDataModel songModel) {
         this.model = model;
         this.songModel = songModel;
         layout = new MedianGridLayout();
@@ -61,14 +64,48 @@ public class MusicCanvas extends JComponent implements Scrollable {
         setOpaque(true);
         setDoubleBuffered(true);
 
-        model.addPropertyChangeListener(SongModel.CURRENT_SONG, new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                update();
-                revalidate();
-                repaint();
-            }
-        });
+        model.addListener(
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(ApplicationModel.class, ApplicationModel.Property.CURRENT_SONG.name()),
+                new DOMHierarchicalListener.Callback<Song,String>() {
+                    @Override
+                    public void added(Song song, String property, Context<?> context) {
+                        if (context.getOperation() != null) {
+                            context.getOperation().addConclusionListener(MusicCanvas.this);
+                        } else {
+                            update();
+                            revalidate();
+                            repaint();
+                        }
+                    }
+
+                    @Override
+                    public void changed(Song song, String property, Context<?> context) {
+                        if (context.getOperation() != null) {
+                            context.getOperation().addConclusionListener(MusicCanvas.this);
+                        } else {
+                            update();
+                            revalidate();
+                            repaint();
+                        }
+                    }
+
+                    @Override
+                    public void removed(String property, Context<?> context) {
+                        if (context.getOperation() != null) {
+                            context.getOperation().addConclusionListener(MusicCanvas.this);
+                        } else {
+                            update();
+                        }
+                    }
+                }).setName(getClass().getSimpleName() + "@SONG"));
+    }
+
+    @Override
+    public void accept(DOMOperation operation) {
         update();
+        revalidate();
+        repaint();
     }
 
     public void paintComponent(Graphics graphics) {
@@ -115,13 +152,13 @@ public class MusicCanvas extends JComponent implements Scrollable {
         // draw clefts
         for (int i = 0; i < numVoice; i++) {
             Cell cell = new Cell();
-            if (model.getSong().getMusic().getVoices().get(i).getSequence().getClef() == Clef.G) {
+            if (model.getCurrentSong().getMusic().getVoices().get(i).getSequence().getClef() == Clef.G) {
                 cell.addVisualToNotes(new ClefG());
             }
-            if (model.getSong().getMusic().getVoices().get(i).getSequence().getClef() == Clef.G8basso) {
+            if (model.getCurrentSong().getMusic().getVoices().get(i).getSequence().getClef() == Clef.G8basso) {
                 cell.addVisualToNotes(new ClefG8basso());
             }
-            if (model.getSong().getMusic().getVoices().get(i).getSequence().getClef() == Clef.F) {
+            if (model.getCurrentSong().getMusic().getVoices().get(i).getSequence().getClef() == Clef.F) {
                 cell.addVisualToNotes(new ClefF());
             }
             // finally add the cell to the grid.
@@ -131,7 +168,7 @@ public class MusicCanvas extends JComponent implements Scrollable {
 
         // draw keys
         for (int i = 0; i < numVoice; i++) {
-            add(new KeyRender(model.getSong().getMusic().getVoices().get(i).getSequence()), new GridConstraints(getNotesRowOfVoice(i), currentColumn));
+            add(new KeyRender(model.getCurrentSong().getMusic().getVoices().get(i).getSequence()), new GridConstraints(getNotesRowOfVoice(i), currentColumn));
         }
         currentColumn++;
 
@@ -144,7 +181,7 @@ public class MusicCanvas extends JComponent implements Scrollable {
         HashMap<Integer, BindingHelper>[] bindingHelpers = new HashMap[numVoice];
         TripletHelper[] tripletHelpers = new TripletHelper[numVoice];
         for (int i = 0; i < numVoice; i++) {
-            keyMapper[i] = new KeyMapHelper(model.getSong().getMusic().getVoices().get(i).getSequence().getKey());
+            keyMapper[i] = new KeyMapHelper(model.getCurrentSong().getMusic().getVoices().get(i).getSequence().getKey());
             bindingHelpers[i] = new HashMap<Integer,BindingHelper>();
         }
 
@@ -189,12 +226,12 @@ public class MusicCanvas extends JComponent implements Scrollable {
                     if (element instanceof Note) {
                         Note note = (Note)element;
                         // get the current accidental modification for this note.
-                        AccidentalSign sign = keyMapper[voiceIndex].getAccidentalSign(note.getOctave(), note.getNote());
+                        AccidentalSign sign = keyMapper[voiceIndex].getAccidentalSign(note.getNoteValue().getOctave(), note.getNoteValue().getBaseNote());
                         NoteRender renderer = new NoteRender(note);
                         // check whether the current modification conflicts with the note accidental.
-                        if (sign != note.getSign()) {
+                        if (sign != note.getNoteValue().getSign()) {
                             // register the modification to the mapping to influence trailing notes.
-                            keyMapper[voiceIndex].setAccidentalSign(note.getOctave(), note.getNote(), note.getSign());
+                            keyMapper[voiceIndex].setAccidentalSign(note.getNoteValue().getOctave(), note.getNoteValue().getBaseNote(), note.getNoteValue().getSign());
                             renderer.setDrawAccidentalSign(true);
                         }
                         // check if lyrics are assign to the note.

@@ -1,5 +1,6 @@
 package org.alltiny.chorus.gui;
 
+import org.alltiny.chorus.command.CommandRegistry;
 import org.alltiny.chorus.model.app.ApplicationModel;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ public class CommandPanel extends JPanel {
 
     private int lastScrollToY = -1;
 
-    public CommandPanel(ApplicationModel appModel) {
+    public CommandPanel(final ApplicationModel appModel, final CommandRegistry commandRegistry) {
         super(new BorderLayout());
 
         JScrollPane scrollPane = new JScrollPane(new PushedMessageListPanel(appModel));
@@ -28,6 +29,6 @@ public class CommandPanel extends JPanel {
         });
 
         add(scrollPane, BorderLayout.CENTER);
-        add(new CommandPrompt(appModel), BorderLayout.SOUTH);
+        add(new CommandPrompt(appModel, commandRegistry), BorderLayout.SOUTH);
     }
 }

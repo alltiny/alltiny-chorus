@@ -1,12 +1,11 @@
 package org.alltiny.chorus.gui;
 
-import org.alltiny.chorus.model.SongModel;
-import org.alltiny.chorus.midi.MidiPlayer;
+import org.alltiny.chorus.dom.Song;
+import org.alltiny.chorus.model.app.ApplicationModel;
+import org.alltiny.chorus.model.generic.Context;
+import org.alltiny.chorus.model.generic.DOMHierarchicalListener;
 
 import javax.swing.*;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.*;
 import java.util.ResourceBundle;
@@ -19,8 +18,8 @@ import java.util.ResourceBundle;
  */
 public class TempoToolbar extends JToolBar {
 
-    public TempoToolbar(final SongModel model, final MidiPlayer player) {
-        final JComboBox tempo = new JComboBox(new Float[]{4f, 2f, 1.5f, 1f, 0.75f, 0.5f, 0.25f});
+    public TempoToolbar(final ApplicationModel model) {
+        final JComboBox<Float> tempo = new JComboBox<>(new Float[]{4f, 2f, 1.5f, 1f, 0.75f, 0.5f, 0.25f});
         tempo.setSelectedItem(1f);
 
         setLayout(new GridBagLayout());
@@ -30,23 +29,49 @@ public class TempoToolbar extends JToolBar {
         add(new JLabel(ResourceBundle.getBundle("i18n.chorus").getString("TempoToolbar.Label")), gbc);
         add(tempo, gbc);
 
-        model.addPropertyChangeListener(SongModel.CURRENT_SONG, new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                setVisible(model.getSong() != null);
-                // if a new song is selected then reset the tempo to 1.0
-                tempo.setSelectedItem(1f);
+        model.addListener(
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(ApplicationModel.class, ApplicationModel.Property.CURRENT_SONG.name()),
+                new DOMHierarchicalListener.Callback<Song,String>() {
+                    @Override
+                    public void added(Song song, String property, Context<?> context) {
+                        setVisible(song != null);
+                    }
+
+                    @Override
+                    public void changed(Song song, String property, Context<?> context) {}
+
+                    @Override
+                    public void removed(String property, Context<?> context) {
+                        setVisible(false);
+                    }
+                }).setName(getClass().getSimpleName() + "@SONG"));
+
+        model.addListener(
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(ApplicationModel.class, ApplicationModel.Property.TEMPO_FACTOR.name()),
+                new DOMHierarchicalListener.Callback<Float,String>() {
+                    @Override
+                    public void added(Float factor, String property, Context<?> context) {
+                        tempo.setSelectedItem(factor != null ? factor : 1);
+                    }
+
+                    @Override
+                    public void changed(Float factor, String property, Context<?> context) {
+                        tempo.setSelectedItem(factor != null ? factor : 1);
+                    }
+
+                    @Override
+                    public void removed(String property, Context<?> context) {
+                        tempo.setSelectedItem(1);
+                    }
+                }).setName(getClass().getSimpleName() + "@TEMPO_FACTOR"));
+
+        tempo.addItemListener(e -> {
+            // only process selected events.
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                model.setTempoFactor((Float)e.getItem());
             }
         });
-
-        tempo.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                // only process selected events.
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    player.setTempoFactor((Float)e.getItem());
-                }
-            }
-        });
-
-        setVisible(model.getSong() != null);
     }
 }

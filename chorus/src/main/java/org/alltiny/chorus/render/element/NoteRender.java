@@ -92,7 +92,7 @@ public class NoteRender extends Visual {
         // draw accidental sign if necessary
         if (drawAccidentalSign) {
             GeneralPath sign = null;
-            switch (note.getSign()) {
+            switch (note.getNoteValue().getSign()) {
                 case SHARP: sign = Sharp.createSharp(); break;
                 case FLAT : sign = Flat.createFlat(); break;
                 case NONE : sign = Natural.createNatural(); break;
@@ -170,7 +170,7 @@ public class NoteRender extends Visual {
 
     public int getRelativePosY() {
         int height;
-        switch (note.getNote()) {
+        switch (note.getNoteValue().getBaseNote()) {
             case B: height = 0; break;
             case A: height = -1; break;
             case G: height = -2; break;
@@ -182,13 +182,13 @@ public class NoteRender extends Visual {
         }
 
         // if the clef is G then the height must not be shifted.
-        switch (note.getSequence().getClef()) {
+        switch (note.getCurrentClef()) {
             case G8basso: height += 7; break;
             case F: height += 12; break;
             default: break;
         }
 
-        height += (note.getOctave() - 4) * 7;
+        height += (note.getNoteValue().getOctave() - 4) * 7;
 
         return height;
     }

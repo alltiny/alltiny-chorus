@@ -32,7 +32,7 @@ public class BarElementFactory implements XMLFactory<Bar> {
             throw new SAXException("Attribute 'division' is undefined or wrong. only numbers are allowed.", e);
         }
 
-        Bar bar = new Bar(duration, division);
+        Bar bar = new Bar().setDuration(duration).setDivision(division);
 
         if (attributes.getValue("keepBeatDuration") != null) {
             bar.setKeepBeatDuration(Boolean.parseBoolean(attributes.getValue("keepBeatDuration")));

@@ -19,7 +19,7 @@ public class InlineSequenceXMLHandler extends XMLHandler<InlineSequence> {
 
     public InlineSequenceXMLHandler(Attributes attributes, AssignHandler<InlineSequence> assignHandler) throws SAXException {
         super(assignHandler);
-        sequence = new InlineSequence(new Anchor(Integer.parseInt(attributes.getValue("anchorref"))));
+        sequence = new InlineSequence().setAnchorRef(Integer.parseInt(attributes.getValue("anchorref")));
     }
 
     protected XMLHandler getHandlerInstance(String uri, String localName, String qName, Attributes attributes) throws SAXException {

@@ -7,39 +7,40 @@ package org.alltiny.chorus.dom;
  * @author <a href="mailto:ralf.hergert.de@gmail.com">Ralf Hergert</a>
  * @version 24.11.2008 18:32:44
  */
-public class Anchor extends Element {
+public class Anchor extends Element<Anchor> {
 
-    private int ref;
-    /** the tick count at this anchor. */
-    private long tick;
-    /** the current velocity at this anchor. */
-    private int velocity;
-
-    public Anchor(int ref) {
-        this.ref = ref;
+    public enum Property {
+        REF,
+        /** the current tick count at this anchor. */
+        TICK,
+        /** the current velocity at this anchor. */
+        VELOCITY
     }
 
     public int getRef() {
-        return ref;
+        return (int)get(Property.REF.name());
     }
 
-    public void setRef(int ref) {
-        this.ref = ref;
+    public Anchor setRef(int ref) {
+        put(Property.REF.name(), ref);
+        return this;
     }
 
     public long getTick() {
-        return tick;
+        return (long)get(Property.TICK.name());
     }
 
-    public void setTick(long tick) {
-        this.tick = tick;
+    public Anchor setTick(long tick) {
+        put(Property.TICK.name(), tick);
+        return this;
     }
 
     public int getVelocity() {
-        return velocity;
+        return (int)get(Property.VELOCITY.name());
     }
 
-    public void setVelocity(int velocity) {
-        this.velocity = velocity;
+    public Anchor setVelocity(int velocity) {
+        put(Property.VELOCITY.name(), velocity);
+        return this;
     }
 }

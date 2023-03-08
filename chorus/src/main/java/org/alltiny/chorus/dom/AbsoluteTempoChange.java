@@ -2,35 +2,38 @@ package org.alltiny.chorus.dom;
 
 /**
  * This class represents an absolute tempo definition like
- * "66 quarter note per minute".
- * A tempo factor is used to define temporal changes on a bar line.
- * A tempo factor can be defined like: "3/4=1/2" which means the same
- * like "a dotted half note has the same duration like a half note".
+ * "66 quarter notes per minute".
+ *
+ * See also {@link RelativeTempoChange} for relative tempo changes.
  */
-public class AbsoluteTempoChange extends Element {
+public class AbsoluteTempoChange extends Element<AbsoluteTempoChange> {
 
-    private DurationElement note;
-    private int numberPerMinute;
+    public enum Property {
+        NOTE,
+        NUMBER_PER_MINUTE
+    }
 
-    public DurationElement getNote() {
-        return note;
+    public DurationElement<?> getNote() {
+        return (DurationElement<?>)get(Property.NOTE.name());
     }
 
     /**
      * Sets the note type.
      */
-    public void setNote(DurationElement note) {
-        this.note = note;
+    public AbsoluteTempoChange setNote(DurationElement<?> note) {
+        put(Property.NOTE.name(), note);
+        return this;
     }
 
     public int getNumberPerMinute() {
-        return numberPerMinute;
+        return (int)get(Property.NUMBER_PER_MINUTE.name());
     }
 
     /**
-     * Sets how many {@link #note}s shall be played in on minute.
+     * Sets how many notes shall be played in a minute.
      */
-    public void setNumberPerMinute(int numberPerMinute) {
-        this.numberPerMinute = numberPerMinute;
+    public AbsoluteTempoChange setNumberPerMinute(int numberPerMinute) {
+        put(Property.NUMBER_PER_MINUTE.name(), numberPerMinute);
+        return this;
     }
 }

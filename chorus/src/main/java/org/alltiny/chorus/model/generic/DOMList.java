@@ -1,9 +1,4 @@
-package org.alltiny.chorus.generic.model;
-
-import org.alltiny.chorus.generic.model.events.DOMListClearedEvent;
-import org.alltiny.chorus.generic.model.events.DOMIndexedItemChangedEvent;
-import org.alltiny.chorus.generic.model.events.DOMIndexedItemInsertedEvent;
-import org.alltiny.chorus.generic.model.events.DOMIndexedItemRemovedEvent;
+package org.alltiny.chorus.model.generic;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,36 +8,37 @@ import java.util.ListIterator;
 import java.util.stream.Collectors;
 
 /**
- * Implementation of a list firing {@link org.alltiny.chorus.generic.model.events.DOMEvent}s.
+ * Implementation of a list firing {@link DOMEvent}s.
  */
-public class DOMList<Self extends DOMList,T> implements DOMNode<Self>, List<T> {
+public class DOMList<Self extends DOMList<?,T>,T> implements DOMNode<Self>, List<T> {
 
     private final DOMEventSupport domEventSupport = new DOMEventSupport();
 
     private final List<T> elements = new ArrayList<>();
 
-    private final DOMEventListener<T> relayListener = (event) -> {
+    private final DOMEventListener<T> relayListener = (event,context) -> {
         final T item = event.getSource();
         final int index = elements.indexOf(item);
         domEventSupport.fireEvent(new DOMIndexedItemChangedEvent<>(
             (Self) this,
+            event.getOperation(),
             item,
             index,
-            (index > 1) ? elements.get(index - 1) : null,
-            (index < elements.size() - 2) ? elements.get(index + 1) : null)
-            .withCause(event)
-        );
+            event
+        ));
     };
 
     @Override
     public Self addListener(DOMEventListener<Self> listener) {
         domEventSupport.addListener(listener);
+        listener.initialize((Self)this, null);
         return (Self)this;
     }
 
     @Override
     public Self removeListener(DOMEventListener<Self> listener) {
         domEventSupport.removeListener(listener);
+        listener.shutdown((Self)this, null);
         return (Self)this;
     }
 
@@ -78,6 +74,10 @@ public class DOMList<Self extends DOMList,T> implements DOMNode<Self>, List<T> {
 
     @Override
     public boolean add(T t) {
+        return add(t, null);
+    }
+
+    public boolean add(T t, DOMOperation operation) {
         if (elements.add(t)) {
             final int index = elements.size();
 
@@ -85,11 +85,7 @@ public class DOMList<Self extends DOMList,T> implements DOMNode<Self>, List<T> {
                 ((DOMNode)t).addListener(relayListener);
             }
 
-            domEventSupport.fireEvent(new DOMIndexedItemInsertedEvent<>(this,
-                t,
-                index,
-                (index > 1) ? elements.get(index - 1) : null,
-                null));
+            domEventSupport.fireEvent(new DOMIndexedItemInsertedEvent<>(this, operation, t, index));
             return true;
         }
         return false;
@@ -97,17 +93,18 @@ public class DOMList<Self extends DOMList,T> implements DOMNode<Self>, List<T> {
 
     @Override
     public boolean remove(Object o) {
-        final int index = elements.indexOf(o);
+        return remove(o, null);
+    }
 
-        final T preceding = (index > 1) ? elements.get(index - 1) : null;
-        final T following = (index < elements.size() - 2) ? elements.get(index + 1) : null;
+    public boolean remove(Object o, DOMOperation operation) {
+        final int index = elements.indexOf(o);
 
         if (elements.remove(o)) {
             if (o instanceof DOMNode) {
                 ((DOMNode)o).removeListener(relayListener);
             }
 
-            domEventSupport.fireEvent(new DOMIndexedItemRemovedEvent<>(this, o, index, preceding, following));
+            domEventSupport.fireEvent(new DOMIndexedItemRemovedEvent<>(this, operation, o, index, null));
             return true;
         }
         return false;
@@ -155,18 +152,18 @@ public class DOMList<Self extends DOMList,T> implements DOMNode<Self>, List<T> {
 
     @Override
     public void clear() {
+        final DOMOperation operation = new DOMOperation("clearing list");
         // prepare all events
-        DOMListClearedEvent<DOMList<Self,T>,T> clearedEvent = new DOMListClearedEvent<>(this);
+        DOMListClearedEvent<DOMList<Self,T>,T> clearedEvent = new DOMListClearedEvent<>(this, operation);
         // the remove events a fired for listeners not implementing the cleared event.
         List<DOMIndexedItemRemovedEvent<DOMList<Self,T>,T>> removedEvents = elements.stream()
                 .map(item ->
                     new DOMIndexedItemRemovedEvent<>(
                         this,
+                        operation,
                         item,
                         0,
-                        null,
-                        null)
-                    .withCause(clearedEvent) /* this may give listeners a chance to ignore these
+                        clearedEvent) /* this may give listeners a chance to ignore these
                      events when the cleared-event has already been handled. */
                 )
                 .collect(Collectors.toList());
@@ -176,6 +173,7 @@ public class DOMList<Self extends DOMList,T> implements DOMNode<Self>, List<T> {
         // fire all events
         domEventSupport.fireEvent(clearedEvent);
         domEventSupport.fireEvents(removedEvents);
+        operation.conclude();
     }
 
     @Override
@@ -185,8 +183,11 @@ public class DOMList<Self extends DOMList,T> implements DOMNode<Self>, List<T> {
 
     @Override
     public T set(int index, T element) {
-        final T preceding = (index > 1) ? elements.get(index - 1) : null;
-        final T following = (index < elements.size() - 2) ? elements.get(index + 1) : null;
+        return set(index, element, null);
+    }
+
+    public T set(int index, T element, DOMOperation operation) {
+        final DOMOperation op = (operation != null) ? operation : new DOMOperation("replacing list item");
 
         final T removed = elements.set(index, element);
 
@@ -197,31 +198,32 @@ public class DOMList<Self extends DOMList,T> implements DOMNode<Self>, List<T> {
             ((DOMNode)removed).removeListener(relayListener);
         }
 
-        domEventSupport.fireEvent(new DOMIndexedItemRemovedEvent<>(this, removed, index, preceding, following));
-        domEventSupport.fireEvent(new DOMIndexedItemInsertedEvent<>(this, element, index, preceding, following));
+        domEventSupport.fireEvent(new DOMIndexedItemRemovedEvent<>(this, op, removed, index, null));
+        domEventSupport.fireEvent(new DOMIndexedItemInsertedEvent<>(this, op, element, index));
         return removed;
     }
 
     @Override
     public void add(int index, T element) {
+        add(index, element, null);
+    }
+
+    public void add(int index, T element, DOMOperation operation) {
         elements.add(index, element);
 
         if (element instanceof DOMNode) {
             ((DOMNode)element).addListener(relayListener);
         }
 
-        domEventSupport.fireEvent(new DOMIndexedItemInsertedEvent<>(
-            this, element, index,
-            (index > 1) ? elements.get(index - 1) : null,
-            (index < elements.size() - 2) ? elements.get(index + 1) : null
-        ));
+        domEventSupport.fireEvent(new DOMIndexedItemInsertedEvent<>(this, operation, element, index));
     }
 
     @Override
     public T remove(int index) {
-        final T preceding = (index > 1) ? elements.get(index - 1) : null;
-        final T following = (index < elements.size() - 2) ? elements.get(index + 1) : null;
+        return remove(index, null);
+    }
 
+    public T remove(int index, DOMOperation operation) {
         T removed = elements.remove(index);
 
         if (removed instanceof DOMNode) {
@@ -229,7 +231,7 @@ public class DOMList<Self extends DOMList,T> implements DOMNode<Self>, List<T> {
         }
 
         if (removed != null) {
-            domEventSupport.fireEvent(new DOMIndexedItemRemovedEvent<>(this, removed, index, preceding, following));
+            domEventSupport.fireEvent(new DOMIndexedItemRemovedEvent<>(this, operation, removed, index, null));
         }
         return removed;
     }

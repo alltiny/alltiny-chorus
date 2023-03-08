@@ -1,35 +1,39 @@
 package org.alltiny.chorus.dom;
 
 /**
- * This class represents
+ * Models a measure.
  *
  * @author <a href="mailto:ralf.hergert.de@gmail.com">Ralf Hergert</a>
- * @version 08.11.2008 11:32:15
+ * @version 08.11.2008
  */
-public class Bar extends DurationElement {
+public class Bar extends DurationElement<Bar> {
 
-    private boolean keepBeatDuration = false;
-    private BarDisplayStyle displayStyle = BarDisplayStyle.Fraction;
+    public enum Property {
+        KEEP_BEAT_DURATION,
+        DISPLAY_STYLE
+    }
 
-    public Bar(int duration, int division) {
-        setDuration(duration);
-        setDivision(division);
+    public Bar() {
+        setKeepBeatDuration(false);
+        setDisplayStyle(BarDisplayStyle.Fraction);
     }
 
     public boolean isKeepBeatDuration() {
-        return keepBeatDuration;
+        return (boolean)get(Property.KEEP_BEAT_DURATION.name());
     }
 
-    public void setKeepBeatDuration(boolean keepBeatDuration) {
-        this.keepBeatDuration = keepBeatDuration;
+    public Bar setKeepBeatDuration(boolean keepBeatDuration) {
+        put(Property.KEEP_BEAT_DURATION.name(), keepBeatDuration);
+        return this;
     }
 
     public BarDisplayStyle getDisplayStyle() {
-        return displayStyle;
+        return (BarDisplayStyle)get(Property.DISPLAY_STYLE.name());
     }
 
-    public void setDisplayStyle(BarDisplayStyle displayStyle) {
-        this.displayStyle = displayStyle;
+    public Bar setDisplayStyle(BarDisplayStyle displayStyle) {
+        put(Property.DISPLAY_STYLE.name(), displayStyle);
+        return this;
     }
 
     @Override

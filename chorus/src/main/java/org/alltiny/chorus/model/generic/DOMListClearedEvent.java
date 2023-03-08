@@ -1,4 +1,4 @@
-package org.alltiny.chorus.generic.model.events;
+package org.alltiny.chorus.model.generic;
 
 /**
  * Is fired when a list has been cleared.
@@ -6,7 +6,7 @@ package org.alltiny.chorus.generic.model.events;
  */
 public class DOMListClearedEvent<ListType,T> extends DOMEvent<ListType> {
 
-    public DOMListClearedEvent(ListType list) {
-        super(list);
+    public DOMListClearedEvent(ListType list, DOMOperation operation) {
+        super(list, operation);
     }
 }

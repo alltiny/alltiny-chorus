@@ -2,12 +2,11 @@ package org.alltiny.chorus.xml;
 
 import org.alltiny.chorus.dom.Song;
 import org.alltiny.chorus.dom.Music;
+import org.alltiny.chorus.model.generic.DOMMap;
 import org.alltiny.xml.handler.XMLHandler;
 import org.alltiny.xml.handler.AssignHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
-
-import java.util.Properties;
 
 /**
  * This class represents
@@ -39,8 +38,8 @@ public class SongXMLHandler extends XMLHandler<Song> {
             });
         }
         if ("meta".equals(qName)) {
-            return new MetaXMLHandler(new AssignHandler<Properties>() {
-                public void assignNode(Properties node) {
+            return new MetaXMLHandler(new AssignHandler<DOMMap<?,String>>() {
+                public void assignNode(DOMMap<?,String> node) {
                     song.setMeta(node);
                 }
             });

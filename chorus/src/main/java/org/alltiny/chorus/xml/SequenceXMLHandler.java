@@ -33,7 +33,7 @@ public class SequenceXMLHandler extends XMLHandler<Sequence> {
             throw new SAXException("Attribute 'clef' is not proper defined in sequence.");
         }
 
-        sequence = new Sequence(clef);
+        sequence = new Sequence().setClef(clef);
 
         String key = attributes.getValue("key");
         // default the key to Mayor C

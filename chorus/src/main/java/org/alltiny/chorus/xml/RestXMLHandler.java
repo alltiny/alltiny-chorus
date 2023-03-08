@@ -30,7 +30,7 @@ public class RestXMLHandler extends XMLHandler<Rest> {
             throw new SAXException("Attribute \'division\' is undefined or wrong. only numbers are allowed.", e);
         }
 
-        rest = new Rest(duration, division);
+        rest = new Rest().setDuration(duration).setDivision(division);
     }
 
     protected XMLHandler getHandlerInstance(String uri, String localName, String qName, Attributes attributes) throws SAXException {

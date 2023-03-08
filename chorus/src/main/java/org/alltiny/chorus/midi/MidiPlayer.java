@@ -3,15 +3,17 @@ package org.alltiny.chorus.midi;
 import org.alltiny.chorus.dom.*;
 import org.alltiny.chorus.dom.decoration.Decoration;
 import org.alltiny.chorus.dom.decoration.Bound;
-import org.alltiny.chorus.model.SongModel;
 
 import javax.sound.midi.*;
 import javax.sound.midi.Sequence;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 import org.alltiny.base.model.PropertySupportBean;
+import org.alltiny.chorus.model.app.ApplicationModel;
+import org.alltiny.chorus.model.generic.Context;
+import org.alltiny.chorus.model.generic.DOMHierarchicalListener;
+import org.alltiny.chorus.model.generic.DOMOperation;
 
 /**
  * This class represents
@@ -19,7 +21,7 @@ import org.alltiny.base.model.PropertySupportBean;
  * @author <a href="mailto:ralf.hergert.de@gmail.com">Ralf Hergert</a>
  * @version 17.12.2007 23:14:45
  */
-public class MidiPlayer extends PropertySupportBean {
+public class MidiPlayer extends PropertySupportBean implements Consumer<DOMOperation> {
 
     public static final String PLAYABLE = "playable";
     public static final String RUNNING = "running";
@@ -31,21 +33,98 @@ public class MidiPlayer extends PropertySupportBean {
     private static final int PPQ = 48; // one quarter note is 48 pulses.
     private static final int FULLNOTE = PPQ * 4; // ticks for one full note 1/1
 
-    private final SongModel model;
+    private final ApplicationModel model;
 
     private Sequencer sequencer;
     private SequencerObserverThread observer = null;
 
-    public MidiPlayer(SongModel model) {
+    public MidiPlayer(ApplicationModel model) {
         this.model = model;
 
-        model.addPropertyChangeListener(SongModel.CURRENT_SONG, new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                update();
-            }
-        });
+        model.addListener(
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(ApplicationModel.class, ApplicationModel.Property.CURRENT_SONG.name()),
+                new DOMHierarchicalListener.Callback<Song,String>() {
+                    @Override
+                    public void added(Song song, String property, Context<?> context) {
+                        if (context.getOperation() != null) {
+                            context.getOperation().addConclusionListener(MidiPlayer.this);
+                        } else {
+                            update();
+                        }
+                    }
 
-        // get this class in a valid state.
+                    @Override
+                    public void changed(Song song, String property, Context<?> context) {
+                        if (context.getOperation() != null) {
+                            context.getOperation().addConclusionListener(MidiPlayer.this);
+                        } else {
+                            update();
+                        }
+                    }
+
+                    @Override
+                    public void removed(String property, Context<?> context) {
+                        if (context.getOperation() != null) {
+                            context.getOperation().addConclusionListener(MidiPlayer.this);
+                        } else {
+                            update();
+                        }
+                    }
+                }).setName(getClass().getSimpleName() + "@SONG"));
+
+        model.addListener(
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(ApplicationModel.class, ApplicationModel.Property.CURRENT_SONG.name()),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(Song.class, Song.Property.MUSIC.name()),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(Music.class, Music.Property.VOICES.name()),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.AnyItemInList<>(),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(Voice.class, Voice.Property.MUTED.name()),
+                new DOMHierarchicalListener.Callback<Boolean,String>() {
+                    @Override
+                    public void added(Boolean muted, String property, Context<?> context) {
+                        MidiPlayer.this.setTrackMute((Integer)context.getParent().getIdentifier(), muted != null && muted);
+                    }
+
+                    @Override
+                    public void changed(Boolean muted, String property, Context<?> context) {
+                        MidiPlayer.this.setTrackMute((Integer)context.getParent().getIdentifier(), muted != null && muted);
+                    }
+
+                    @Override
+                    public void removed(String property, Context<?> context) {
+                        MidiPlayer.this.setTrackMute((Integer)context.getParent().getIdentifier(), false);
+                    }
+                })
+            )))).setName(getClass().getSimpleName() + "@MUTED"));
+
+        model.addListener(
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(ApplicationModel.class, ApplicationModel.Property.TEMPO_FACTOR.name()),
+                new DOMHierarchicalListener.Callback<Float,String>() {
+                    @Override
+                    public void added(Float factor, String property, Context<?> context) {
+                        MidiPlayer.this.setTempoFactor(factor != null ? factor : 1);
+                    }
+
+                    @Override
+                    public void changed(Float factor, String property, Context<?> context) {
+                        MidiPlayer.this.setTempoFactor(factor != null ? factor : 1);
+                    }
+
+                    @Override
+                    public void removed(String property, Context<?> context) {
+                        MidiPlayer.this.setTempoFactor(1);
+                    }
+                }).setName(getClass().getSimpleName() + "@TEMPO_FACTOR"));
+    }
+
+    @Override
+    public void accept(DOMOperation operation) {
         update();
     }
 
@@ -57,7 +136,7 @@ public class MidiPlayer extends PropertySupportBean {
         pcs.firePropertyChange(PLAYABLE, null, false);
         pcs.firePropertyChange(RUNNING, null, false);
 
-        if (model.getSong() == null) {
+        if (model.getCurrentSong() == null) {
             return;
         }
 
@@ -76,26 +155,26 @@ public class MidiPlayer extends PropertySupportBean {
             Sequence seq = new Sequence(Sequence.PPQ, PPQ);//song.getTempo()*FULLNOTE/480); // 4*4*60
             Track track = seq.createTrack();
 
-            long usecPerQNote = Math.round(60000000d / model.getSong().getTempo());
+            long usecPerQNote = Math.round(60000000d / model.getCurrentSong().getTempo());
             track.add(createTempoMessage(usecPerQNote, 0));
 
             Bar currentBar = null;
 
             int channel = 0;
             int currentVoice = 0;
-            for (Voice voice : model.getSong().getMusic().getVoices()) {
+            for (Voice voice : model.getCurrentSong().getMusic().getVoices()) {
                 // clear/recreate the HashMap for caching the anchor ticks.
                 HashMap<Integer,Anchor> anchors = new HashMap<Integer,Anchor>();
 
                 // get the velocity for "mp".
-                int velocity = model.getSong().getDynamic().getValue("mf");
+                int velocity = model.getCurrentSong().getDynamic().getValue("mf");
 
                 // define the instrument for that voice.
                 track.add(createMidiMessage(ShortMessage.PROGRAM_CHANGE, channel, 53, 0, 0));
 
                 long tick = 0;
                 NoteBinding curBinding = null;
-                for (Element element : voice.getSequence()) {
+                for (Element element : voice.getSequence().getElements()) {
                     if (element instanceof Note) {
                         Note note = (Note)element;
 
@@ -103,7 +182,7 @@ public class MidiPlayer extends PropertySupportBean {
                         // determine whether this note has a binding
                         for (Decoration decor : note.getDecorations()) {
                             if (decor instanceof Bound) {
-                                binding = new NoteBinding(((Bound)decor).getRef(), note.getMidiValue());
+                                binding = new NoteBinding(((Bound)decor).getRef(), note.getNoteValue().getMidiValue());
                             }
                         }
 
@@ -114,22 +193,22 @@ public class MidiPlayer extends PropertySupportBean {
                             // if this note is unbound, then terminate the current binding.
                             if (binding == null) {
                                 track.add(createMidiMessage(ShortMessage.NOTE_OFF, channel, curBinding.getNoteValue(), velocity, tick));
-                                track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getMidiValue(), velocity, tick));
+                                track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getNoteValue().getMidiValue(), velocity, tick));
                             } else { // if this note has a binding, but the note values and the ids differ, then do also stop the previous note.
                                 if (curBinding.getNoteValue() != binding.getNoteValue() || curBinding.getId() != binding.getId()) {
                                     track.add(createMidiMessage(ShortMessage.NOTE_OFF, channel, curBinding.getNoteValue(), velocity, tick));
-                                    track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getMidiValue(), velocity, tick));
+                                    track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getNoteValue().getMidiValue(), velocity, tick));
                                 }
                                 // else the note values are the same, so do not stop the previous note, neighter do start this note.
                             }
                         } else { // no current binding is active, just play the note.
-                            track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getMidiValue(), velocity, tick));
+                            track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getNoteValue().getMidiValue(), velocity, tick));
                         }
 
                         tick += duration;
 
                         if (binding == null) {
-                            track.add(createMidiMessage(ShortMessage.NOTE_OFF, channel, note.getMidiValue(), 65, tick));
+                            track.add(createMidiMessage(ShortMessage.NOTE_OFF, channel, note.getNoteValue().getMidiValue(), 65, tick));
                         }
 
                         curBinding = binding;
@@ -158,7 +237,7 @@ public class MidiPlayer extends PropertySupportBean {
                     }
                     if (element instanceof DynamicElement) {
                         // if an dynamical element is found than tune the velocity corresponding.
-                        velocity = model.getSong().getDynamic().getValue(((DynamicElement)element).getKey());
+                        velocity = model.getCurrentSong().getDynamic().getValue(((DynamicElement)element).getKey());
                     }
                     if (element instanceof Anchor) {
                         // if an anchor is found than cache the current tick count in the map.
@@ -191,12 +270,12 @@ public class MidiPlayer extends PropertySupportBean {
                 // now render the inlineSequences from this voice.
                 for (InlineSequence inlineSeq : voice.getInlineSequences()) {
                     // set the tick count for this inline sequence onto the cached count for it's anchor.
-                    Anchor anchor = anchors.get(inlineSeq.getAnchor().getRef());
+                    Anchor anchor = anchors.get(inlineSeq.getAnchorRef());
                     // initialize the current value from the anchor.
                     tick = anchor.getTick();
                     velocity = anchor.getVelocity();
 
-                    for (Element element : inlineSeq) {
+                    for (Element element : inlineSeq.getElements()) {
                         // an inline sequence may only have notes and rests.
                         if (element instanceof Note) {
                             Note note = (Note)element;
@@ -205,7 +284,7 @@ public class MidiPlayer extends PropertySupportBean {
                             // determine whether this note has a binding
                             for (Decoration decor : note.getDecorations()) {
                                 if (decor instanceof Bound) {
-                                    binding = new NoteBinding(((Bound)decor).getRef(), note.getMidiValue());
+                                    binding = new NoteBinding(((Bound)decor).getRef(), note.getNoteValue().getMidiValue());
                                 }
                             }
 
@@ -216,22 +295,22 @@ public class MidiPlayer extends PropertySupportBean {
                                 // if this note in unboundand, then terminate the current binding.
                                 if (binding == null) {
                                     track.add(createMidiMessage(ShortMessage.NOTE_OFF, channel, curBinding.getNoteValue(), velocity, tick));
-                                    track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getMidiValue(), velocity, tick));
+                                    track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getNoteValue().getMidiValue(), velocity, tick));
                                 } else { // if this note has a binding, but the note values and the ids differ, then do also stop the previous note.
                                     if (curBinding.getNoteValue() != binding.getNoteValue() || curBinding.getId() != binding.getId()) {
                                         track.add(createMidiMessage(ShortMessage.NOTE_OFF, channel, curBinding.getNoteValue(), velocity, tick));
-                                        track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getMidiValue(), velocity, tick));
+                                        track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getNoteValue().getMidiValue(), velocity, tick));
                                     }
                                     // else the note values are the same, so do not stop the previous note, neither do start this note.
                                 }
                             } else { // no current binding is active, just play the note.
-                                track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getMidiValue(), velocity, tick));
+                                track.add(createMidiMessage(ShortMessage.NOTE_ON, channel, note.getNoteValue().getMidiValue(), velocity, tick));
                             }
 
                             tick += duration;
 
                             if (binding == null) {
-                                track.add(createMidiMessage(ShortMessage.NOTE_OFF, channel, note.getMidiValue(), 65, tick));
+                                track.add(createMidiMessage(ShortMessage.NOTE_OFF, channel, note.getNoteValue().getMidiValue(), 65, tick));
                             }
 
                             curBinding = binding;
@@ -247,7 +326,7 @@ public class MidiPlayer extends PropertySupportBean {
                         }
                         if (element instanceof DynamicElement) {
                             // if an dynamical element is found than tune the velocity corresponding.
-                            velocity = model.getSong().getDynamic().getValue(((DynamicElement)element).getKey());
+                            velocity = model.getCurrentSong().getDynamic().getValue(((DynamicElement)element).getKey());
                         }
                     }
 
@@ -322,7 +401,9 @@ public class MidiPlayer extends PropertySupportBean {
     }
 
     public void setTempoFactor(float factor) {
-        sequencer.setTempoFactor(factor);
+        if (sequencer != null) {
+            sequencer.setTempoFactor(factor);
+        }
     }
 
     public float getTempoFactor() {

@@ -1,5 +1,7 @@
 package org.alltiny.chorus;
 
+import org.alltiny.chorus.command.CommandRegistry;
+import org.alltiny.chorus.dom.Song;
 import org.alltiny.chorus.gui.CommandPanel;
 import org.alltiny.chorus.gui.canvas.AutoscrollLogic;
 import org.alltiny.chorus.gui.canvas.MusicCanvas;
@@ -8,16 +10,15 @@ import org.alltiny.chorus.gui.TempoToolbar;
 import org.alltiny.chorus.gui.SliderPane;
 import org.alltiny.chorus.gui.ZoomToolbar;
 import org.alltiny.chorus.gui.canvas.MusicLayeredPane;
-import org.alltiny.chorus.model.SongModel;
-import org.alltiny.chorus.model.SongModelFactory;
 import org.alltiny.chorus.action.OpenFromFileAction;
 import org.alltiny.chorus.action.PlayCurrentSongAction;
 import org.alltiny.chorus.action.SetCursorToBeginningAction;
 import org.alltiny.chorus.model.SongMusicDataModel;
 import org.alltiny.chorus.midi.MidiPlayer;
 import org.alltiny.chorus.model.app.ApplicationModel;
+import org.alltiny.chorus.model.generic.DOMPropertyListenerAdapter;
+import org.alltiny.chorus.model.helper.ClefHelper;
 import org.alltiny.chorus.util.ManifestUtil;
-import org.alltiny.svg.parser.SVGParseException;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -25,15 +26,12 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.io.IOException;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 
 /**
- * This class represents
+ * Chorus main entry point.
  *
  * @author <a href="mailto:ralf.hergert.de@gmail.com">Ralf Hergert</a>
- * @version 03.12.2008 16:56:31
+ * @version 03.12.2008
  */
 public class Chorus {
 
@@ -41,8 +39,8 @@ public class Chorus {
     private final ApplicationProperties properties;
 
     private final ApplicationModel appModel = new ApplicationModel();
+    private final CommandRegistry commandRegistry = new CommandRegistry(appModel);
 
-    private final SongModel model;
     private final OpenFromFileAction openAction;
     private final PlayCurrentSongAction playAction;
     private final SetCursorToBeginningAction curBeginnAction;
@@ -64,15 +62,16 @@ public class Chorus {
         }*/
         properties = new ApplicationProperties(new File(System.getProperty("user.home") + System.getProperty("file.separator") +  ".Chorus", "defaults.ini"));
 
-        model = SongModelFactory.createInstance();
-        player = new MidiPlayer(model);
-        openAction = new OpenFromFileAction(model, properties);
+        new ClefHelper(appModel);
+
+        player = new MidiPlayer(appModel);
+        openAction = new OpenFromFileAction(commandRegistry, properties);
         playAction = new PlayCurrentSongAction(player);
         curBeginnAction = new SetCursorToBeginningAction(player);
     }
 
-    public JPanel getContentPanel() throws IOException, SVGParseException {
-        final MusicCanvas musicCanvas = new MusicCanvas(model, new SongMusicDataModel(model));
+    public JPanel getContentPanel() {
+        final MusicCanvas musicCanvas = new MusicCanvas(appModel, new SongMusicDataModel(appModel));
 
         JToolBar bar = new JToolBar();
         bar.add(new JButton(openAction));
@@ -81,8 +80,8 @@ public class Chorus {
 
         JPanel barPanel = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
         barPanel.add(bar);
-        barPanel.add(new MuteVoiceToolbar(model, player));
-        barPanel.add(new TempoToolbar(model, player));
+        barPanel.add(new MuteVoiceToolbar(appModel, player));
+        barPanel.add(new TempoToolbar(appModel));
         barPanel.add(new ZoomToolbar(musicCanvas));
 
         JPanel panel = new JPanel(new GridBagLayout());
@@ -117,14 +116,14 @@ public class Chorus {
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
 
-        JSplitPane centerSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, new CommandPanel(appModel));
+        JSplitPane centerSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, new CommandPanel(appModel, commandRegistry));
         panel.add(centerSplit, gbc);
 
         return panel;
     }
 
-    private SongModel getModel() {
-        return model;
+    private ApplicationModel getAppModel() {
+        return appModel;
     }
 
     public String getVersion() {
@@ -138,19 +137,20 @@ public class Chorus {
         properties.storeProperties();
     }
 
-    public static void main(String[] args) throws IOException, SVGParseException {
+    public static void main(String[] args) {
         final Chorus app = new Chorus();
 
         final JFrame frame = new JFrame("Chorus " + app.getVersion());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new BorderLayout());
 
-        app.getModel().addPropertyChangeListener(SongModel.CURRENT_SONG, new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                if (app.getModel().getSong() == null) {
+        app.getAppModel().addListener(new DOMPropertyListenerAdapter<ApplicationModel,Song>(app.getAppModel(), ApplicationModel.Property.CURRENT_SONG.name()) {
+            @Override
+            protected void changed(Song oldValue, Song newValue) {
+                if (newValue == null) {
                     frame.setTitle("Chorus " + app.getVersion());
                 } else {
-                    frame.setTitle("Chorus " + app.getVersion() + " - " + app.getModel().getSong().getAuthor() + " - " + app.getModel().getSong().getTitle());
+                    frame.setTitle("Chorus " + app.getVersion() + " - " + newValue.getAuthor() + " - " + newValue.getTitle());
                 }
             }
         });

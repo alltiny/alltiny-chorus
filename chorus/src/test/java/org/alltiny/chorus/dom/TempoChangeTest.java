@@ -10,6 +10,8 @@ public class TempoChangeTest {
 
     @Test
     public void testDurationFactor() {
-        Assert.assertEquals(0.666d, 0.001d, new RelativeTempoChange().setLeft(new DurationElement(3,4)).setRight(new DurationElement(1,2)).getDurationFactor());
+        Assert.assertEquals(0.666d, 0.001d, new RelativeTempoChange()
+            .setLeft(new DurationElement(3,4))
+            .setRight(new DurationElement(1,2)).getDurationFactor());
     }
 }

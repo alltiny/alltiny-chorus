@@ -1,8 +1,4 @@
-package org.alltiny.chorus.generic.model;
-
-import org.alltiny.chorus.generic.model.events.DOMPropertyAddedEvent;
-import org.alltiny.chorus.generic.model.events.DOMPropertyChangedEvent;
-import org.alltiny.chorus.generic.model.events.DOMPropertyRemovedEvent;
+package org.alltiny.chorus.model.generic;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,9 +8,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Implementation of a map firing {@link org.alltiny.chorus.generic.model.events.DOMEvent}s.
+ * Implementation of a map firing {@link DOMEvent}s.
  */
-public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<String,Value> {
+public class DOMMap<Self extends DOMMap<?,?>,Value> implements DOMNode<Self>, Map<String,Value> {
 
     private final DOMEventSupport domEventSupport = new DOMEventSupport();
 
@@ -22,28 +18,37 @@ public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<Str
 
     /** This relayListener tries to hide use of the PropertyHolder by rewriting the
      * PropertyChangeEvent. */
-    private final DOMEventListener<PropertyHolder<Value>> relayListener = (event) -> {
+    private final DOMEventListener<PropertyHolder<Value>> relayListener = (event,context) -> {
         if (event instanceof DOMPropertyChangedEvent) {
             final DOMPropertyChangedEvent<PropertyHolder<Value>,Value> pce = ((DOMPropertyChangedEvent)event);
             domEventSupport.fireEvent(new DOMPropertyChangedEvent<>(
                 (Self) this,
+                pce.getOperation(),
                 pce.getPropertyName(),
                 pce.getOldValue(),
-                pce.getNewValue())
-                .withCause(pce.getCause())
-            );
+                pce.getNewValue(),
+                pce.getCause()
+            ));
         }
     };
 
+    public DOMMap() {}
+
+    public DOMMap(Map<String,Value> map) {
+        putAll(map);
+    }
+
     @Override
-    public Self addListener(DOMEventListener listener) {
+    public Self addListener(DOMEventListener<Self> listener) {
         domEventSupport.addListener(listener);
+        listener.initialize((Self)this, null);
         return (Self)this;
     }
 
     @Override
-    public Self removeListener(DOMEventListener listener) {
+    public Self removeListener(DOMEventListener<Self> listener) {
         domEventSupport.removeListener(listener);
+        listener.shutdown((Self)this, null);
         return (Self)this;
     }
 
@@ -75,28 +80,36 @@ public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<Str
 
     @Override
     public Value put(String key, Value value) {
+        return put(key, value, null);
+    }
+
+    public Value put(String key, Value value, DOMOperation operation) {
         PropertyHolder<Value> ph = properties.get(key);
         if (ph == null) {
             ph = new PropertyHolder<>(key);
-            ph.setValue(value);
+            ph.setValue(value, operation);
             ph.addListener(relayListener);
             properties.put(key, ph);
 
-            domEventSupport.fireEvent(new DOMPropertyAddedEvent<>(this, key, value));
+            domEventSupport.fireEvent(new DOMPropertyAddedEvent<>(this, operation, key, value));
 
             return null;
         } else {
-            return ph.setValue(value);
+            return ph.setValue(value, operation);
         }
     }
 
     @Override
     public Value remove(Object key) {
+        return remove(key, null);
+    }
+
+    public Value remove(Object key, DOMOperation operation) {
         PropertyHolder<Value> ph = properties.remove(key);
         if (ph != null) {
             ph.removeListener(relayListener);
 
-            domEventSupport.fireEvent(new DOMPropertyRemovedEvent<>(this, ph.getName(), ph.getValue()));
+            domEventSupport.fireEvent(new DOMPropertyRemovedEvent<>(this, operation, ph.getName(), ph.getValue()));
 
             return ph.getValue();
         } else {
@@ -128,7 +141,9 @@ public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<Str
 
     @Override
     public Set<Entry<String,Value>> entrySet() {
-        throw new UnsupportedOperationException();
+        return properties.entrySet().stream()
+            .map(pe -> new DOMMapEntry<>(pe.getKey(), pe.getValue().getValue()))
+            .collect(Collectors.toSet());
     }
 
     /**
@@ -145,15 +160,16 @@ public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<Str
 
         public PropertyHolder(String name) {
             this.name = name;
-            this.relayListener = (event) -> {
+            this.relayListener = (event,context) -> {
                 final Value item = event.getSource();
                 domEventSupport.fireEvent(new DOMPropertyChangedEvent<>(
                     this,
+                    event.getOperation(),
                     name,
                     item,
-                    item)
-                    .withCause(event)
-                );
+                    item,
+                    event
+                ));
             };
         }
 
@@ -178,7 +194,7 @@ public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<Str
             return value;
         }
 
-        public Value setValue(Value value) {
+        public Value setValue(Value value, DOMOperation operation) {
             final Value oldValue = this.value;
             this.value = value;
             if (!Objects.equals(value, oldValue)) {
@@ -190,12 +206,39 @@ public class DOMMap<Self extends DOMMap,Value> implements DOMNode<Self>, Map<Str
                 }
                 domEventSupport.fireEvent(new DOMPropertyChangedEvent<>(
                     this,
+                    operation,
                     name,
                     oldValue,
-                    value
-                    ));
+                    value,
+                    null));
             }
             return oldValue;
+        }
+    }
+
+    private static class DOMMapEntry<K,V> implements Map.Entry<K,V> {
+
+        private final K key;
+        private final V value;
+
+        public DOMMapEntry(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public K getKey() {
+            return key;
+        }
+
+        @Override
+        public V getValue() {
+            return value;
+        }
+
+        @Override
+        public V setValue(V value) {
+            throw new UnsupportedOperationException();
         }
     }
 }

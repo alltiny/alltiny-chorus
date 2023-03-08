@@ -63,7 +63,7 @@ public class NoteXMLHandler extends XMLHandler<Note> {
         if ("accidental".equals(qName)) {
             return new SimpleElementXMLHandler<Accidental>(new AccidentalElementFactory(attributes), new AssignHandler<Accidental>() {
                 public void assignNode(Accidental node) {
-                    note.setAccidental(node);
+                    note.setAccidental(node.getSign());
                 }
             });
         }

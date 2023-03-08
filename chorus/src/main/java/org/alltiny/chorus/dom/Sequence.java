@@ -2,42 +2,59 @@ package org.alltiny.chorus.dom;
 
 import org.alltiny.chorus.base.type.Clef;
 import org.alltiny.chorus.base.type.Key;
+import org.alltiny.chorus.model.generic.DOMList;
+import org.alltiny.chorus.model.generic.DOMMap;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 /**
- * This class represents
+ * Models a main-sequence of a a {@link Voice}.
  *
  * @author <a href="mailto:ralf.hergert.de@gmail.com">Ralf Hergert</a>
- * @version 19.11.2008 20:13:43
+ * @version 19.11.2008
  */
-public class Sequence extends ArrayList<Element> {
+public class Sequence extends DOMMap<Sequence,Object> {
 
-    private Clef clef;
-    private Key key;
-
-    public Sequence(Clef clef) {
-        this.clef = clef;
+    public enum Property {
+        CLEF,
+        KEY,
+        ELEMENTS
     }
 
-    public void addElement(Element element) {
-        add(element);
-        element.setSequence(this);
+    public Sequence() {
+        put(Property.ELEMENTS.name(), new DOMList<DOMList<?,Element<?>>,Element<?>>());
     }
 
     public Clef getClef() {
-        return clef;
+        return (Clef)get(Property.CLEF.name());
     }
 
-    public void setClef(Clef clef) {
-        this.clef = clef;
+    public Sequence setClef(Clef clef) {
+        put(Property.CLEF.name(), clef);
+        return this;
     }
 
     public Key getKey() {
-        return key;
+        return (Key)get(Property.KEY.name());
     }
 
-    public void setKey(Key key) {
-        this.key = key;
+    public Sequence setKey(Key key) {
+        put(Property.KEY.name(), key);
+        return this;
+    }
+
+    public DOMList<DOMList<?,Element<?>>,Element<?>> getElements() {
+        return (DOMList<DOMList<?,Element<?>>,Element<?>>)get(Property.ELEMENTS.name());
+    }
+
+    public Sequence setElements(Collection<Element<?>> elements) {
+        getElements().clear();
+        getElements().addAll(elements);
+        return this;
+    }
+
+    public Sequence addElement(Element<?> element) {
+        getElements().add(element);
+        return this;
     }
 }

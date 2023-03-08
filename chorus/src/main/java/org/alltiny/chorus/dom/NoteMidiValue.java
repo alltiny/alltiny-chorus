@@ -2,6 +2,7 @@ package org.alltiny.chorus.dom;
 
 import org.alltiny.chorus.base.type.AccidentalSign;
 import org.alltiny.chorus.base.type.BaseNote;
+import org.alltiny.chorus.base.type.NoteValue;
 
 import java.text.ParseException;
 
@@ -86,6 +87,9 @@ public class NoteMidiValue {
             throw new ParseException("Octave not defined in \'" + value + "\'", 0);
         }
 
-        return new Note(note, sign, octave, duration, division);
+        return new Note()
+            .setNoteValue(new NoteValue(note, sign, octave))
+            .setDuration(duration)
+            .setDivision(division);
     }
 }

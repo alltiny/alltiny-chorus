@@ -20,7 +20,8 @@ public class CommandRegistry {
         this.commands = Arrays.asList(
             new ClearCommandQueueCommand(appModel),
             new ClearMessageQueueCommand(appModel),
-            new HelpCommand(this)
+            new HelpCommand(this),
+            new OpenFileCommand(appModel)
         );
     }
 
@@ -39,7 +40,7 @@ public class CommandRegistry {
 
         if (responsibleCommands.size() == 1) {
             ExecutedCommand<?> executedCommand = responsibleCommands.get(0).getExecutableFunction().apply(null);
-            if (executedCommand.isSuccessful()) {
+            if (executedCommand != null && executedCommand.isSuccessful()) {
                 appModel.getCommandQueueDone().add(executedCommand);
                 appModel.setCommandLine("");
                 return true;
@@ -61,5 +62,10 @@ public class CommandRegistry {
             );
         }
         return false;
+    }
+
+    public boolean execute(String command) {
+        appModel.setCommandLine(command);
+        return execute();
     }
 }

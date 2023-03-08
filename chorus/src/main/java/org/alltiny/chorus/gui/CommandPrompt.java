@@ -1,7 +1,7 @@
 package org.alltiny.chorus.gui;
 
 import org.alltiny.chorus.command.CommandRegistry;
-import org.alltiny.chorus.generic.model.events.DOMPropertyChangedEvent;
+import org.alltiny.chorus.model.generic.DOMPropertyChangedEvent;
 import org.alltiny.chorus.model.app.ApplicationModel;
 
 import javax.swing.*;
@@ -22,8 +22,8 @@ public class CommandPrompt extends JTextField {
 
     private final CommandRegistry commandRegistry;
 
-    public CommandPrompt(final ApplicationModel appModel) {
-        this.commandRegistry = new CommandRegistry(appModel);
+    public CommandPrompt(final ApplicationModel appModel, final CommandRegistry commandRegistry) {
+        this.commandRegistry = commandRegistry;
 
         setFont(new Font("Monospaced", Font.PLAIN, 12));
 
@@ -62,17 +62,16 @@ public class CommandPrompt extends JTextField {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     commandRegistry.execute();
                 }
-
             }
 
             @Override
             public void keyReleased(KeyEvent e) {}
         });
 
-        appModel.addListener(domEvent -> {
+        appModel.addListener((domEvent,context) -> {
             if (domEvent instanceof DOMPropertyChangedEvent) {
                 DOMPropertyChangedEvent<ApplicationModel,String> pce = (DOMPropertyChangedEvent<ApplicationModel,String>)domEvent;
-                if (pce.getPropertyName().equals(ApplicationModel.PROP_COMMAND_LINE) &&
+                if (pce.getPropertyName().equals(ApplicationModel.Property.COMMAND_LINE.name()) &&
                     !Objects.equals(pce.getNewValue(), getText())) {
                     setText(pce.getNewValue());
                 }
