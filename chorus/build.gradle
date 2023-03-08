@@ -10,7 +10,6 @@ mainClassName = 'org.alltiny.chorus.Chorus'
 dependencies {
 	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
 
-	implementation project(':xml-handler')
 	implementation project(':svg-parser')
 	implementation project(':base-model')
 

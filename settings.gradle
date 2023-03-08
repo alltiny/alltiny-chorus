@@ -1,4 +1,3 @@
 include 'chorus'
 include 'base-model'
 include 'svg-parser'
-include 'xml-handler'
