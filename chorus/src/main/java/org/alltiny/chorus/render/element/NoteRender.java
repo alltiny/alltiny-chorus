@@ -91,13 +91,14 @@ public class NoteRender extends Visual {
 
         // draw accidental sign if necessary
         if (drawAccidentalSign) {
-            GeneralPath sign = null;
+            GeneralPath sign;
             switch (note.getNoteValue().getSign()) {
                 case SHARP: sign = Sharp.createSharp(); break;
                 case FLAT : sign = Flat.createFlat(); break;
                 case NONE : sign = Natural.createNatural(); break;
                 case DFLAT: sign = DFlat.createDFlat(); break;
                 case DSHARP: sign = DSharp.createDSharp(); break;
+                default: sign = null;
             }
 
             if (sign != null) { // place it correctly.

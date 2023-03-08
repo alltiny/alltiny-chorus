@@ -38,6 +38,8 @@ public class Flat extends Visual {
             flat.transform(AffineTransform.getTranslateInstance(-97,-444.5));
             flat.transform(AffineTransform.getScaleInstance(1.4,1.4));
             return flat;
-        } catch (Exception ex) { throw new Error("SVG could not be parsed"); }
+        } catch (Exception ex) {
+            throw new Error("SVG could not be parsed");
+        }
     }
 }

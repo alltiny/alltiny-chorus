@@ -31,7 +31,9 @@ public class ClefG extends Visual {
 
             path.transform(AffineTransform.getTranslateInstance(pathOffsetX, pathOffsetY));
             path.transform(AffineTransform.getScaleInstance(pathScale, pathScale));
-        } catch (Exception ex) { throw new Error("SVG could not be parsed"); }
+        } catch (Exception ex) {
+            throw new Error("SVG could not be parsed");
+        }
     }
 
     public void paintImpl(Graphics2D g) {

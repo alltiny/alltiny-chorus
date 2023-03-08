@@ -41,6 +41,8 @@ public class DFlat extends Visual {
             path.append(path.createTransformedShape(AffineTransform.getTranslateInstance(6, 0)), true);
             path.transform(AffineTransform.getTranslateInstance(-3, 0));
             return path;
-        } catch (Exception ex) { throw new Error("SVG could not be parsed"); }
+        } catch (Exception ex) {
+            throw new Error("SVG could not be parsed");
+        }
     }
 }

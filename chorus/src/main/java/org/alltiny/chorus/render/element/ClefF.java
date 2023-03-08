@@ -30,7 +30,9 @@ public class ClefF extends Visual {
             path.append(new Ellipse2D.Double(20, -15, 4, 4), false);
             path.append(new Ellipse2D.Double(20,  -7, 4, 4), false);
             path.transform(AffineTransform.getTranslateInstance(-11.5, 0));
-        } catch (Exception ex) { throw new Error("SVG could not be parsed"); }
+        } catch (Exception ex) {
+            throw new Error("SVG could not be parsed");
+        }
     }
 
     public void paintImpl(Graphics2D g) {
