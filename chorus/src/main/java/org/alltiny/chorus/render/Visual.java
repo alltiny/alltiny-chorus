@@ -30,7 +30,7 @@ public abstract class Visual extends Component {
     // this is the median point where this visual shall be rendered.
     protected double absMedianX;
     protected double absMedianY;
-    // this dimensions are relative to the median point.
+    // these dimensions are relative to the median point.
     protected double extendLeft;
     protected double extendRight;
     protected double extendTop;
