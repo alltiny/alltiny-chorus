@@ -18,7 +18,7 @@ public class SVGPathMoveToRelParser {
      * moveto-point to the given path.
      */
     public static void parseMoveToRel(GeneralPath path, PushbackInputStream stream) throws IOException {
-        for (;;) { // for ever
+        for (;;) { // forever
             String x = SVGNumberParser.parseNumberFromStream(stream);
             String y = SVGNumberParser.parseNumberFromStream(stream);
 

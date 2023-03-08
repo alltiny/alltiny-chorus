@@ -19,7 +19,7 @@ public class SVGPathLineToRelParser {
      * number pair could be received.
      */
     public static void parseLineToRel(GeneralPath path, PushbackInputStream stream) throws IOException {
-        for (;;) { // for ever
+        for (;;) { // forever
             String x = SVGNumberParser.parseNumberFromStream(stream);
             String y = SVGNumberParser.parseNumberFromStream(stream);
 

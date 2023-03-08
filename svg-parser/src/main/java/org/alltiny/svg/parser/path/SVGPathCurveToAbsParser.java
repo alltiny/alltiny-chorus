@@ -15,10 +15,10 @@ public class SVGPathCurveToAbsParser {
     /**
      * This method tries to read pairs of coordinates and add each of them,
      * to the {@param path} as moveto-point. This method stops until no further
-     * number pair could be recieved.
+     * number pair could be received.
      */
     public static void parse(GeneralPath path, PushbackInputStream stream) throws IOException {
-        for (;;) { // for ever
+        for (;;) { // forever
             String x1 = SVGNumberParser.parseNumberFromStream(stream);
             String y1 = SVGNumberParser.parseNumberFromStream(stream);
             String x2 = SVGNumberParser.parseNumberFromStream(stream);

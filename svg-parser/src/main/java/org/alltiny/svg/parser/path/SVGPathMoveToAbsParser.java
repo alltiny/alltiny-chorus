@@ -18,7 +18,7 @@ public class SVGPathMoveToAbsParser {
      * number pair could be received.
      */
     public static void parseMoveToAbs(GeneralPath path, PushbackInputStream stream) throws IOException {
-        for (;;) { // for ever
+        for (;;) { // forever
             String x = SVGNumberParser.parseNumberFromStream(stream);
             String y = SVGNumberParser.parseNumberFromStream(stream);
 
