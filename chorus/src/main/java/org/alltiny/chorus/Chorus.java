@@ -116,7 +116,11 @@ public class Chorus {
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
 
-        JSplitPane centerSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, new CommandPanel(appModel, commandRegistry));
+        final CommandPanel commandPanel = new CommandPanel(appModel, commandRegistry);
+        commandPanel.setPreferredSize(new Dimension(400,40));
+        pane.setPreferredSize(new Dimension(400,300));
+
+        JSplitPane centerSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pane, commandPanel);
         panel.add(centerSplit, gbc);
 
         return panel;
