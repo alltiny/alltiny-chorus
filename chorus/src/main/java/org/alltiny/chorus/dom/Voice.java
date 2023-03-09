@@ -22,6 +22,8 @@ public class Voice extends DOMMap<Voice,Object> {
     }
 
     public Voice() {
+        setSequence(new Sequence());
+        setMuted(false);
         put(Property.INLINE_SEQUENCES.name(), new DOMList<DOMList<?,InlineSequence>,InlineSequence>());
     }
 

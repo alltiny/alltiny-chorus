@@ -21,11 +21,9 @@ import java.awt.event.ItemEvent;
 public class MuteVoiceToolbar extends JToolBar {
 
     private final ApplicationModel model;
-    private final MidiPlayer player;
 
-    public MuteVoiceToolbar(final ApplicationModel model, MidiPlayer player) {
+    public MuteVoiceToolbar(final ApplicationModel model) {
         this.model = model;
-        this.player = player;
 
         setVisible(false);
 
@@ -41,7 +39,7 @@ public class MuteVoiceToolbar extends JToolBar {
                 new DOMHierarchicalListener.Callback<Voice,Integer>() {
                     @Override
                     public void added(Voice voice, Integer identifier, Context<?> context) {
-                        MuteVoiceToolbar.this.add(new MuteVoiceToggleButton(voice), identifier);
+                        MuteVoiceToolbar.this.add(new MuteVoiceToggleButton(voice), (int)identifier);
                         setVisible(true);
                     }
 
@@ -59,36 +57,5 @@ public class MuteVoiceToolbar extends JToolBar {
 
     private void removeAllButtons() {
         removeAll();
-    }
-
-    private void initialize() {
-        removeAll();
-
-        boolean atLeastOneButton = false;
-        // create new un-/mute button for each voice.
-        if (model.getCurrentSong() != null) {
-            int i = 0;
-            for (Voice voice : model.getCurrentSong().getMusic().getVoices()) {
-                JToggleButton button = new JToggleButton(voice.getName(), true);
-                button.addItemListener(new MutingItemListener(i));
-                MuteVoiceToolbar.this.add(button);
-                i++;
-                atLeastOneButton = true;
-            }
-        }
-        setVisible(atLeastOneButton);
-    }
-
-    /** This listener mute the right midi track. */
-    private class MutingItemListener implements ItemListener {
-        private final int index;
-
-        public MutingItemListener(int index) {
-            this.index = index;
-        }
-
-        public void itemStateChanged(ItemEvent e) {
-            MuteVoiceToolbar.this.player.setTrackMute(index, e.getStateChange() == ItemEvent.DESELECTED);
-        }
     }
 }

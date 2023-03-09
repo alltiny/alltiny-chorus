@@ -31,6 +31,9 @@ public class Song extends DOMMap<Song,Object> {
         dynamic.addValue("pp",  44);
         dynamic.addValue("ppp", 36);
         put(Property.DYNAMIC.name(), dynamic);
+        setTempo(60);
+        setMeta(new DOMMap<>());
+        setMusic(new Music());
     }
 
     public String getTitle() {

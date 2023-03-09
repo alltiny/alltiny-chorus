@@ -44,9 +44,17 @@ public class MidiPlayer extends PropertySupportBean implements Consumer<DOMOpera
         model.addListener(
             new DOMHierarchicalListener<>(
                 new DOMHierarchicalListener.PropertyOnMap<>(ApplicationModel.class, ApplicationModel.Property.CURRENT_SONG.name()),
-                new DOMHierarchicalListener.Callback<Song,String>() {
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(Song.class, Song.Property.MUSIC.name()),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(Music.class, Music.Property.VOICES.name()),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.AnyItemInList<>(),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(Voice.class, Voice.Property.MAIN_SEQUENCE.name()),
+                new DOMHierarchicalListener.Callback<org.alltiny.chorus.dom.Sequence,String>() {
                     @Override
-                    public void added(Song song, String property, Context<?> context) {
+                    public void added(org.alltiny.chorus.dom.Sequence sequence, String property, Context<?> context) {
                         if (context.getOperation() != null) {
                             context.getOperation().addConclusionListener(MidiPlayer.this);
                         } else {
@@ -55,7 +63,7 @@ public class MidiPlayer extends PropertySupportBean implements Consumer<DOMOpera
                     }
 
                     @Override
-                    public void changed(Song song, String property, Context<?> context) {
+                    public void changed(org.alltiny.chorus.dom.Sequence sequence, String property, Context<?> context) {
                         if (context.getOperation() != null) {
                             context.getOperation().addConclusionListener(MidiPlayer.this);
                         } else {
@@ -71,7 +79,49 @@ public class MidiPlayer extends PropertySupportBean implements Consumer<DOMOpera
                             update();
                         }
                     }
-                }).setName(getClass().getSimpleName() + "@SONG"));
+                }))))).setName(getClass().getSimpleName() + "@MAIN-SEQUENCE"));
+
+        model.addListener(
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(ApplicationModel.class, ApplicationModel.Property.CURRENT_SONG.name()),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(Song.class, Song.Property.MUSIC.name()),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(Music.class, Music.Property.VOICES.name()),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.AnyItemInList<>(),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(Voice.class, Voice.Property.INLINE_SEQUENCES.name()),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.AnyItemInList<>(),
+                new DOMHierarchicalListener.Callback<InlineSequence,Integer>() {
+                    @Override
+                    public void added(InlineSequence sequence, Integer index, Context<?> context) {
+                        if (context.getOperation() != null) {
+                            context.getOperation().addConclusionListener(MidiPlayer.this);
+                        } else {
+                            update();
+                        }
+                    }
+
+                    @Override
+                    public void changed(InlineSequence sequence, Integer index, Context<?> context) {
+                        if (context.getOperation() != null) {
+                            context.getOperation().addConclusionListener(MidiPlayer.this);
+                        } else {
+                            update();
+                        }
+                    }
+
+                    @Override
+                    public void removed(Integer index, Context<?> context) {
+                        if (context.getOperation() != null) {
+                            context.getOperation().addConclusionListener(MidiPlayer.this);
+                        } else {
+                            update();
+                        }
+                    }
+                })))))).setName(getClass().getSimpleName() + "@INLINE-SEQUENCE"));
 
         model.addListener(
             new DOMHierarchicalListener<>(

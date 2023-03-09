@@ -79,7 +79,7 @@ public class DOMList<Self extends DOMList<?,T>,T> implements DOMNode<Self>, List
 
     public boolean add(T t, DOMOperation operation) {
         if (elements.add(t)) {
-            final int index = elements.size();
+            final int index = elements.size() - 1;
 
             if (t instanceof DOMNode) {
                 ((DOMNode)t).addListener(relayListener);
@@ -259,5 +259,10 @@ public class DOMList<Self extends DOMList<?,T>,T> implements DOMNode<Self>, List
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
         return elements.subList(fromIndex, toIndex);
+    }
+
+    /** This helper method ensures the index is in bounds */
+    public int ensureIndex(int index) {
+        return Math.max(0, Math.min(size(), index));
     }
 }

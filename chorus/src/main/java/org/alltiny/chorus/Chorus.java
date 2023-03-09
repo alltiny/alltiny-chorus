@@ -80,7 +80,7 @@ public class Chorus {
 
         JPanel barPanel = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
         barPanel.add(bar);
-        barPanel.add(new MuteVoiceToolbar(appModel, player));
+        barPanel.add(new MuteVoiceToolbar(appModel));
         barPanel.add(new TempoToolbar(appModel));
         barPanel.add(new ZoomToolbar(musicCanvas));
 

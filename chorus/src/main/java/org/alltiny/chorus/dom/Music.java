@@ -4,8 +4,6 @@ import org.alltiny.chorus.model.generic.DOMList;
 import org.alltiny.chorus.model.generic.DOMMap;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * The music data of a {@link Song}.
@@ -35,5 +33,9 @@ public class Music extends DOMMap<Music,Object> {
 
     public void addVoice(Voice voice) {
         getVoices().add(voice);
+    }
+
+    public void addVoice(Voice voice, int index) {
+        getVoices().add(getVoices().ensureIndex(index), voice);
     }
 }
