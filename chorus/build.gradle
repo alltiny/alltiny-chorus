@@ -27,3 +27,12 @@ jar {
 		)
 	}
 }
+
+bootJar {
+	manifest {
+		attributes (
+			'Implementation-Title': 'Chorus',
+			'Implementation-Version': version,
+		)
+	}
+}
