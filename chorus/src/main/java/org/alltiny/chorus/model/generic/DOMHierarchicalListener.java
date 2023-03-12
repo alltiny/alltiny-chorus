@@ -61,7 +61,20 @@ public class DOMHierarchicalListener<Model,Value,Identifier> implements DOMEvent
                 // resolve event-based
                 locator.delegate(event, delegate::accept, context);
             } else { // no cause - resolve model based
-                locator.delegate(event.getSource(), delegate::initialize, context);
+                if (event instanceof DOMIndexedItemInsertedEvent ||
+                    event instanceof DOMPropertyAddedEvent) {
+                    locator.delegate(event.getSource(), delegate::initialize, new Context<>(null, null, event.getOperation(), context));
+                } else if (event instanceof DOMIndexedItemRemovedEvent) {
+                    DOMIndexedItemRemovedEvent<Model,Value> iire = (DOMIndexedItemRemovedEvent<Model,Value>)event;
+                    delegate.shutdown(iire.getItem(), new Context<>(null, null, event.getOperation(), context));
+                } else if (event instanceof DOMPropertyRemovedEvent) {
+                    DOMPropertyRemovedEvent<Model,Value> re = (DOMPropertyRemovedEvent<Model,Value>)event;
+                    delegate.shutdown(re.getOldValue(), new Context<>(null, null, event.getOperation(), context));
+                } else if (event instanceof DOMPropertyChangedEvent) {
+                    DOMPropertyChangedEvent<Model,Value> pce = (DOMPropertyChangedEvent<Model,Value>)event;
+                    delegate.shutdown(pce.getOldValue(), new Context<>(null, null, event.getOperation(), context));
+                    delegate.initialize(pce.getNewValue(), new Context<>(null, null, event.getOperation(), context));
+                }
             }
         }
     }
@@ -76,7 +89,7 @@ public class DOMHierarchicalListener<Model,Value,Identifier> implements DOMEvent
     public interface Callback<Value,Identifier> {
         void added(Value value, Identifier identifier, Context<?> context);
         void changed(Value value, Identifier identifier, Context<?> context);
-        void removed(Identifier identifier, Context<?> context);
+        void removed(Value value, Identifier identifier, Context<?> context);
     }
 
     public interface Locator<Model,Value,Identifier> {
@@ -108,7 +121,8 @@ public class DOMHierarchicalListener<Model,Value,Identifier> implements DOMEvent
         @Override
         public void resolve(DOMEvent<?> event, Callback<Value,String> callback, boolean hasDelegate, Context<?> context) {
             if (event instanceof DOMPropertyRemovedEvent) {
-                callback.removed(propertyName, new Context<>(propertyName, (DOMNode<?>)event.getSource(), event.getOperation(), context));
+                Value value = ((DOMPropertyRemovedEvent<Model,Value>)event).getOldValue();
+                callback.removed(value, propertyName, new Context<>(propertyName, (DOMNode<?>)event.getSource(), event.getOperation(), context));
             } else if (event instanceof DOMPropertyAddedEvent && !hasDelegate) {
                 Value value = ((DOMPropertyAddedEvent<Model,Value>)event).getNewValue();
                 callback.added(value, propertyName, new Context<>(propertyName, (DOMNode<?>)event.getSource(), event.getOperation(), context));
@@ -125,7 +139,7 @@ public class DOMHierarchicalListener<Model,Value,Identifier> implements DOMEvent
             }
             delegateFunction.accept(
                 (Value)model.get(propertyName),
-                new Context<>(propertyName, model, null, context)
+                new Context<>(propertyName, model, context)
             );
         }
 
@@ -147,15 +161,16 @@ public class DOMHierarchicalListener<Model,Value,Identifier> implements DOMEvent
             callback.added(
                 (Value)model.get(propertyName),
                 propertyName,
-                new Context<>(propertyName, model, null, context)
+                new Context<>(propertyName, model, context)
             );
         }
 
         @Override
         public void shutdown(Model model, Callback<Value,String> callback, Context<?> context) {
             callback.removed(
+                (Value)model.get(propertyName),
                 propertyName,
-                new Context<>(propertyName, model, null, context)
+                new Context<>(propertyName, model, context)
             );
         }
 
@@ -180,14 +195,13 @@ public class DOMHierarchicalListener<Model,Value,Identifier> implements DOMEvent
                 DOMIndexedItemChangedEvent<Model,Value> ce = (DOMIndexedItemChangedEvent<Model,Value>)event;
                 final int i = ce.getIndex();
                 if (event instanceof DOMIndexedItemRemovedEvent) {
-                    callback.removed(i, new Context<>(i, ce.getSource(), event.getOperation(), context));
+                    callback.removed(ce.getItem(), i, new Context<>(i, ce.getSource(), event.getOperation(), context));
                 } else if (event instanceof DOMIndexedItemInsertedEvent && !hasDelegate) {
                     callback.added(ce.getItem(), i, new Context<>(i, ce.getSource(), event.getOperation(), context));
                 } else if (event instanceof DOMIndexedItemChangedEvent && !hasDelegate) {
                     callback.changed(ce.getItem(), i, new Context<>(i, ce.getSource(), event.getOperation(), context));
                 }
             }
-
         }
 
         @Override
@@ -195,7 +209,7 @@ public class DOMHierarchicalListener<Model,Value,Identifier> implements DOMEvent
             for (int i = 0; i < model.size(); i++) {
                 delegateFunction.accept(
                     model.get(i),
-                    new Context<>(i, model, null, context)
+                    new Context<>(i, model, context)
                 );
             }
         }
@@ -213,14 +227,14 @@ public class DOMHierarchicalListener<Model,Value,Identifier> implements DOMEvent
         @Override
         public void initialize(Model model, Callback<Value,Integer> callback, Context<?> context) {
             for (int i = 0; i < model.size(); i++) {
-                callback.added(model.get(i), i, context);
+                callback.added(model.get(i), i, new Context<>(i, model, context));
             }
         }
 
         @Override
         public void shutdown(Model model, Callback<Value,Integer> callback, Context<?> context) {
             for (int i = 0; i < model.size(); i++) {
-                callback.removed(i, context);
+                callback.removed(model.get(i), i, new Context<>(i, model, context));
             }
         }
 

@@ -7,7 +7,11 @@ public class Context<Identifier> {
     private final DOMOperation operation;
     private final Context<?> parent;
 
-    public Context(Identifier identifier, DOMNode<?> node, DOMOperation operation, Context<?> parent) {
+    public Context(Identifier identifier, DOMNode<?> node, Context<?> parent) {
+        this(identifier, node, parent != null ? parent.getOperation() : null, parent);
+    }
+
+    public  Context(Identifier identifier, DOMNode<?> node, DOMOperation operation, Context<?> parent) {
         this.identifier = identifier;
         this.node = node;
         this.operation = operation;

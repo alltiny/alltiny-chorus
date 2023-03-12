@@ -45,7 +45,7 @@ public class ClefHelper {
                     }
 
                     @Override
-                    public void removed(String property, Context<?> context) {}
+                    public void removed(Clef clef, String property, Context<?> context) {}
                 })
         ))))).setName(ClefHelper.class.getSimpleName() + "@CLEF"));
 
@@ -60,8 +60,10 @@ public class ClefHelper {
                 new DOMHierarchicalListener.AnyItemInList<>(),
             new DOMHierarchicalListener<>(
                 new DOMHierarchicalListener.PropertyOnMap<>(Voice.class, Voice.Property.MAIN_SEQUENCE.name()),
-                new DOMHierarchicalListener<DOMList<?,Element<?>>,Element<?>,Integer>(
-                    new DOMHierarchicalListener.AnyItemInList<>(),
+            new DOMHierarchicalListener<>(
+                new DOMHierarchicalListener.PropertyOnMap<>(Sequence.class, Sequence.Property.ELEMENTS.name()),
+            new DOMHierarchicalListener<DOMList<?,Element<?>>,Element<?>,Integer>(
+                new DOMHierarchicalListener.AnyItemInList<>(),
                 new DOMHierarchicalListener.Callback<Element<?>,Integer>() {
                     @Override
                     public void added(Element<?> element, Integer index, Context<?> context) {
@@ -75,9 +77,9 @@ public class ClefHelper {
                     public void changed(Element<?> element, Integer index, Context<?> context) {}
 
                     @Override
-                    public void removed(Integer index, Context<?> context) {}
+                    public void removed(Element<?> element, Integer index, Context<?> context) {}
                 })
-        ))))).setName(ClefHelper.class.getSimpleName() + "@SEQUENCE-ADDED"));
+        )))))).setName(ClefHelper.class.getSimpleName() + "@SEQUENCE-ADDED"));
     }
 
     /**

@@ -80,7 +80,10 @@ public class DOMMap<Self extends DOMMap<?,?>,Value> implements DOMNode<Self>, Ma
 
     @Override
     public Value put(String key, Value value) {
-        return put(key, value, null);
+        final DOMOperation operation = new DOMOperation("replacing " + key);
+        final Value oldValue = put(key, value, operation);
+        operation.conclude();
+        return oldValue;
     }
 
     public Value put(String key, Value value, DOMOperation operation) {

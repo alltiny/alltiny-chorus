@@ -44,7 +44,7 @@ public class SongMusicDataModel implements MusicDataModel {
                     }
 
                     @Override
-                    public void removed(String property, Context<?> context) {
+                    public void removed(Song song, String property, Context<?> context) {
                         update();
                     }
                 }).setName(getClass().getSimpleName() + "@SONG"));
@@ -54,11 +54,11 @@ public class SongMusicDataModel implements MusicDataModel {
         // clear previous frames.
         frames.clear();
 
-        if (model.getCurrentSong() == null) {
+        final int numVoice = getNumberOfVoices();
+
+        if (numVoice == 0) {
             return;
         }
-
-        final int numVoice = getNumberOfVoices();
 
         long[] covered = new long[numVoice];
         long barOffset = 0;
@@ -119,7 +119,10 @@ public class SongMusicDataModel implements MusicDataModel {
     }
 
     public int getNumberOfVoices() {
-        return model.getCurrentSong() != null ? model.getCurrentSong().getMusic().getVoices().size() : 0;
+        return model.getCurrentSong() != null
+            && model.getCurrentSong().getMusic() != null
+            && model.getCurrentSong().getMusic().getVoices() != null
+            ? model.getCurrentSong().getMusic().getVoices().size() : 0;
     }
 
     public int getNumberOfFrames() {

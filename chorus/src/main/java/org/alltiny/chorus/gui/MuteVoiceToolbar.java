@@ -2,15 +2,12 @@ package org.alltiny.chorus.gui;
 
 import org.alltiny.chorus.dom.Music;
 import org.alltiny.chorus.dom.Song;
-import org.alltiny.chorus.midi.MidiPlayer;
 import org.alltiny.chorus.dom.Voice;
 import org.alltiny.chorus.model.app.ApplicationModel;
 import org.alltiny.chorus.model.generic.Context;
 import org.alltiny.chorus.model.generic.DOMHierarchicalListener;
 
 import javax.swing.*;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 
 /**
  * This class represents
@@ -44,10 +41,10 @@ public class MuteVoiceToolbar extends JToolBar {
                     }
 
                     @Override
-                    public void changed(Voice value, Integer identifier, Context<?> context) {}
+                    public void changed(Voice voice, Integer identifier, Context<?> context) {}
 
                     @Override
-                    public void removed(Integer identifier, Context<?> context) {
+                    public void removed(Voice voice, Integer identifier, Context<?> context) {
                         MuteVoiceToolbar.this.remove(identifier);
                         setVisible(MuteVoiceToolbar.this.getComponents().length > 0);
                     }

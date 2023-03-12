@@ -36,7 +36,7 @@ public class MuteVoiceToggleButton extends JToggleButton {
                     }
 
                     @Override
-                    public void removed(String property, Context<?> context) {
+                    public void removed(Boolean muted, String property, Context<?> context) {
                         MuteVoiceToggleButton.this.setSelected(true);
                     }
                 }).setName(getClass().getSimpleName() + "@MUTED"));
@@ -56,7 +56,7 @@ public class MuteVoiceToggleButton extends JToggleButton {
                     }
 
                     @Override
-                    public void removed(String property, Context<?> context) {
+                    public void removed(String name, String property, Context<?> context) {
                         MuteVoiceToggleButton.this.setText("");
                     }
                 }).setName(getClass().getSimpleName() + "@NAME"));

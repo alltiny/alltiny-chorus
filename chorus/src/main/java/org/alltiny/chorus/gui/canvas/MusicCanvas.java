@@ -91,7 +91,7 @@ public class MusicCanvas extends JComponent implements Scrollable, Consumer<DOMO
                     }
 
                     @Override
-                    public void removed(String property, Context<?> context) {
+                    public void removed(Song song, String property, Context<?> context) {
                         if (context.getOperation() != null) {
                             context.getOperation().addConclusionListener(MusicCanvas.this);
                         } else {

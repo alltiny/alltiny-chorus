@@ -5,6 +5,7 @@ import org.alltiny.chorus.command.generic.ExecutedCommand;
 import org.alltiny.chorus.dom.Song;
 import org.alltiny.chorus.model.generic.DOMList;
 import org.alltiny.chorus.model.generic.DOMMap;
+import org.alltiny.chorus.model.generic.DOMOperation;
 
 public class ApplicationModel extends DOMMap<ApplicationModel,Object> {
 
@@ -62,6 +63,11 @@ public class ApplicationModel extends DOMMap<ApplicationModel,Object> {
 
     public ApplicationModel setCurrentSong(Song song) {
         put(Property.CURRENT_SONG.name(), song);
+        return this;
+    }
+
+    public ApplicationModel setCurrentSong(Song song, DOMOperation operation) {
+        put(Property.CURRENT_SONG.name(), song, operation);
         return this;
     }
 

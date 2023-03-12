@@ -72,7 +72,7 @@ public class MidiPlayer extends PropertySupportBean implements Consumer<DOMOpera
                     }
 
                     @Override
-                    public void removed(String property, Context<?> context) {
+                    public void removed(org.alltiny.chorus.dom.Sequence sequence, String property, Context<?> context) {
                         if (context.getOperation() != null) {
                             context.getOperation().addConclusionListener(MidiPlayer.this);
                         } else {
@@ -114,7 +114,7 @@ public class MidiPlayer extends PropertySupportBean implements Consumer<DOMOpera
                     }
 
                     @Override
-                    public void removed(Integer index, Context<?> context) {
+                    public void removed(InlineSequence sequnence, Integer index, Context<?> context) {
                         if (context.getOperation() != null) {
                             context.getOperation().addConclusionListener(MidiPlayer.this);
                         } else {
@@ -146,7 +146,7 @@ public class MidiPlayer extends PropertySupportBean implements Consumer<DOMOpera
                     }
 
                     @Override
-                    public void removed(String property, Context<?> context) {
+                    public void removed(Boolean muted, String property, Context<?> context) {
                         MidiPlayer.this.setTrackMute((Integer)context.getParent().getIdentifier(), false);
                     }
                 })
@@ -167,7 +167,7 @@ public class MidiPlayer extends PropertySupportBean implements Consumer<DOMOpera
                     }
 
                     @Override
-                    public void removed(String property, Context<?> context) {
+                    public void removed(Float factor, String property, Context<?> context) {
                         MidiPlayer.this.setTempoFactor(1);
                     }
                 }).setName(getClass().getSimpleName() + "@TEMPO_FACTOR"));

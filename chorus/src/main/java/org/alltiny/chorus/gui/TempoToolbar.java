@@ -42,7 +42,7 @@ public class TempoToolbar extends JToolBar {
                     public void changed(Song song, String property, Context<?> context) {}
 
                     @Override
-                    public void removed(String property, Context<?> context) {
+                    public void removed(Song song, String property, Context<?> context) {
                         setVisible(false);
                     }
                 }).setName(getClass().getSimpleName() + "@SONG"));
@@ -62,7 +62,7 @@ public class TempoToolbar extends JToolBar {
                     }
 
                     @Override
-                    public void removed(String property, Context<?> context) {
+                    public void removed(Float factor, String property, Context<?> context) {
                         tempo.setSelectedItem(1);
                     }
                 }).setName(getClass().getSimpleName() + "@TEMPO_FACTOR"));

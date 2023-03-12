@@ -8,6 +8,7 @@ import org.alltiny.chorus.io.xmlv1.XMLSongV1;
 import org.alltiny.chorus.model.app.AppMessage;
 import org.alltiny.chorus.model.app.ApplicationModel;
 import org.alltiny.chorus.model.converter.FromXMLV1Converter;
+import org.alltiny.chorus.model.generic.DOMOperation;
 
 import java.io.File;
 import java.io.FileInputStream;
