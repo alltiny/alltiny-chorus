@@ -7,8 +7,8 @@ import org.alltiny.chorus.dom.Song;
 import org.alltiny.chorus.io.xmlv1.XMLSongV1;
 import org.alltiny.chorus.model.app.AppMessage;
 import org.alltiny.chorus.model.app.ApplicationModel;
+import org.alltiny.chorus.model.app.FileType;
 import org.alltiny.chorus.model.converter.FromXMLV1Converter;
-import org.alltiny.chorus.model.generic.DOMOperation;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -61,11 +61,13 @@ public class OpenFileCommand extends Command<OpenFileCommand> {
             }
 
             final XMLSongV1 song;
+            final FileType fileType;
             if (start[0] == 0x1f) { // probably a GZIP-File
                 try (InputStream in = new GZIPInputStream(new FileInputStream(filename))) {
                     song = (XMLSongV1) JAXBContext.newInstance(XMLSongV1.class)
                         .createUnmarshaller()
                         .unmarshal(in);
+                    fileType = FileType.GZ_XML;
                 } catch (Exception e) {
                     getAppModel().getApplicationMessageQueue().add(
                         new AppMessage(AppMessage.Type.ERROR, "cannot read file '" + filename + "': " + e.getMessage())
@@ -77,6 +79,7 @@ public class OpenFileCommand extends Command<OpenFileCommand> {
                     song = (XMLSongV1) JAXBContext.newInstance(XMLSongV1.class)
                         .createUnmarshaller()
                         .unmarshal(in);
+                    fileType = FileType.XML;
                 } catch (Exception e) {
                     getAppModel().getApplicationMessageQueue().add(
                         new AppMessage(AppMessage.Type.ERROR, "cannot read file '" + filename + "': " + e.getMessage())
@@ -94,6 +97,7 @@ public class OpenFileCommand extends Command<OpenFileCommand> {
             Song songModel = new FromXMLV1Converter().convert(song);
             songModel.setFilename(filename);
             getAppModel().setCurrentSong(songModel);
+            getAppModel().setFileType(fileType);
 
             getAppModel().getApplicationMessageQueue()
                 .add(new AppMessage(AppMessage.Type.SUCCESS, "opened file '" + filename + "'"));

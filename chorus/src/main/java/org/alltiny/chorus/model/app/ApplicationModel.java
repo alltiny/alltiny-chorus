@@ -16,6 +16,7 @@ public class ApplicationModel extends DOMMap<ApplicationModel,Object> {
         COMMAND_QUEUE_DONE,
         COMMAND_QUEUE_UNDO,
         CURRENT_SONG,
+        FILE_TYPE,
         TEMPO_FACTOR,
     }
 
@@ -80,5 +81,12 @@ public class ApplicationModel extends DOMMap<ApplicationModel,Object> {
         return this;
     }
 
+    public FileType getFileType() {
+        return (FileType)get(Property.FILE_TYPE.name());
+    }
 
+    public ApplicationModel setFileType(FileType type) {
+        put(Property.FILE_TYPE.name(), type);
+        return this;
+    }
 }
