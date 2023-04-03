@@ -2,15 +2,24 @@ package org.alltiny.chorus.command;
 
 import org.alltiny.chorus.command.generic.Command;
 import org.alltiny.chorus.command.generic.ExecutedCommand;
+import org.alltiny.chorus.command.helper.CommandLineMatcher;
+import org.alltiny.chorus.command.helper.CommandWord;
 import org.alltiny.chorus.model.app.AppMessage;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class HelpCommand extends Command<HelpCommand> {
+
+    private static final List<CommandWord> commandWords = Collections.singletonList(
+        new CommandWord("help")
+    );
 
     private final CommandRegistry registry;
 
@@ -21,7 +30,7 @@ public class HelpCommand extends Command<HelpCommand> {
 
     @Override
     public boolean feelsResponsible() {
-        return "help".startsWith(getAppModel().getCommandLine());
+        return new CommandLineMatcher(commandWords, getAppModel().getCommandLine()).isMatching();
     }
 
     @Override

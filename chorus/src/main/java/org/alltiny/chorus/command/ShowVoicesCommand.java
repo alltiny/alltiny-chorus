@@ -2,15 +2,23 @@ package org.alltiny.chorus.command;
 
 import org.alltiny.chorus.command.generic.Command;
 import org.alltiny.chorus.command.generic.ExecutedCommand;
+import org.alltiny.chorus.command.helper.CommandLineMatcher;
+import org.alltiny.chorus.command.helper.CommandWord;
 import org.alltiny.chorus.model.app.AppMessage;
 import org.alltiny.chorus.model.app.ApplicationModel;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ShowVoicesCommand extends Command<ShowVoicesCommand> {
+
+    private static final List<CommandWord> commandWords = Arrays.asList(
+        new CommandWord("show"), new CommandWord("voices")
+    );
 
     private static final Pattern pattern = Pattern.compile("show voices");
 
@@ -20,9 +28,8 @@ public class ShowVoicesCommand extends Command<ShowVoicesCommand> {
 
     @Override
     public boolean feelsResponsible() {
-        return pattern.matcher(getAppModel().getCommandLine()).matches();
+        return new CommandLineMatcher(commandWords, getAppModel().getCommandLine()).isMatching();
     }
-
 
     @Override
     public String getUsageOneLine() {

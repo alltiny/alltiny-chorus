@@ -3,6 +3,9 @@ package org.alltiny.chorus.command;
 import jakarta.xml.bind.JAXBContext;
 import org.alltiny.chorus.command.generic.Command;
 import org.alltiny.chorus.command.generic.ExecutedCommand;
+import org.alltiny.chorus.command.helper.CommandLineMatcher;
+import org.alltiny.chorus.command.helper.CommandLineToken;
+import org.alltiny.chorus.command.helper.CommandWord;
 import org.alltiny.chorus.dom.Song;
 import org.alltiny.chorus.io.xmlv1.XMLSongV1;
 import org.alltiny.chorus.model.app.AppMessage;
@@ -14,14 +17,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 
 public class OpenFileCommand extends Command<OpenFileCommand> {
 
-    private static final Pattern pattern = Pattern.compile("open (?<filename>.+)");
+    private static final List<CommandWord> commandWords = Arrays.asList(
+        new CommandWord("open"), new CommandWord("file", false)
+    );
 
     public OpenFileCommand(ApplicationModel appModel) {
         super(appModel);
@@ -29,7 +35,7 @@ public class OpenFileCommand extends Command<OpenFileCommand> {
 
     @Override
     public boolean feelsResponsible() {
-        return pattern.matcher(getAppModel().getCommandLine()).matches();
+        return new CommandLineMatcher(commandWords, getAppModel().getCommandLine()).isMatching();
     }
 
     @Override
@@ -45,11 +51,11 @@ public class OpenFileCommand extends Command<OpenFileCommand> {
     @Override
     public Function<Void, ExecutedCommand<OpenFileCommand>> getExecutableFunction() {
         return unused -> {
-            Matcher matcher = pattern.matcher(getAppModel().getCommandLine());
-            if (!matcher.matches()) {
+            CommandLineMatcher matcher = new CommandLineMatcher(commandWords, getAppModel().getCommandLine());
+            if (!matcher.isMatching()) {
                 return null;
             }
-            final String filename = matcher.group("filename");
+            final String filename = getFileName(matcher.getArguments());
             final byte[] start;
             try (InputStream in = new FileInputStream(filename)) {
                 start = in.readNBytes(1);
@@ -110,5 +116,11 @@ public class OpenFileCommand extends Command<OpenFileCommand> {
 
     public static String commandFor(File file) {
         return "open " + file.getAbsolutePath();
+    }
+
+    public static String getFileName(List<CommandLineToken> tokens) {
+        return tokens.stream()
+            .map(CommandLineToken::getCharacters)
+            .collect(Collectors.joining(" "));
     }
 }
