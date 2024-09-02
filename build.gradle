@@ -11,6 +11,7 @@ buildscript {
 plugins {
 	id 'edu.sc.seis.launch4j' version '2.4.6' apply false
 }
+
 allprojects {
 	apply plugin: 'idea'
 	apply plugin: 'eclipse'
