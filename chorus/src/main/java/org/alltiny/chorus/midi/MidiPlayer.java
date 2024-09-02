@@ -385,7 +385,7 @@ public class MidiPlayer extends PropertySupportBean {
                 }
 
                 try {
-                    sleep(20); // resolves in an update rate of 50Hz
+                    sleep(25); // resolves in an update rate of 40Hz
                 } catch (InterruptedException e) {
                     /* nothing to do on interruption. */
                 }

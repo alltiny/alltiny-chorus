@@ -27,7 +27,7 @@ public class OpenFromFileAction extends AbstractAction {
     private final ApplicationProperties properties;
 
     public OpenFromFileAction(SongModel model, ApplicationProperties properties) {
-        putValue(Action.SMALL_ICON, new ImageIcon(getClass().getClassLoader().getResource("image/open.png")));
+        putValue(Action.SMALL_ICON, new ImageIcon(getClass().getResource("/image/open.png"), "open"));
         putValue(Action.SHORT_DESCRIPTION, ResourceBundle.getBundle("i18n.chorus").getString("OpenFromFileAction.ShortDescription"));
         this.model = model;
         this.properties = properties;

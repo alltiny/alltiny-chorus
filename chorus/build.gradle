@@ -1,4 +1,5 @@
 apply plugin: 'application'
+apply plugin: 'edu.sc.seis.launch4j'
 
 version = '0.3.1'
 mainClassName = 'org.alltiny.chorus.Chorus'
@@ -21,4 +22,7 @@ jar {
 			'Implementation-Version': version,
 		)
 	}
+}
+
+launch4j {
 }

@@ -25,15 +25,15 @@ public class MusicLayeredPane extends JLayeredPane implements Scrollable {
         scrollableDelegate = canvas;
 
         // add the canvas to the base layer.
-        add(canvas, new Integer(0));
+        add(canvas, Integer.valueOf(0));
 
         // create a CurrentSliderPane
         final SliderPositionPane sliderPane = new SliderPositionPane(canvas, new SliderPositionModel(canvas, player));
-        add(sliderPane, new Integer(1));
+        add(sliderPane, Integer.valueOf(1));
 
         // create a MousePosRenderingPane
         final MousePositionPane mousePane = new MousePositionPane();
-        add(mousePane, new Integer(2));
+        add(mousePane, Integer.valueOf(2));
 
         addMouseListener(new MouseAdapter() {
             @Override

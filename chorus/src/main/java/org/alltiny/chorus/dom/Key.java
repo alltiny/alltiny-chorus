@@ -18,27 +18,27 @@ public enum Key {
     d  (NONE,NONE,NONE,NONE,NONE,NONE,FLAT), // d-Moll, d-Minor
     B  (NONE,NONE,FLAT,NONE,NONE,NONE,FLAT), // B-Dur, B-Major
     g  (NONE,NONE,FLAT,NONE,NONE,NONE,FLAT), // g-Moll, g-Minor
-    Es (NONE,NONE,FLAT,NONE,NONE,FLAT,FLAT), // Es-Dur, Es-Major
+    Es (NONE,NONE,FLAT,NONE,NONE,FLAT,FLAT), // Es-Dur, Eb-Major
     c  (NONE,NONE,FLAT,NONE,NONE,FLAT,FLAT), // c-Moll, c-Minor
-    As (NONE,FLAT,FLAT,NONE,NONE,FLAT,FLAT), // As-Dur, As-Major
+    As (NONE,FLAT,FLAT,NONE,NONE,FLAT,FLAT), // As-Dur, Ab-Major
     f  (NONE,FLAT,FLAT,NONE,NONE,FLAT,FLAT), // f-Moll, f-Minor
-    Des(NONE,FLAT,FLAT,NONE,FLAT,FLAT,FLAT), // Des-Dur, Des-Major
+    Des(NONE,FLAT,FLAT,NONE,FLAT,FLAT,FLAT), // Des-Dur, Db-Major
     b  (NONE,FLAT,FLAT,NONE,FLAT,FLAT,FLAT), // b-Moll, b-Minor
-    Ges(FLAT,FLAT,FLAT,NONE,FLAT,FLAT,FLAT), // Ges-Dur, Ges-Major
+    Ges(FLAT,FLAT,FLAT,NONE,FLAT,FLAT,FLAT), // Ges-Dur, Gb-Major
     es (FLAT,FLAT,FLAT,NONE,FLAT,FLAT,FLAT), // es-Moll, es-Minor
 
-    G  (NONE,NONE,NONE,SHARP,NONE,NONE,NONE), // F-Dur, F-Major
-    e  (NONE,NONE,NONE,SHARP,NONE,NONE,NONE), // d-Moll, d-Minor
-    D  (SHARP,NONE,NONE,SHARP,NONE,NONE,NONE), // B-Dur, B-Major
-    h  (SHARP,NONE,NONE,SHARP,NONE,NONE,NONE), // g-Moll, g-Minor
-    A  (SHARP,NONE,NONE,SHARP,SHARP,NONE,NONE), // Es-Dur, Es-Major
-    fis(SHARP,NONE,NONE,SHARP,SHARP,NONE,NONE), // c-Moll, c-Minor
-    E  (SHARP,SHARP,NONE,SHARP,SHARP,NONE,NONE), // As-Dur, As-Major
-    cis(SHARP,SHARP,NONE,SHARP,SHARP,NONE,NONE), // f-Moll, f-Minor
-    H  (SHARP,SHARP,NONE,SHARP,SHARP,SHARP,NONE), // Des-Dur, Des-Major
-    gis(SHARP,SHARP,NONE,SHARP,SHARP,SHARP,NONE), // b-Moll, b-Minor
-    Fis(SHARP,SHARP,SHARP,SHARP,SHARP,SHARP,NONE), // Ges-Dur, Ges-Major
-    dis(SHARP,SHARP,SHARP,SHARP,SHARP,SHARP,NONE); // es-Moll, es-Minor
+    G  (NONE,NONE,NONE,SHARP,NONE,NONE,NONE), // G-Dur, G-Major
+    e  (NONE,NONE,NONE,SHARP,NONE,NONE,NONE), // e-Moll, e-Minor
+    D  (SHARP,NONE,NONE,SHARP,NONE,NONE,NONE), // D-Dur, D-Major
+    h  (SHARP,NONE,NONE,SHARP,NONE,NONE,NONE), // h-Moll, h-Minor
+    A  (SHARP,NONE,NONE,SHARP,SHARP,NONE,NONE), // A-Dur, A-Major
+    fis(SHARP,NONE,NONE,SHARP,SHARP,NONE,NONE), // fis-Moll, f#-Minor
+    E  (SHARP,SHARP,NONE,SHARP,SHARP,NONE,NONE), // E-Dur, E-Major
+    cis(SHARP,SHARP,NONE,SHARP,SHARP,NONE,NONE), // cis-Moll, c#-Minor
+    H  (SHARP,SHARP,NONE,SHARP,SHARP,SHARP,NONE), // H-Dur, H-Major
+    gis(SHARP,SHARP,NONE,SHARP,SHARP,SHARP,NONE), // gis-Moll, g#-Minor
+    Fis(SHARP,SHARP,SHARP,SHARP,SHARP,SHARP,NONE), // Fis-Dur, F#-Major
+    dis(SHARP,SHARP,SHARP,SHARP,SHARP,SHARP,NONE); // dis-Moll, d#-Minor
 
     private final AccidentalSign[] mods = new AccidentalSign[BaseNote.values().length];
 
